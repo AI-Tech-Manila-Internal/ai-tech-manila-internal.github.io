@@ -1,11 +1,670 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="dark">
 <head>
-    <title>Hello World Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Tech Manila | Where Innovation Meets Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/plugin/relativeTime.js"></script>
+    <script>
+        dayjs.extend(dayjs_plugin_relativeTime);
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .logo {
+            scale: 1.4;
+        }
+        
+        /* Glassmorphism effects */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Gradient text */
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #c471f5 75%, #667eea 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 8s ease infinite;
+        }
+        
+        .gradient-text-ai {
+            background: linear-gradient(135deg, #00D9FF44 0%, #0099FF 25%, #FF00FF 50%, #FF0099 75%, #00D9FF 100%);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 5s ease infinite;
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Neural network background pattern */
+        .neural-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
+        }
+        
+        /* Globe container */
+        #globe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Glowing button */
+        .glow-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .glow-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Neon glow */
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5),
+                        0 0 40px rgba(0, 217, 255, 0.3),
+                        0 0 60px rgba(0, 217, 255, 0.1);
+        }
+        
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Pulse animation */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Tech grid pattern */
+        .tech-grid {
+            background-image: 
+                linear-gradient(rgba(0, 217, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Holographic effect */
+        .holographic {
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+            background-size: 200% 200%;
+            animation: holographic-shift 3s ease infinite;
+        }
+        
+        @keyframes holographic-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00D9FF44, #FF00FF);
+            border-radius: 4px;
+        }
+        
+        /* Terminal cursor effect */
+        .terminal-cursor::after {
+            content: '_';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Cyber lines */
+        .cyber-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .cyber-line {
+            position: absolute;
+            width: 1px;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, #00D9FF44, transparent);
+            animation: cyber-rain 5s linear infinite;
+        }
+        
+        @keyframes cyber-rain {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
 </head>
-<body>
+<body class="bg-gray-900 text-white">
+    <!-- Neural Background -->
+    <div class="neural-bg"></div>
+    
+    <!-- 3D Globe Container -->
+    <div id="globe-container"></div>
+    
+    <!-- Cyber lines effect -->
+    <div class="cyber-lines" id="cyber-lines"></div>
 
-    <h1>Hello World!</h1>
+    <!-- Header -->
+    <header class="glass-dark fixed top-0 w-full z-50 border-b border-cyan-500/20">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden neon-glow">
+                        <img src="logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+                    </div>
+                    <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#event" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Event</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>About</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#mission" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Mission</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Connect</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+                
+                <button id="mobile-menu-button" class="md:hidden text-cyan-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden mt-4 glass rounded-lg p-4 md:hidden">
+                <a href="#event" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Event</a>
+                <a href="#about" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">About</a>
+                <a href="#mission" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Mission</a>
+                <a href="#contact" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Connect</a>
+            </div>
+        </nav>
+    </header>
 
+    <main class="relative z-10">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center px-6 relative">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
+                    <span class="gradient-text-ai">Shaping the Future</span><br>
+                    <span class="text-white">of Technology with</span><br>
+                    <span class="gradient-text">Artificial Intelligence</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Join Manila's premier AI community where innovators, developers, and tech enthusiasts converge to build tomorrow's intelligent solutions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#event" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 neon-glow">
+                        Join Next Event
+                    </a>
+                    <a href="#about" class="glass border border-cyan-500/50 text-cyan-400 font-bold py-4 px-8 rounded-full hover:bg-cyan-500/10 transition-all duration-300">
+                        Learn More
+                    </a>
+                </div>
+                
+                <!-- AI Stats -->
+                <div class="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
+                    <div class="glass rounded-lg p-4">
+                        <div class="text-3xl font-bold gradient-text-ai">500+</div>
+                        <div class="text-sm text-gray-400">Members</div>
+                    </div>
+                    <div class="glass rounded-lg p-4">
+                        <div class="text-3xl font-bold gradient-text-ai">24</div>
+                        <div class="text-sm text-gray-400">Events</div>
+                    </div>
+                    <div class="glass rounded-lg p-4">
+                        <div class="text-3xl font-bold gradient-text-ai">∞</div>
+                        <div class="text-sm text-gray-400">Possibilities</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Event Section -->
+        <section id="event" class="py-20 px-6">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">
+                        <span class="gradient-text-ai">Next Event</span>
+                    </h2>
+                    <div class="inline-block px-4 py-2 glass rounded-full">
+                        <span class="text-cyan-400 pulse-animation inline-block">● LIVE SOON</span>
+                    </div>
+                </div>
+
+                <div class="glass rounded-2xl overflow-hidden max-w-5xl mx-auto">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 p-8 md:p-12">
+                            <h3 class="text-3xl font-bold gradient-text mb-4">AI & Tech Manila: Neural Networking</h3>
+                            <div class="flex items-center space-x-2 text-cyan-400 mb-6">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12z"/>
+                                    <path d="M10 6a1 1 0 011 1v3h2a1 1 0 110 2h-3a1 1 0 01-1-1V7a1 1 0 011-1z"/>
+                                </svg>
+                                <span class="font-medium">September 27, 2025 | 2-5 PM</span>
+                            </div>
+                            
+                            <div class="space-y-4 text-gray-300">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
+                                    <p>Deep dive into latest AI breakthroughs and GPT advancements</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
+                                    <p>Hands-on demos with cutting-edge AI tools and frameworks</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-pink-400 rounded-full mt-2"></div>
+                                    <p>Network with AI researchers, engineers, and entrepreneurs</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
+                                    <p>Exclusive insights from industry leaders and innovators</p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8 p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30">
+                                <p class="text-sm text-cyan-300">
+                                    <span class="font-semibold">Limited Seats:</span> 15-30 participants for optimal interaction
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="md:w-1/2 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 p-8 md:p-12 flex flex-col items-center justify-center">
+                            <h4 class="text-2xl font-bold mb-6">Event Countdown</h4>
+                            <div id="countdown" class="grid grid-cols-4 gap-4 text-center mb-8">
+                                <div class="glass rounded-lg p-4">
+                                    <div id="days" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div class="text-xs uppercase tracking-wider text-gray-400">Days</div>
+                                </div>
+                                <div class="glass rounded-lg p-4">
+                                    <div id="hours" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div class="text-xs uppercase tracking-wider text-gray-400">Hours</div>
+                                </div>
+                                <div class="glass rounded-lg p-4">
+                                    <div id="minutes" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div class="text-xs uppercase tracking-wider text-gray-400">Mins</div>
+                                </div>
+                                <div class="glass rounded-lg p-4">
+                                    <div id="seconds" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div class="text-xs uppercase tracking-wider text-gray-400">Secs</div>
+                                </div>
+                            </div>
+                            <a href="https://luma.com/zjudikfn" target="_blank" class="holographic text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300">
+                                Reserve Your Spot →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-6">
+            <div class="container mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold gradient-text mb-4">Where Minds Connect</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">Building the future of AI, one connection at a time</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group">
+                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🧠</div>
+                        <h3 className="font-bold text-cyan-400 mb-2">AI Deep Dives</h3>
+                        <p class="text-sm text-gray-400">Monthly sessions exploring neural networks, ML models, and AGI developments</p>
+                    </div>
+                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group">
+                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🚀</div>
+                        <h3 class="font-bold text-purple-400 mb-2">Innovation Labs</h3>
+                        <p class="text-sm text-gray-400">Hands-on workshops with GPT, computer vision, and emerging AI tools</p>
+                    </div>
+                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group">
+                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">🌐</div>
+                        <h3 class="font-bold text-pink-400 mb-2">Global Network</h3>
+                        <p class="text-sm text-gray-400">Connect with AI professionals from Manila to Silicon Valley</p>
+                    </div>
+                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group">
+                        <div class="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">⚡</div>
+                        <h3 class="font-bold text-blue-400 mb-2">Startup Accelerator</h3>
+                        <p class="text-sm text-gray-400">Launch your AI startup with community support and mentorship</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission" class="py-20 px-6 tech-grid">
+            <div class="container mx-auto max-w-4xl">
+                <div class="glass rounded-2xl p-8 md:p-12">
+                    <h2 class="text-4xl font-bold text-center mb-12">
+                        <span class="gradient-text-ai">Our Mission</span>
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-cyan-400">Vision 2030</h3>
+                            <p class="text-gray-300">
+                                To establish Manila as Southeast Asia's AI innovation hub, where every member contributes to advancing human-AI collaboration for global impact.
+                            </p>
+                            <div class="flex items-center space-x-2 text-sm text-cyan-300">
+                                <span class="terminal-cursor">Initializing future</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <h3 class="text-2xl font-bold text-purple-400">Core Values</h3>
+                            <ul class="space-y-2 text-gray-300">
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-cyan-400 mt-1">▸</span>
+                                    <span>Open-source collaboration and knowledge sharing</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-purple-400 mt-1">▸</span>
+                                    <span>Ethical AI development and responsible innovation</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-pink-400 mt-1">▸</span>
+                                    <span>Inclusive community welcoming all skill levels</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-blue-400 mt-1">▸</span>
+                                    <span>Continuous learning and adaptation</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="glass-dark border-t border-cyan-500/20 py-12 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg overflow-hidden">
+                            <img src="logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+                        </div>
+                        <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-xs">Pioneering the future of artificial intelligence in the Philippines.</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61578227953203" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/>
+                        </svg>
+                    </a>
+                    <a href="https://chat.whatsapp.com/E8h3DeS8LlFGEU8WBOXEaa" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm11.892-21.891c-5.448 0-9.881 4.433-9.881 9.881s4.433 9.881 9.881 9.881 9.881-4.433 9.881-9.881-4.433-9.881-9.881-9.881z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-sm text-gray-500">&copy; <span id="copyright-year"></span> AI & Tech Manila. Powered by Intelligence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            console.log('Menu button:', mobileMenuButton);
+            console.log('Mobile menu:', mobileMenu);
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Button clicked!');
+                    mobileMenu.classList.toggle('hidden');
+                    console.log('Menu classes after toggle:', mobileMenu.className);
+                });
+
+                // Close menu when clicking on a link
+                const menuLinks = mobileMenu.querySelectorAll('a');
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            } else {
+                console.error('Menu elements not found!');
+            }
+        });
+
+        // Initialize 3D Globe
+        let scene, camera, renderer, globe, particles;
+        let mouseX = 0, mouseY = 0;
+
+        function initGlobe() {
+            const container = document.getElementById('globe-container');
+            
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 30;
+
+            renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // Create globe geometry
+            const geometry = new THREE.SphereGeometry(10, 64, 32);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x1c2f44,
+                transparent: true,
+                opacity: 0.1,
+                wireframe: true
+            });
+            globe = new THREE.Mesh(geometry, material);
+            scene.add(globe);
+
+            // Create particles
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 1000;
+            const positions = new Float32Array(particlesCount * 3);
+
+            for (let i = 0; i < particlesCount * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 100;
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const particlesMaterial = new THREE.PointsMaterial({
+                color: 0x1c2f44,
+                size: 0.5,
+                transparent: true,
+                opacity: 0.6
+            });
+
+            particles = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particles);
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            globe.rotation.y += 0.005;
+            particles.rotation.y -= 0.001;
+            particles.rotation.x -= 0.001;
+
+            // Mouse interaction
+            globe.rotation.x += (mouseY * 0.0001);
+            globe.rotation.y += (mouseX * 0.0001);
+
+            renderer.render(scene, camera);
+        }
+
+        // Mouse movement
+        document.addEventListener('mousemove', function(event) {
+            mouseX = event.clientX - window.innerWidth / 2;
+            mouseY = event.clientY - window.innerHeight / 2;
+        });
+
+        // Window resize
+        window.addEventListener('resize', function() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Initialize globe on load
+        initGlobe();
+
+        // Countdown timer
+        function updateCountdown() {
+            const eventDate = new Date('2025-09-27T14:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Cyber lines animation
+        function createCyberLine() {
+            const line = document.createElement('div');
+            line.className = 'cyber-line';
+            line.style.left = Math.random() * 100 + '%';
+            line.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.getElementById('cyber-lines').appendChild(line);
+
+            setTimeout(() => {
+                line.remove();
+            }, 5000);
+        }
+
+        setInterval(createCyberLine, 200);
+
+        // Copyright year
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
