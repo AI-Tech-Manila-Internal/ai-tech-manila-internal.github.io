@@ -230,6 +230,19 @@
                 font-size: 1.5em !important;
             }
         }
+
+        /* TAILWIND OVERRIDES */
+        @media (width <= 768px) {
+            .text-xl {
+                font-size: 1.20rem !important;
+            }
+            .text-3xl {
+                font-size: 1.80rem !important;
+            }
+            .text-5xl {
+                font-size: 2.85rem !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -291,7 +304,7 @@
 
     <main class="relative z-10">
         <!-- Hero Section -->
-        <section class="min-h-screen flex items-center justify-center px-6 relative">
+        <section class="min-h-screen flex items-center justify-center px-4 sm:px-6 relative">
             <div class="container mx-auto text-center">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
                     <span class="gradient-text-ai">Shaping the Future</span><br>
@@ -303,7 +316,7 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="#event" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 neon-glow">
-                        Join Next Event
+                        Join Our Next Event
                     </a>
                     <a href="#about" class="glass border border-cyan-500/50 text-cyan-400 font-bold py-4 px-8 rounded-full hover:bg-cyan-500/10 transition-all duration-300">
                         Learn More
@@ -311,7 +324,7 @@
                 </div>
                 
                 <!-- AI Stats -->
-                <div id="ai-stats" class="mt-16 grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-2xl mx-auto">
+                <div id="ai-stats" class="mt-16 grid grid-cols-3 gap-2 sm:gap-6 md:gap-8 max-w-2xl mx-auto">
                     <div class="glass rounded-lg p-2 md:p-3">
                         <div class="text-xl sm:text-3xl font-bold gradient-text-ai">500+</div>
                         <div class="text-sm text-gray-400">Members</div>
@@ -342,7 +355,7 @@
 
                 <div class="glass rounded-2xl overflow-hidden max-w-5xl mx-auto">
                     <div class="md:flex">
-                        <div class="md:w-1/2 p-8 md:p-12">
+                        <div class="md:w-1/2 p-6 sm:p-8 md:p-12">
                             <h3 class="text-3xl font-bold gradient-text mb-4">AI & Tech Manila: Neural Networking</h3>
                             <div class="flex items-center space-x-2 text-cyan-400 mb-6">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -378,23 +391,23 @@
                             </div>
                         </div>
                         
-                        <div class="md:w-1/2 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 p-8 md:p-12 flex flex-col items-center justify-center">
+                        <div class="md:w-1/2 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 p-6 sm:p-8 md:p-12 flex flex-col items-center justify-center">
                             <h4 class="text-2xl font-bold mb-6">Event Countdown</h4>
-                            <div id="countdown" class="grid grid-cols-4 gap-4 text-center mb-8">
+                            <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 text-center mb-8">
                                 <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="days" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div id="days" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Days</div>
                                 </div>
                                 <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="hours" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div id="hours" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Hours</div>
                                 </div>
                                 <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="minutes" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div id="minutes" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Mins</div>
                                 </div>
                                 <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="seconds" class="text-3xl font-bold gradient-text-ai">0</div>
+                                    <div id="seconds" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Secs</div>
                                 </div>
                             </div>
@@ -443,7 +456,7 @@
         <!-- Mission Section -->
         <section id="mission" class="py-20 px-6 tech-grid">
             <div class="container mx-auto max-w-4xl">
-                <div class="glass rounded-2xl p-8 md:p-12">
+                <div class="glass rounded-2xl p-6 sm:p-8 md:p-12">
                     <h2 class="text-4xl font-bold text-center mb-12">
                         <span class="gradient-text-ai">Our Mission</span>
                     </h2>
