@@ -6,7 +6,7 @@
     <title>AI & Tech Manila | Where Innovation Meets Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/plugin/relativeTime.js"></script>
     <script>
@@ -22,6 +22,13 @@
         body {
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
+            padding-top: 50px !important;
+        }
+
+        @media (height <= 650px) {
+            body {
+                padding-top: 100px !important;
+            }
         }
         
         .logo {
@@ -209,6 +216,16 @@
             0% { transform: translateY(-100%); }
             100% { transform: translateY(100vh); }
         }
+
+        #ai-stats .char-infinity {
+            font-size: 3.5em;
+        }
+
+        @media (width <= 600px) {
+            #ai-stats .char-infinity {
+                font-size: 2.5em;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-white">
@@ -290,17 +307,17 @@
                 </div>
                 
                 <!-- AI Stats -->
-                <div class="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-                    <div class="glass rounded-lg p-4">
-                        <div class="text-3xl font-bold gradient-text-ai">500+</div>
+                <div id="ai-stats" class="mt-16 grid grid-cols-3 gap-6 md:gap-8 max-w-2xl mx-auto">
+                    <div class="glass rounded-lg p-2 md:p-3">
+                        <div class="text-xl sm:text-3xl font-bold gradient-text-ai">500+</div>
                         <div class="text-sm text-gray-400">Members</div>
                     </div>
-                    <div class="glass rounded-lg p-4">
-                        <div class="text-3xl font-bold gradient-text-ai">24</div>
+                    <div class="glass rounded-lg p-2 md:p-3">
+                        <div class="text-xl sm:text-3xl font-bold gradient-text-ai">24</div>
                         <div class="text-sm text-gray-400">Events</div>
                     </div>
-                    <div class="glass rounded-lg p-4">
-                        <div class="text-3xl font-bold gradient-text-ai">∞</div>
+                    <div class="glass rounded-lg p-2 md:p-3">
+                        <div class="text-xl sm:text-3xl font-bold gradient-text-ai char-infinity">∞</div>
                         <div class="text-sm text-gray-400">Possibilities</div>
                     </div>
                 </div>
@@ -360,19 +377,19 @@
                         <div class="md:w-1/2 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 p-8 md:p-12 flex flex-col items-center justify-center">
                             <h4 class="text-2xl font-bold mb-6">Event Countdown</h4>
                             <div id="countdown" class="grid grid-cols-4 gap-4 text-center mb-8">
-                                <div class="glass rounded-lg p-4">
+                                <div class="glass rounded-lg p-2 md:p-3">
                                     <div id="days" class="text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Days</div>
                                 </div>
-                                <div class="glass rounded-lg p-4">
+                                <div class="glass rounded-lg p-2 md:p-3">
                                     <div id="hours" class="text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Hours</div>
                                 </div>
-                                <div class="glass rounded-lg p-4">
+                                <div class="glass rounded-lg p-2 md:p-3">
                                     <div id="minutes" class="text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Mins</div>
                                 </div>
-                                <div class="glass rounded-lg p-4">
+                                <div class="glass rounded-lg p-2 md:p-3">
                                     <div id="seconds" class="text-3xl font-bold gradient-text-ai">0</div>
                                     <div class="text-xs uppercase tracking-wider text-gray-400">Secs</div>
                                 </div>
