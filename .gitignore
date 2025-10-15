@@ -1,0 +1,5 @@
+﻿.claude/*
+.vscode/*
+.idea/*
+node_modules/*
+vendor/*
