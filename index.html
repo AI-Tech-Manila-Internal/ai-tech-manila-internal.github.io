@@ -12,234 +12,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-            padding-top: 50px !important;
-        }
-        @media (width <= 600px) {
-            body {
-                padding-top: 80px !important;
-            }
-        }
-        @media (height <= 650px) {
-            body {
-                padding-top: 100px !important;
-            }
-        }
-        
-        /* Glassmorphism effects */
-        .glass {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .glass-dark {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #c471f5 75%, #667eea 100%);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-shift 8s ease infinite;
-        }
-        
-        .gradient-text-ai {
-            background: linear-gradient(135deg, #00D9FF44 0%, #0099FF 25%, #FF00FF 50%, #FF0099 75%, #00D9FF 100%);
-            background-size: 400% 400%;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: gradient-shift 5s ease infinite;
-        }
-        
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Neural network background pattern */
-        .neural-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            background: linear-gradient(180deg, #0a0e27 0%, #1a1f3a 50%, #0a0e27 100%);
-        }
-        
-        /* Globe container */
-        #globe-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
-        
-        /* Glowing button */
-        .glow-button {
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s;
-        }
-        
-        .glow-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .glow-button:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        /* Neon glow */
-        .neon-glow {
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5),
-                        0 0 40px rgba(0, 217, 255, 0.3),
-                        0 0 60px rgba(0, 217, 255, 0.1);
-        }
-        
-        /* Floating animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        .float-animation {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        /* Pulse animation */
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        /* Tech grid pattern */
-        .tech-grid {
-            background-image: 
-                linear-gradient(rgba(0, 217, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 217, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
-        
-        /* Holographic effect */
-        .holographic {
-            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
-            background-size: 200% 200%;
-            animation: holographic-shift 3s ease infinite;
-        }
-        
-        @keyframes holographic-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: rgba(0, 0, 0, 0.1);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #00D9FF44, #FF00FF);
-            border-radius: 4px;
-        }
-        
-        /* Terminal cursor effect */
-        .terminal-cursor::after {
-            content: '_';
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-        
-        /* Cyber lines */
-        .cyber-lines {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        
-        .cyber-line {
-            position: absolute;
-            width: 1px;
-            height: 100px;
-            background: linear-gradient(to bottom, transparent, #00D9FF44, transparent);
-            animation: cyber-rain 5s linear infinite;
-        }
-        
-        @keyframes cyber-rain {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
-
-        #ai-stats .char-infinity {
-            font-size: 3.5em;
-        }
-
-        @media (width <= 600px) {
-            #ai-stats .char-infinity {
-                font-size: 1.5em !important;
-            }
-        }
-
-        /* TAILWIND OVERRIDES */
-        @media (width <= 768px) {
-            .text-xl {
-                font-size: 1.20rem !important;
-            }
-            .text-3xl {
-                font-size: 1.80rem !important;
-            }
-            .text-5xl {
-                font-size: 2.85rem !important;
-            }
-        }
-    </style>
+    
+    <link href="/assets/css/base.css" rel="stylesheet">
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Neural Background -->
@@ -275,7 +49,7 @@
                         <span>Mission</span>
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
                     </a>
-                    <a href="#team" id="nav-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group" style="display: none;">
+                    <a href="#team" id="nav-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
                         <span>Team</span>
                         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
                     </a>
@@ -297,7 +71,7 @@
                 <a href="#event" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Event</a>
                 <a href="#about" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">About</a>
                 <a href="#mission" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Mission</a>
-                <a href="#team" id="mobile-nav-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition" style="display: none;">Team</a>
+                <a href="#team" id="mobile-nav-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Team</a>
                 <a href="#contact" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Connect</a>
             </div>
         </nav>
@@ -587,94 +361,132 @@
         </section>
 
         <!-- Team Section -->
-        <section id="team" class="py-20 px-6" style="display: none;">
-            <div class="container mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold gradient-text-ai mb-4">Meet Our Team</h2>
-                    <p class="text-gray-400 max-w-2xl mx-auto">The brilliant minds driving AI innovation in Manila</p>
-                </div>
+        <section id="team" class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <h1 class="text-5xl font-bold text-center mb-16 gradient-text-ai">Our Team</h1>
 
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group text-center">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <div class="text-4xl">🧠</div>
+                <!-- Founders Section (Highlighted) -->
+                <div class="team-category founders glass-dark">
+                    <h2 class="text-3xl font-bold gradient-text">Founders</h2>
+                    <div class="team-members">
+                        <div class="member">
+                            <a href="https://www.linkedin.com/in/rosselle-mabunga/" target="_blank">
+                                <img src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
+                                <h3 class="text-cyan-400">Rosselle Mabunga</h3>
+                                <p class="text-purple-400">Engineering Leader/Founder</p>
+                                <p>Leading technical innovation and building solutions that shape the future of AI & Tech Manila.</p>
+                            </a>
                         </div>
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">AI Research Lead</h3>
-                        <p class="text-sm text-gray-400 mb-3">Leading breakthrough research in neural networks and machine learning</p>
-                        <div class="flex justify-center space-x-3">
-                            <span class="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded">PhD AI</span>
-                            <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">10+ Papers</span>
-                        </div>
-                    </div>
-
-                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group text-center">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <div class="text-4xl">💻</div>
-                        </div>
-                        <h3 class="text-xl font-bold text-purple-400 mb-2">Tech Architect</h3>
-                        <p class="text-sm text-gray-400 mb-3">Designing scalable AI systems and cloud infrastructure</p>
-                        <div class="flex justify-center space-x-3">
-                            <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">Cloud Expert</span>
-                            <span class="text-xs bg-pink-500/20 text-pink-400 px-2 py-1 rounded">MLOps</span>
-                        </div>
-                    </div>
-
-                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group text-center">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-pink-500/20 to-blue-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <div class="text-4xl">🌟</div>
-                        </div>
-                        <h3 class="text-xl font-bold text-pink-400 mb-2">Community Manager</h3>
-                        <p class="text-sm text-gray-400 mb-3">Building bridges between AI enthusiasts and industry leaders</p>
-                        <div class="flex justify-center space-x-3">
-                            <span class="text-xs bg-pink-500/20 text-pink-400 px-2 py-1 rounded">Growth</span>
-                            <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">Events</span>
-                        </div>
-                    </div>
-
-                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group text-center">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <div class="text-4xl">🔬</div>
-                        </div>
-                        <h3 class="text-xl font-bold text-blue-400 mb-2">Data Scientist</h3>
-                        <p class="text-sm text-gray-400 mb-3">Extracting insights from complex datasets and building predictive models</p>
-                        <div class="flex justify-center space-x-3">
-                            <span class="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">Analytics</span>
-                            <span class="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded">Models</span>
-                        </div>
-                    </div>
-
-                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group text-center">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <div class="text-4xl">🚀</div>
-                        </div>
-                        <h3 class="text-xl font-bold text-cyan-400 mb-2">Product Lead</h3>
-                        <p class="text-sm text-gray-400 mb-3">Transforming AI research into user-friendly products and solutions</p>
-                        <div class="flex justify-center space-x-3">
-                            <span class="text-xs bg-cyan-500/20 text-cyan-400 px-2 py-1 rounded">Strategy</span>
-                            <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">UX/AI</span>
-                        </div>
-                    </div>
-
-                    <div class="glass rounded-xl p-6 hover:scale-105 transition-transform duration-300 group text-center">
-                        <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500/20 to-pink-600/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <div class="text-4xl">🎯</div>
-                        </div>
-                        <h3 class="text-xl font-bold text-purple-400 mb-2">Ethics Advisor</h3>
-                        <p class="text-sm text-gray-400 mb-3">Ensuring responsible AI development and ethical implementation</p>
-                        <div class="flex justify-center space-x-3">
-                            <span class="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">Ethics</span>
-                            <span class="text-xs bg-pink-500/20 text-pink-400 px-2 py-1 rounded">Policy</span>
+                        <div class="member">
+                            <a href="https://www.linkedin.com/in/jackdiao/" target="_blank"></a>
+                                <img src="/assets/img/team/jack.jpeg" alt="Jack Diao">
+                                <h3 class="text-cyan-400">Jack Diao</h3>
+                                <p class="text-purple-400">Admin/Founder</p>
+                                <p>Driving community growth and operational excellence at AI & Tech Manila.</p>
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="text-center mt-12">
-                    <div class="glass rounded-xl p-8 max-w-3xl mx-auto">
-                        <h3 class="text-2xl font-bold gradient-text mb-4">Join Our Mission</h3>
-                        <p class="text-gray-300 mb-6">We're always looking for passionate individuals to join our team and help shape the future of AI in Southeast Asia.</p>
-                        <a href="#contact" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-3 px-6 rounded-full hover:scale-105 transition-transform duration-300 inline-block">
-                            Get Involved
-                        </a>
+                <!-- Marketing Team -->
+                <div class="team-category">
+                    <h2 class="text-3xl font-bold gradient-text">Marketing</h2>
+                    <div class="team-members">
+                        <div class="member">
+                            <img src="/assets/img/team/female.jpg" alt="Sarah Jane Lee">
+                            <h3 class="text-cyan-400">Sarah Jane Lee</h3>
+                            <p class="text-purple-400">Marketing Team</p>
+                            <p>Driving brand awareness and community engagement initiatives.</p>
+                        </div>
+                        <div class="member">
+                            <img src="/assets/img/team/female.jpg" alt="Nicah Tuazon">
+                            <h3 class="text-cyan-400">Nicah Tuazon</h3>
+                            <p class="text-purple-400">Marketing Team</p>
+                            <p>Creating compelling content and strategies to connect with our community.</p>
+                        </div>
+                        <div class="member">
+                            <img src="/assets/img/team/male.jpg" alt="Keith Hidalgo">
+                            <h3 class="text-cyan-400">Keith Hidalgo</h3>
+                            <p class="text-purple-400">Marketing Team</p>
+                            <p>Building digital presence and engaging with our growing tech community.</p>
+                        </div>
+                        <div class="member">
+                            <img src="/assets/img/team/female.jpg" alt="Margarette Garcia">
+                            <h3 class="text-cyan-400">Margarette Garcia</h3>
+                            <p class="text-purple-400">Marketing Team</p>
+                            <p>Crafting stories that resonate with our audience and showcase our values.</p>
+                        </div>
+                        <div class="member">
+                            <img src="/assets/img/team/female.jpg" alt="Ingrid Honrado">
+                            <h3 class="text-cyan-400">Ingrid Honrado</h3>
+                            <p class="text-purple-400">Tech Community Journalist & Storyteller</p>
+                            <p>Documenting our journey and sharing the stories that matter in tech.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partner Relations Team -->
+                <div class="team-category">
+                    <h2 class="text-3xl font-bold gradient-text">Partner Relations</h2>
+                    <div class="team-members">
+                        <div class="member">
+                            <a href="https://www.linkedin.com/in/annalee-olermo-b94985246" target="_blank">
+                                <img src="/assets/img/team/male.jpg" alt="Annalee Olermo">
+                                <h3 class="text-cyan-400">Annalee Olermo</h3>
+                                <p class="text-purple-400">Community Weaver</p>
+                                <p>Building bridges and fostering meaningful connections within our tech ecosystem.</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AVP Team -->
+                <div class="team-category">
+                    <h2 class="text-3xl font-bold gradient-text">AVP</h2>
+                    <div class="team-members">
+                        <div class="member">
+                            <a href="https://www.linkedin.com/in/adrianarvizo" target="_blank">
+                                <img src="/assets/img/team/male.jpg" alt="Adrian Arvizo">
+                                <h3 class="text-cyan-400">Adrian Arvizo</h3>
+                                <p class="text-purple-400">AVP</p>
+                                <p>Overseeing strategic initiatives and driving organizational excellence.</p>
+                            </a>
+                        </div>
+                        <div class="member">
+                            <img src="/assets/img/team/male.jpg" alt="Jerry Muscarella">
+                            <h3 class="text-cyan-400">Jerry Muscarella</h3>
+                            <p class="text-purple-400">Photographer</p>
+                            <p>Capturing the moments and stories that define our community.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team Members -->
+                <div class="team-category">
+                    <h2 class="text-3xl font-bold gradient-text">Team</h2>
+                    <div class="team-members">
+                        <div class="member">
+                            <a href="https://www.linkedin.com/in/jaymon-gutierrez-3b8327108" target="_blank">
+                                <img src="/assets/img/team/jaymon.jpeg" alt="Jaymon Gutierrez">
+                                <h3 class="text-cyan-400">Jaymon Gutierrez</h3>
+                                <p class="text-purple-400">Team Member</p>
+                                <p>Contributing to the growth and success of AI & Tech Manila.</p>
+                            </a>
+                        </div>
+                        <div class="member">
+                            <img src="/assets/img/team/male.jpg" alt="John Wick">
+                            <h3 class="text-cyan-400">John Wick</h3>
+                            <p class="text-purple-400">Gofer</p>
+                            <p>Supporting our team operations and ensuring smooth event execution.</p>
+                        </div>
+                        <div class="member">
+                            <a href="https://www.linkedin.com/in/heyitsistvan/" target="_blank">
+                                <img src="/assets/img/team/male.jpg" alt="Istvan Szabo">
+                                <h3 class="text-cyan-400">Istvan Szabo</h3>
+                                <p class="text-purple-400">Software Engineer</p>
+                                <p>Building innovative solutions and contributing technical expertise to our projects.</p>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
