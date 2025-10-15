@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Speak at AI & Tech Manila's Tech Spotlight events - share your expertise with 60-100 attendees and inspire the next generation of innovators.">
+    <title>Be Our Speaker | AI & Tech Manila</title>
+
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/img/favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
+    <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
+
+    <link href="/assets/css/base.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Neural Background -->
+    <div class="neural-bg"></div>
+
+    <!-- 3D Globe Container -->
+    <div id="globe-container"></div>
+
+    <!-- Cyber lines effect -->
+    <div class="cyber-lines" id="cyber-lines"></div>
+
+    <!-- Header -->
+    <header class="glass-dark fixed top-0 w-full z-50 border-b border-cyan-500/20">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden neon-glow">
+                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+                    </div>
+                    <a href="/" class="text-xl font-bold gradient-text-ai">AI & Tech Manila</a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Home</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/community" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Community</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/events" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Events</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/join-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Join Team</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/partner" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Partner</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/speaker" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Be Speaker</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden text-cyan-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden mt-4 glass rounded-lg p-4 md:hidden">
+                <a href="/" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Home</a>
+                <a href="/community" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Community</a>
+                <a href="/events" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Events</a>
+                <a href="/join-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Join Team</a>
+                <a href="/partner" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Partner</a>
+                <a href="/speaker" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Be Speaker</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10 pt-24">
+        <!-- Hero Section -->
+        <section class="min-h-[40vh] flex items-center justify-center px-4 sm:px-6">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
+                    <span class="gradient-text-ai">Be Our Speaker</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Step Into the Spotlight at Tech Spotlight
+                </p>
+            </div>
+        </section>
+
+        <!-- Introduction -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-4xl">
+                <div class="glass rounded-2xl p-8 md:p-12">
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Do you have a story, insight, or innovation worth sharing?
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
+                        Tech Spotlight is AI & Tech Manila's signature event series that highlights the people and ideas shaping the future of technology — from AI and startups to emerging tools, creative applications, and beyond.
+                    </p>
+                    <p class="text-gray-300 text-lg leading-relaxed">
+                        We're inviting industry professionals, founders, innovators, and enthusiasts to join us as speakers and share their expertise with our growing community.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Speak -->
+        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl font-bold gradient-text mb-12 text-center">Why Speak at Tech Spotlight</h2>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="text-5xl">🎓</div>
+                            <h3 class="text-2xl font-bold gradient-text">Share Your Expertise</h3>
+                        </div>
+                        <p class="text-gray-300">
+                            Inspire and educate a curious audience passionate about AI, technology, and innovation. Your insights can spark ideas and drive change.
+                        </p>
+                    </div>
+
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="text-5xl">🚀</div>
+                            <h3 class="text-2xl font-bold gradient-text">Build Your Brand</h3>
+                        </div>
+                        <p class="text-gray-300">
+                            Position yourself or your company as a thought leader in Manila's tech community and gain recognition among peers and industry leaders.
+                        </p>
+                    </div>
+
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="text-5xl">🤝</div>
+                            <h3 class="text-2xl font-bold gradient-text">Network with Innovators</h3>
+                        </div>
+                        <p class="text-gray-300">
+                            Connect with fellow speakers, founders, and professionals driving change in the ecosystem. Build relationships that matter.
+                        </p>
+                    </div>
+
+                    <div class="glass rounded-2xl p-8">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="text-5xl">💝</div>
+                            <h3 class="text-2xl font-bold gradient-text">Give Back</h3>
+                        </div>
+                        <p class="text-gray-300">
+                            Help others grow through your knowledge and experience. Make a meaningful impact on the next generation of innovators.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We're Looking For -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl font-bold gradient-text-ai mb-12 text-center">What We're Looking For</h2>
+
+                <div class="glass rounded-2xl p-8 md:p-12">
+                    <p class="text-gray-300 text-lg mb-8 text-center">
+                        We're open to talks and presentations on topics such as:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl flex-shrink-0">🤖</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Artificial Intelligence and Machine Learning</h3>
+                                <p class="text-gray-300">AI applications, ML models, data science, neural networks, and more</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl flex-shrink-0">🚀</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-purple-400 mb-2">Startups, Product Development, and Innovation</h3>
+                                <p class="text-gray-300">Building products, scaling startups, entrepreneurship journeys</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl flex-shrink-0">⚡</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-pink-400 mb-2">Emerging Technologies</h3>
+                                <p class="text-gray-300">Blockchain, IoT, AR/VR, quantum computing, and cutting-edge tech</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl flex-shrink-0">🎨</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-400 mb-2">Design, Creativity, and Digital Transformation</h3>
+                                <p class="text-gray-300">UX/UI, creative tech, digital innovation, and transformation stories</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl flex-shrink-0">📈</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Career Growth, Leadership, and Community Building</h3>
+                                <p class="text-gray-300">Professional development, team leadership, community impact</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-3xl flex-shrink-0">💡</div>
+                            <div>
+                                <h3 class="text-xl font-bold text-purple-400 mb-2">And More!</h3>
+                                <p class="text-gray-300">Other ideas are welcome — if it's insightful, we want to hear it!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speaker Benefits -->
+        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl font-bold gradient-text mb-12 text-center">What You'll Get</h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass rounded-lg p-6 text-center">
+                        <div class="text-4xl mb-4">👥</div>
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Engaged Audience</h3>
+                        <p class="text-gray-300">Present to 60-100 passionate tech enthusiasts, founders, and professionals</p>
+                    </div>
+
+                    <div class="glass rounded-lg p-6 text-center">
+                        <div class="text-4xl mb-4">🎬</div>
+                        <h3 class="text-xl font-bold text-purple-400 mb-3">Recording & Promotion</h3>
+                        <p class="text-gray-300">Your talk may be recorded and shared across our social channels</p>
+                    </div>
+
+                    <div class="glass rounded-lg p-6 text-center">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h3 class="text-xl font-bold text-pink-400 mb-3">Networking Access</h3>
+                        <p class="text-gray-300">Connect with other speakers and community leaders at exclusive gatherings</p>
+                    </div>
+
+                    <div class="glass rounded-lg p-6 text-center">
+                        <div class="text-4xl mb-4">📢</div>
+                        <h3 class="text-xl font-bold text-blue-400 mb-3">Community Support</h3>
+                        <p class="text-gray-300">Receive promotion and support from our marketing team</p>
+                    </div>
+
+                    <div class="glass rounded-lg p-6 text-center">
+                        <div class="text-4xl mb-4">⭐</div>
+                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Recognition</h3>
+                        <p class="text-gray-300">Be featured as a thought leader in Manila's AI and tech ecosystem</p>
+                    </div>
+
+                    <div class="glass rounded-lg p-6 text-center">
+                        <div class="text-4xl mb-4">🎁</div>
+                        <h3 class="text-xl font-bold text-purple-400 mb-3">Speaker Perks</h3>
+                        <p class="text-gray-300">Exclusive speaker benefits and access to future events</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Apply -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-4xl">
+                <div class="glass rounded-2xl p-8 md:p-12">
+                    <h2 class="text-4xl font-bold gradient-text-ai mb-6 text-center">How to Apply</h2>
+
+                    <p class="text-xl text-gray-300 mb-8 text-center">
+                        To be considered as a speaker, please send us an email at:
+                    </p>
+
+                    <div class="mb-8 text-center">
+                        <a href="mailto:aiandtechmanila@gmail.com" class="text-3xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
+                            aiandtechmanila@gmail.com
+                        </a>
+                    </div>
+
+                    <div class="p-6 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30 mb-8">
+                        <p class="text-gray-300 mb-4">
+                            <span class="font-semibold text-cyan-400">Please include the following details:</span>
+                        </p>
+                        <ul class="space-y-3 text-gray-300">
+                            <li class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <span class="font-semibold">Your LinkedIn Profile</span>
+                                    <p class="text-sm text-gray-400">So we can learn more about your background and expertise</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <span class="font-semibold">Your Proposed Topic</span>
+                                    <p class="text-sm text-gray-400">What would you like to speak about? Give us a brief title and description</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                <div>
+                                    <span class="font-semibold">Why You Want to Speak</span>
+                                    <p class="text-sm text-gray-400">Tell us briefly what motivates you to share this with the community</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <p class="text-gray-300 text-center mb-8">
+                        Our team will review your submission and get in touch with you about upcoming Tech Spotlight sessions.
+                    </p>
+
+                    <div class="text-center">
+                        <a href="mailto:aiandtechmanila@gmail.com?subject=Speaker Application - AI & Tech Manila Tech Spotlight" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 inline-block neon-glow">
+                            Apply to Speak
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speaker Guidelines -->
+        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="text-4xl font-bold gradient-text mb-12 text-center">Speaker Guidelines</h2>
+
+                <div class="glass rounded-2xl p-8">
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-2xl flex-shrink-0">⏱️</div>
+                            <div>
+                                <h3 class="text-lg font-bold text-cyan-400 mb-2">Talk Length</h3>
+                                <p class="text-gray-300">15-30 minutes per presentation, with time for Q&A</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-2xl flex-shrink-0">🎯</div>
+                            <div>
+                                <h3 class="text-lg font-bold text-purple-400 mb-2">Audience Level</h3>
+                                <p class="text-gray-300">Mixed audience from beginners to experts — make it accessible and engaging</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-2xl flex-shrink-0">💡</div>
+                            <div>
+                                <h3 class="text-lg font-bold text-pink-400 mb-2">Content Focus</h3>
+                                <p class="text-gray-300">Share insights, lessons learned, and practical takeaways — not sales pitches</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-2xl flex-shrink-0">🎤</div>
+                            <div>
+                                <h3 class="text-lg font-bold text-blue-400 mb-2">Format</h3>
+                                <p class="text-gray-300">Presentations, live demos, case studies, or panel discussions — we're flexible!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Closing CTA -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-4xl">
+                <div class="glass rounded-2xl p-8 text-center">
+                    <h2 class="text-4xl font-bold gradient-text-ai mb-6">Join Us in Shaping the Conversation</h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Your voice could inspire the next generation of innovators. Step into the spotlight and make an impact — we can't wait to hear your story.
+                    </p>
+                    <a href="/events" class="glass border border-cyan-500/50 text-cyan-400 font-bold py-4 px-8 rounded-full hover:bg-cyan-500/10 transition-all duration-300 inline-block">
+                        Learn More About Our Events
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="glass-dark border-t border-cyan-500/20 py-12 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg overflow-hidden">
+                            <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+                        </div>
+                        <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-xs">Pioneering the future of artificial intelligence in the Philippines.</p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61578227953203" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/>
+                        </svg>
+                    </a>
+                    <a href="https://chat.whatsapp.com/E8h3DeS8LlFGEU8WBOXEaa" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm11.892-21.891c-5.448 0-9.881 4.433-9.881 9.881s4.433 9.881 9.881 9.881 9.881-4.433 9.881-9.881-4.433-9.881-9.881-9.881z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-sm text-gray-500">&copy; <span id="copyright-year"></span> AI & Tech Manila. Powered by Intelligence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="/assets/js/base.js"></script>
+</body>
+</html>

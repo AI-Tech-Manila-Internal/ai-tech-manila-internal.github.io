@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join AI & Tech Manila monthly events - Chill & Chat sessions and Tech Spotlight gatherings featuring AI, software, and emerging tech discussions.">
+    <title>Our Events | AI & Tech Manila</title>
+
+    <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/img/favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
+    <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
+
+    <link href="/assets/css/base.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Neural Background -->
+    <div class="neural-bg"></div>
+
+    <!-- 3D Globe Container -->
+    <div id="globe-container"></div>
+
+    <!-- Cyber lines effect -->
+    <div class="cyber-lines" id="cyber-lines"></div>
+
+    <!-- Header -->
+    <header class="glass-dark fixed top-0 w-full z-50 border-b border-cyan-500/20">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-lg overflow-hidden neon-glow">
+                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+                    </div>
+                    <a href="/" class="text-xl font-bold gradient-text-ai">AI & Tech Manila</a>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Home</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/community" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Community</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/events" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Events</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/join-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Join Team</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/partner" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Partner</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                    <a href="/speaker" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
+                        <span>Be Speaker</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </div>
+
+                <button id="mobile-menu-button" class="md:hidden text-cyan-400">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden mt-4 glass rounded-lg p-4 md:hidden">
+                <a href="/" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Home</a>
+                <a href="/community" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Community</a>
+                <a href="/events" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Events</a>
+                <a href="/join-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Join Team</a>
+                <a href="/partner" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Partner</a>
+                <a href="/speaker" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Be Speaker</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10 pt-24">
+        <!-- Hero Section -->
+        <section class="min-h-[40vh] flex items-center justify-center px-4 sm:px-6">
+            <div class="container mx-auto text-center">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
+                    <span class="gradient-text-ai">Our Events</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                    Monthly gatherings that spark innovation, foster collaboration, and build community
+                </p>
+            </div>
+        </section>
+
+        <!-- Event Formats Overview -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold gradient-text mb-4">Two Event Formats, One Community</h2>
+                    <p class="text-gray-300 text-lg">We host monthly gatherings, alternating between two formats:</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Chill & Chat -->
+                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="text-5xl">💬</div>
+                            <h3 class="text-3xl font-bold gradient-text">Chill & Chat</h3>
+                        </div>
+
+                        <div class="space-y-4 text-gray-300">
+                            <p class="text-lg font-semibold text-cyan-400">A relaxed, small-group setting for 15–30 participants</p>
+
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>Guided tech discussions on AI and technology trends</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>Open Q&A & member-driven topics</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>2–3 hours of meaningful conversation</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>Networking opportunities with like-minded peers</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30">
+                                <p class="text-sm text-cyan-300">
+                                    <span class="font-semibold">Perfect for:</span> Deep discussions, building relationships, and exploring ideas in an intimate setting
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Spotlight -->
+                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="text-5xl">🎤</div>
+                            <h3 class="text-3xl font-bold gradient-text">Tech Spotlight</h3>
+                        </div>
+
+                        <div class="space-y-4 text-gray-300">
+                            <p class="text-lg font-semibold text-purple-400">A speaker-driven event attracting 60–100 attendees</p>
+
+                            <div class="space-y-3">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>2–4 volunteer speakers per session</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>Topics spanning AI, software, hardware, and emerging tech</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>Engaging presentations and demonstrations</p>
+                                </div>
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
+                                    <p>Networking sessions to spark collaboration</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg border border-purple-500/30">
+                                <p class="text-sm text-purple-300">
+                                    <span class="font-semibold">Perfect for:</span> Learning from experts, discovering new technologies, and expanding your network
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Experience Section -->
+        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-4xl font-bold gradient-text-ai mb-12 text-center">What to Expect</h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="glass rounded-lg p-6">
+                        <div class="text-4xl mb-4 text-center">🧠</div>
+                        <h3 class="text-2xl font-bold text-cyan-400 mb-3 text-center">Learn</h3>
+                        <p class="text-gray-300 text-center">Stay ahead of the curve with insights on the latest AI trends, tools, and best practices from industry practitioners</p>
+                    </div>
+
+                    <div class="glass rounded-lg p-6">
+                        <div class="text-4xl mb-4 text-center">🤝</div>
+                        <h3 class="text-2xl font-bold text-purple-400 mb-3 text-center">Connect</h3>
+                        <p class="text-gray-300 text-center">Meet founders, developers, professionals, and enthusiasts who share your passion for technology and innovation</p>
+                    </div>
+
+                    <div class="glass rounded-lg p-6">
+                        <div class="text-4xl mb-4 text-center">🚀</div>
+                        <h3 class="text-2xl font-bold text-pink-400 mb-3 text-center">Collaborate</h3>
+                        <p class="text-gray-300 text-center">Find potential partners, mentors, and collaborators for your next project or startup venture</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-20 px-6">
+            <div class="container mx-auto max-w-4xl">
+                <div class="glass rounded-2xl p-8 md:p-12 text-center">
+                    <h2 class="text-4xl font-bold gradient-text-ai mb-6">Join Our Next Event</h2>
+                    <p class="text-xl text-gray-300 mb-8">
+                        Be part of Manila's most vibrant AI and tech community. Connect with innovators, learn from experts, and shape the future together.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="/#event" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 neon-glow">
+                            View Upcoming Events
+                        </a>
+                        <a href="/speaker" class="glass border border-cyan-500/50 text-cyan-400 font-bold py-4 px-8 rounded-full hover:bg-cyan-500/10 transition-all duration-300">
+                            Become a Speaker
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="glass-dark border-t border-cyan-500/20 py-12 px-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg overflow-hidden">
+                            <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+                        </div>
+                        <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-xs">Pioneering the future of artificial intelligence in the Philippines.</p>
+                </div>
+
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61578227953203" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/>
+                        </svg>
+                    </a>
+                    <a href="https://chat.whatsapp.com/E8h3DeS8LlFGEU8WBOXEaa" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm11.892-21.891c-5.448 0-9.881 4.433-9.881 9.881s4.433 9.881 9.881 9.881 9.881-4.433 9.881-9.881-4.433-9.881-9.881-9.881z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-sm text-gray-500">&copy; <span id="copyright-year"></span> AI & Tech Manila. Powered by Intelligence.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="/assets/js/base.js"></script>
+</body>
+</html>
