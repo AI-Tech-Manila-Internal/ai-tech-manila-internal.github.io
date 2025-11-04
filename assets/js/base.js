@@ -124,7 +124,7 @@ initGlobe();
 
 // Countdown timer
 function updateCountdown() {
-    const eventDate = new Date('2025-10-25T14:00:00+08:00').getTime();
+    const eventDate = new Date(document.getElementById('countdown').dataset.date).getTime();
     const now = new Date().getTime();
     const distance = eventDate - now;
 
