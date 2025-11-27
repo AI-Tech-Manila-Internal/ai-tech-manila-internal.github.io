@@ -232,49 +232,43 @@
             </div>
         </section>
 
-        <!-- How to Apply Section -->
-        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
+        <!-- Volunteer Application Form -->
+        <section id="volunteer-form" class="py-20 px-6 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
             <div class="container mx-auto max-w-4xl">
-                <div class="glass rounded-2xl p-8 md:p-12 text-center">
-                    <h2 class="text-4xl font-bold gradient-text-ai mb-6">How to Apply</h2>
-
-                    <p class="text-xl text-gray-300 mb-8">
-                        If you're interested in joining our volunteer team, please email your resume and portfolio (if available) to:
-                    </p>
-
-                    <div class="mb-8">
-                        <a href="mailto:aiandtechmanila@gmail.com" class="text-3xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
-                            aiandtechmanila<wbr>@gmail.com
-                        </a>
+                <div class="glass rounded-2xl p-8 md:p-12">
+                    <div class="flex items-start justify-between gap-6 mb-8">
+                        <div class="flex-1">
+                            <h2 class="text-4xl font-bold gradient-text-ai mb-6 text-center md:text-left">Volunteer Application Form</h2>
+                            <p class="text-xl text-gray-300 text-center md:text-left">
+                                Fill out the form below to apply to join our volunteer team.
+                            </p>
+                        </div>
+                        <!-- QR Code -->
+                        <div class="hidden md:block flex-shrink-0">
+                            <div class="bg-white rounded-lg p-3">
+                                <img src="/assets/img/qr-volunteer-form.png" alt="QR Code" class="w-24 h-24 object-contain" style="scale: 1.4;">
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="p-6 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30 text-left">
-                        <p class="text-gray-300 mb-4">
-                            <span class="font-semibold text-cyan-400">Please include:</span>
-                        </p>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Your resume</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Your portfolio (if available)</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>A brief note about why you'd like to be part of AI & Tech Manila</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Which area you're most excited to contribute to (Marketing or Partner Relations)</span>
-                            </li>
-                        </ul>
+                    <!-- Google Form Embed -->
+                    <div class="w-full rounded-lg overflow-hidden iframe-container">
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfscu7Jc3cPIUonSBljDEd1g3STSH8dRlTkj2RL0a4Ikhgbdg/viewform?embedded=true"
+                            width="100%"
+                            height="1200"
+                            frameborder="0"
+                            marginheight="0"
+                            marginwidth="0"
+                            class="bg-white rounded-lg google-form-iframe">
+                            Loading form...
+                        </iframe>
                     </div>
 
-                    <div class="mt-8">
-                        <a href="mailto:aiandtechmanila@gmail.com?subject=Volunteer Application - AI & Tech Manila" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 inline-block neon-glow">
-                            Apply Now
+                    <div class="mt-8 text-center">
+                        <p class="text-gray-400 text-sm mb-4">Alternatively, you can reach us directly at:</p>
+                        <a href="mailto:aiandtechmanila@gmail.com" class="text-cyan-400 hover:text-cyan-300 transition-colors text-lg">
+                            aiandtechmanila@gmail.com
                         </a>
                     </div>
                 </div>
@@ -334,6 +328,6 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="/assets/js/base.js?v=1"></script>
+    <script src="/assets/js/base.js?v=3"></script>
 </body>
 </html>

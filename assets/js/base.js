@@ -138,7 +138,10 @@ function createCyberLine() {
 setInterval(createCyberLine, 200);
 
 // Copyright year
-document.getElementById('copyright-year').textContent = new Date().getFullYear();
+const copyrightYear = document.getElementById('copyright-year');
+if (copyrightYear) {
+    copyrightYear.textContent = new Date().getFullYear();
+}
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
