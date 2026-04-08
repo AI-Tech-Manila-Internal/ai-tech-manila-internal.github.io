@@ -167,11 +167,11 @@
                 </div>
 
                 <!-- Dark Overlay -->
-                <div id="hero-overlay" class="absolute inset-0 bg-black/50 z-10" style="will-change: opacity;"></div>
+                <div id="hero-overlay" class="absolute inset-0 bg-black z-10" style="will-change: opacity; opacity: 0.5;"></div>
 
                 <!-- Hero Content -->
-                <div id="hero-content" class="absolute inset-0 z-20 flex items-center justify-center px-4 sm:px-6" style="will-change: transform, opacity;">
-                    <div class="container mx-auto text-center bg-black/40 backdrop-blur-sm rounded-3xl py-12 px-6 max-w-4xl">
+                <div id="hero-content" class="absolute inset-0 z-20 flex items-center justify-center px-0 md:px-6" style="will-change: transform, opacity;">
+                    <div class="container mx-auto text-center bg-black/40 backdrop-blur-sm rounded-none md:rounded-3xl py-12 px-6 max-w-none md:max-w-4xl h-full md:h-auto flex flex-col justify-center">
                         <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
                             <span class="gradient-text-ai">Shaping the future of</span><br>
                             <span class="gradient-text">Artificial Intelligence</span><br>
@@ -192,8 +192,8 @@
                 </div>
 
                 <!-- Slider Navigation Arrows -->
-                <button id="slider-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white text-2xl transition-all duration-300 opacity-0 backdrop-blur-sm">&#10094;</button>
-                <button id="slider-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white text-2xl transition-all duration-300 opacity-0 backdrop-blur-sm">&#10095;</button>
+                <button id="slider-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white text-2xl transition-all duration-300 opacity-0 backdrop-blur-sm" style="will-change: opacity;">&#10094;</button>
+                <button id="slider-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white text-2xl transition-all duration-300 opacity-0 backdrop-blur-sm" style="will-change: opacity;">&#10095;</button>
 
                 <!-- Slider Navigation Dots -->
                 <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2" id="slider-dots"></div>
@@ -615,7 +615,11 @@
         const overlay = document.getElementById('hero-overlay');
         const prevBtn = document.getElementById('slider-prev');
         const nextBtn = document.getElementById('slider-next');
+        const isMobile = window.innerWidth < 768;
         let ticking = false;
+
+        // On mobile, start with full dark overlay
+        if (isMobile) overlay.style.opacity = 1;
 
         window.addEventListener('scroll', function() {
             if (!ticking) {
@@ -626,7 +630,7 @@
 
                     content.style.opacity = 1 - progress;
                     content.style.transform = 'translateY(-' + (progress * 150) + 'px) scale(' + (1 - progress * 0.05) + ')';
-                    overlay.style.opacity = 0.5 * (1 - progress);
+                    overlay.style.opacity = (isMobile ? 1 : 0.5) * (1 - progress);
 
                     // Fade in arrows as text fades out
                     prevBtn.style.opacity = progress;
