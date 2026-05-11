@@ -125,180 +125,199 @@
 
         /* Anchor link offset so sticky nav doesn't cover the section heading */
         section[id] { scroll-margin-top: 96px; }
+
+        .hero-copy-shadow {
+            text-shadow: 0 3px 18px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.8);
+            -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.25);
+        }
     </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
 
     <!-- TopNavBar -->
-    <nav class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant/20">
-        <div class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20">
-            <a href="/" class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-lg overflow-hidden">
-                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover">
+    <nav class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div class="relative flex items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-24">
+            <a href="/" class="pointer-events-auto w-16 h-16 rounded-full bg-white shadow-lg shadow-black/20 flex items-center justify-center overflow-hidden hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
+                <div class="w-11 h-11 rounded-full overflow-hidden">
+                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
                 </div>
-                <span class="font-manrope text-xl font-bold text-primary tracking-tight">AI &amp; Tech Manila</span>
             </a>
-            <div class="hidden md:flex items-center gap-6">
-                <a class="text-primary border-b-2 border-primary pb-1 font-inter text-base hover:opacity-70 transition-opacity" href="/">Home</a>
-                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/events">Events</a>
-                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/join-team">Join Our Team</a>
-                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/partner">Become a Partner</a>
-                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/speaker">Become a Speaker</a>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-primary/70 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
+                <a class="text-white bg-white/15 rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-white/20 transition-colors" href="/">Home</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/events">Events</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/join-team">Team</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/partner">Partners</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/chill-chat">Chill &amp; Chat</a>
             </div>
-            <a href="/chill-chat" class="hidden md:inline-block bg-primary text-on-primary font-manrope font-semibold text-base px-6 py-2 rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-xl shadow-primary/20">
-                Chill &amp; Chat
-            </a>
-            <button id="mobile-menu-button" class="md:hidden text-primary" aria-label="Toggle menu">
+            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-primary/70 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20" aria-label="Toggle menu">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant/20 bg-surface-container-lowest px-margin-mobile py-4">
-            <a href="/" class="block py-2 text-primary font-inter">Home</a>
-            <a href="/events" class="block py-2 text-secondary font-inter">Events</a>
-            <a href="/join-team" class="block py-2 text-secondary font-inter">Join Our Team</a>
-            <a href="/partner" class="block py-2 text-secondary font-inter">Become a Partner</a>
-            <a href="/speaker" class="block py-2 text-secondary font-inter">Become a Speaker</a>
-            <a href="/chill-chat" class="block mt-3 text-center bg-primary text-on-primary font-manrope font-semibold py-3 rounded-full">Chill &amp; Chat</a>
+        <div id="mobile-menu" class="hidden pointer-events-auto md:hidden mx-margin-mobile rounded-3xl border border-white/15 bg-primary/80 px-5 py-4 shadow-xl shadow-black/25 backdrop-blur-xl">
+            <a href="/" class="block rounded-full px-4 py-2 text-white bg-white/15 font-inter">Home</a>
+            <a href="/events" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Events</a>
+            <a href="/join-team" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Join Our Team</a>
+            <a href="/partner" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Partner</a>
+            <a href="/speaker" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Speaker</a>
+            <a href="/chill-chat" class="block mt-2 text-center bg-white text-primary font-manrope font-semibold py-3 rounded-full">Chill &amp; Chat</a>
         </div>
     </nav>
 
     <main class="flex-grow">
         <!-- Hero Section (Bento Grid) -->
-        <section class="max-w-container-max mx-auto pt-12 md:pt-16 pb-16 md:pb-24 px-margin-mobile md:px-margin-desktop">
-            <div class="text-center mb-12 max-w-3xl mx-auto">
-                <div class="inline-flex items-center gap-2 bg-surface-container-highest/50 border border-outline-variant/50 backdrop-blur-md px-4 py-1.5 rounded-full mb-6">
-                    <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
-                    <span class="font-jetbrains text-xs text-primary uppercase tracking-wider font-medium">Live Soon &mdash; Chill &amp; Chat 2026</span>
+        <section class="max-w-container-max mx-auto pt-28 md:pt-32 pb-16 md:pb-24 px-margin-mobile md:px-margin-desktop">
+            <!-- Hero Stage: Slider in background + notched shape on top -->
+            <div id="gallery" class="relative w-full h-[640px] sm:h-[620px] md:h-[600px] lg:h-[640px]">
+                <svg class="absolute w-0 h-0" aria-hidden="true" focusable="false">
+                    <defs>
+                        <clipPath id="hero-stage-clip" clipPathUnits="objectBoundingBox">
+                            <path d="M .03 0 L .97 0 Q 1 0 1 .06 L 1 .31 Q 1 .37 .97 .37 Q .94 .37 .94 .43 L .94 .57 Q .94 .63 .97 .63 Q 1 .63 1 .69 L 1 .94 Q 1 1 .97 1 L .31 1 Q .27 1 .27 .94 L .27 .90 Q .27 .84 .23 .84 L .04 .84 Q 0 .84 0 .78 L 0 .06 Q 0 0 .03 0 Z"/>
+                        </clipPath>
+                    </defs>
+                </svg>
+
+                <div class="absolute inset-0 drop-shadow-xl" style="-webkit-clip-path: url(#hero-stage-clip); clip-path: url(#hero-stage-clip);">
+                    <!-- Slider (background layer) -->
+                    <div id="hero-slider" class="absolute inset-0 bg-surface-container">
+                        <!-- Slide 1 - Video (eager) -->
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-type="video">
+                            <video class="w-full h-full object-cover" muted loop playsinline preload="auto">
+                                <source src="/assets/img/slider/229d3a8e-57c5-4a3a-bd98-b4f4fd857a3c_480p_vertical.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <!-- Slide 2 (eager) -->
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img src="/assets/img/slider/1.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/20250830_163219.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/2.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/20250830_161108.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/3.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/20250830_155049.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/4.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/5.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/6.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/7.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/8.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/9.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                        <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                            <img data-src="/assets/img/slider/image (1).webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+
+                    <div class="absolute inset-0 z-10 bg-gradient-to-r from-black/85 via-black/55 to-black/25 pointer-events-none"></div>
+                    <div class="absolute inset-0 z-10 bg-gradient-to-t from-black/55 via-transparent to-black/20 pointer-events-none"></div>
                 </div>
-                <h1 class="font-manrope text-4xl sm:text-5xl md:text-6xl lg:text-[64px] lg:leading-[72px] font-extrabold text-primary mb-6 tracking-tighter">
-                    Shaping the future of Artificial Intelligence for the benefit of all mankind.
-                </h1>
-                <p class="font-inter text-lg text-on-surface-variant max-w-2xl mx-auto mb-8">
-                    Manila's premier community where entrepreneurs, developers, professionals, and tech enthusiasts converge to learn, grow, and thrive in the age of AI.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#event" class="bg-primary text-on-primary font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-primary/20 inline-flex items-center justify-center gap-2">
-                        Join Our Next Event
-                        <span class="material-symbols-outlined">arrow_forward</span>
+
+                <!-- Slider Navigation Arrows -->
+                <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-30 flex items-center gap-3">
+                    <button id="gallery-open" class="h-10 px-4 rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg inline-flex items-center justify-center gap-2 font-manrope font-semibold text-sm" type="button">
+                        View gallery
+                        <span class="material-symbols-outlined text-base">photo_library</span>
+                    </button>
+                    <button id="slider-prev" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Previous slide">
+                        <span class="material-symbols-outlined text-lg">chevron_left</span>
+                    </button>
+                    <button id="slider-next" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Next slide">
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </button>
+                </div>
+
+                <!-- Slider Dots -->
+                <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 hidden md:flex gap-1.5" id="slider-dots"></div>
+
+                <!-- Social links -->
+                <div class="absolute right-3 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-1.5 md:gap-2">
+                    <a href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on LinkedIn" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+                        <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.98h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.3ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/>
+                        </svg>
                     </a>
-                    <a href="#about" class="border border-outline-variant text-primary font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:bg-surface-container transition-all inline-flex items-center justify-center">
-                        Learn More
+                    <a href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on Facebook" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+                        <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M14.2 8.1V6.6c0-.72.48-.89.82-.89h2.08V2.5l-2.86-.01c-3.18 0-3.9 2.38-3.9 3.9v1.71H8.5v3.31h1.84v10.1h3.86v-10.1h2.6l.35-3.31H14.2Z"/>
+                        </svg>
+                    </a>
+                    <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on WhatsApp" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+                        <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12.04 2.5a9.45 9.45 0 0 0-8.12 14.3L2.75 21.5l4.82-1.12a9.44 9.44 0 1 0 4.47-17.88Zm0 17.2a7.67 7.67 0 0 1-3.9-1.06l-.33-.2-2.86.67.69-2.78-.22-.35a7.65 7.65 0 1 1 6.62 3.72Zm4.25-5.73c-.23-.12-1.37-.68-1.58-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.16-.27.18-.5.06-.23-.11-.98-.36-1.87-1.15-.69-.62-1.16-1.38-1.29-1.61-.14-.23-.01-.36.1-.47.1-.1.23-.27.35-.4.12-.14.15-.23.23-.39.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.72-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.16 1.62 2.47 3.93 3.46.55.24.98.38 1.31.49.55.17 1.05.15 1.45.09.44-.07 1.37-.56 1.56-1.1.19-.55.19-1.02.13-1.11-.06-.1-.21-.16-.44-.27Z"/>
+                        </svg>
                     </a>
                 </div>
-            </div>
 
-            <!-- Bento Layout -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[200px] md:auto-rows-[300px]">
-                <!-- Main Image / Slider -->
-                <div id="hero-slider" class="md:col-span-8 md:row-span-2 rounded-bento overflow-hidden relative group bg-surface-container">
-                    <!-- Slide 1 - Video (eager) -->
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-type="video">
-                        <video class="w-full h-full object-cover" muted loop playsinline preload="auto">
-                            <source src="/assets/img/slider/229d3a8e-57c5-4a3a-bd98-b4f4fd857a3c_480p_vertical.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <!-- Slide 2 (eager) -->
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img src="/assets/img/slider/1.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/20250830_163219.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/2.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/20250830_161108.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/3.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/20250830_155049.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/4.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/5.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/6.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/7.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/8.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/9.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                        <img data-src="/assets/img/slider/image (1).webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                    </div>
-
-                    <!-- Gradient overlay -->
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none z-10"></div>
-
-                    <!-- Caption overlay -->
-                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20">
-                        <div class="glass-card rounded-full px-4 py-2 inline-flex items-center gap-2 mb-3">
+                <!-- Content placed over the tinted slider shape. -->
+                <div class="absolute inset-0 z-20 pointer-events-none">
+                    <!-- Top-left members badge -->
+                    <div class="absolute top-6 left-6 md:top-10 md:left-10">
+                        <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-full pl-1 pr-4 py-1 inline-flex items-center gap-3 pointer-events-auto">
                             <div class="flex -space-x-2">
-                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="/assets/img/team/jack.jpeg" alt="">
-                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="/assets/img/team/rosselle.jpeg" alt="">
-                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="/assets/img/team/istvan.jpeg" alt="">
-                                <div class="w-8 h-8 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center text-[10px] font-bold">+50</div>
+                                <img class="w-8 h-8 rounded-full border-2 border-primary object-cover" src="/assets/img/team/jack.jpeg" alt="">
+                                <img class="w-8 h-8 rounded-full border-2 border-primary object-cover" src="/assets/img/team/rosselle.jpeg" alt="">
+                                <img class="w-8 h-8 rounded-full border-2 border-primary object-cover" src="/assets/img/team/istvan.jpeg" alt="">
+                                <div class="w-8 h-8 rounded-full border-2 border-primary bg-white/20 text-white flex items-center justify-center text-[10px] font-bold">+350</div>
                             </div>
                             <span class="text-white font-jetbrains text-xs uppercase tracking-wider">Members &amp; growing</span>
                         </div>
-                        <h3 class="text-white font-manrope text-2xl md:text-3xl font-bold mb-1">Manila's AI community</h3>
-                        <p class="text-white/80 font-inter text-sm md:text-base">Real conversations, real builders, real impact.</p>
                     </div>
 
-                    <!-- Slider Navigation Arrows -->
-                    <button id="slider-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Previous slide">
-                        <span class="material-symbols-outlined text-lg">chevron_left</span>
-                    </button>
-                    <button id="slider-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Next slide">
-                        <span class="material-symbols-outlined text-lg">chevron_right</span>
-                    </button>
-
-                    <!-- Slider Dots -->
-                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 hidden md:flex gap-1.5" id="slider-dots"></div>
-                </div>
-
-                <!-- Secondary Card 1: Next Event Teaser -->
-                <a href="#event" class="md:col-span-4 rounded-bento overflow-hidden relative group bg-surface-container block">
-                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/img/slider/1.webp" alt="Chill & Chat 2026">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6 w-full">
-                        <span class="bg-error text-white text-xs font-bold font-jetbrains uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Upcoming</span>
-                        <h4 class="text-white font-manrope font-semibold text-xl">Chill &amp; Chat 2026</h4>
-                        <div class="flex justify-between items-center mt-2">
-                            <span class="text-white/70 text-sm font-inter">April 11, 2026</span>
-                            <span class="w-8 h-8 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                            </span>
+                    <!-- Headline -->
+                    <div class="absolute left-6 right-16 md:left-12 md:right-24 lg:left-20 lg:right-auto lg:max-w-4xl text-left" style="top: 20%;">
+                        <h1 class="hero-copy-shadow font-manrope text-white text-3xl sm:text-4xl md:text-6xl lg:text-[64px] lg:leading-[72px] font-extrabold mb-6 tracking-tighter">
+                            Shaping the future of Artificial Intelligence for the benefit of all mankind.
+                        </h1>
+                        <p class="hero-copy-shadow font-inter text-base md:text-lg text-white/90 max-w-2xl mb-8">
+                            Manila's premier community where entrepreneurs, developers, professionals, and tech enthusiasts converge to learn, grow, and thrive in the age of AI.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                            <a href="#event" class="bg-white text-primary font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 inline-flex items-center justify-center gap-2 pointer-events-auto">
+                                Join Our Next Event
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                            <a href="#about" class="border border-white/70 text-white font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all inline-flex items-center justify-center pointer-events-auto">
+                                Learn More
+                            </a>
                         </div>
                     </div>
-                </a>
 
-                <!-- Secondary Card 2: Featured Speakers -->
-                <div class="md:col-span-4 rounded-bento overflow-hidden relative group bg-primary p-8 flex flex-col justify-between">
-                    <div>
-                        <h4 class="text-white font-manrope font-bold text-2xl mb-2">Our Community</h4>
-                        <p class="text-white/70 font-inter text-sm">Volunteers shaping Manila's tech scene.</p>
+                    <!-- Bottom-left tag -->
+                    <div class="absolute bottom-0 left-0">
+                        <a href="#event" class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm rounded-[28px] px-6 py-4 inline-flex flex-col gap-2 pointer-events-auto hover:bg-surface-container-low transition-colors group">
+                            <span class="inline-flex items-center gap-2.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+                                <span class="text-primary font-jetbrains text-sm uppercase tracking-wider">Next event &middot; Apr 11, 2026</span>
+                            </span>
+                            <span class="grid grid-cols-4 gap-3 font-jetbrains text-[11px] uppercase tracking-wider text-on-surface-variant" aria-label="Countdown to next event">
+                                <span><strong id="hero-days" class="text-primary font-bold">00</strong>d</span>
+                                <span><strong id="hero-hours" class="text-primary font-bold">00</strong>h</span>
+                                <span><strong id="hero-minutes" class="text-primary font-bold">00</strong>m</span>
+                                <span><strong id="hero-seconds" class="text-primary font-bold">00</strong>s</span>
+                            </span>
+                        </a>
                     </div>
-                    <div class="flex -space-x-4 mb-4">
-                        <img class="w-14 h-14 rounded-full border-4 border-primary object-cover z-30" src="/assets/img/team/jack.jpeg" alt="Jack">
-                        <img class="w-14 h-14 rounded-full border-4 border-primary object-cover z-20" src="/assets/img/team/rosselle.jpeg" alt="Rosselle">
-                        <img class="w-14 h-14 rounded-full border-4 border-primary object-cover z-10" src="/assets/img/team/ingrid.jpeg" alt="Ingrid">
-                    </div>
-                    <a href="#team" class="bg-white text-primary font-manrope font-semibold py-3 px-6 rounded-full w-full text-center hover:bg-surface-container transition-colors">
-                        Meet the Team
-                    </a>
                 </div>
             </div>
         </section>
@@ -309,7 +328,7 @@
             <!-- Event + About Bento -->
             <section id="event" class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
                 <!-- Next Event Card (Large) -->
-                <div class="md:col-span-8 bg-surface-container-lowest rounded-bento p-6 sm:p-8 md:p-12 shadow-sm border border-outline-variant/20 flex flex-col justify-between hover:shadow-md transition-shadow">
+                <div class="md:col-span-12 bg-surface-container-lowest rounded-bento p-6 sm:p-8 md:p-12 shadow-sm border border-outline-variant/20 flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <div class="flex items-center gap-2 mb-6">
                             <span class="material-symbols-outlined text-error animate-pulse">radio_button_checked</span>
@@ -376,24 +395,27 @@
                     </div>
                 </div>
 
-                <!-- About Us Card (Small) -->
-                <div id="about" class="md:col-span-4 bg-primary text-surface-bright rounded-bento p-8 md:p-10 shadow-lg shadow-primary/10 flex flex-col relative overflow-hidden group">
-                    <div class="absolute -bottom-10 -right-10 p-6 opacity-10 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
-                        <span class="material-symbols-outlined text-[200px]">psychology</span>
+                <!-- About Us -->
+                <div id="about" class="md:col-span-12 bg-primary text-surface-bright rounded-bento p-8 md:p-12 shadow-lg shadow-primary/10 relative overflow-hidden">
+                    <div class="absolute -bottom-16 -right-10 opacity-10 pointer-events-none">
+                        <span class="material-symbols-outlined text-[240px]">psychology</span>
                     </div>
-                    <div class="relative z-10 flex flex-col h-full">
-                        <h2 class="font-manrope font-bold text-3xl mb-6">About Us</h2>
-                        <p class="font-inter text-base text-white/80 mb-6 leading-relaxed">
-                            AI &amp; Tech Manila is a community for people who want to understand AI trends, discuss new breakthroughs, study use cases, and meet other technology enthusiasts &mdash; software engineers, entrepreneurs, leaders, and students.
-                        </p>
-                        <p class="font-inter text-sm text-white/70 mb-8 leading-relaxed flex-grow">
-                            We host in-person presentations, discussions, and workshops to help people understand and adapt to fast-moving technological change &mdash; ethically, practically, and pro-human.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mt-auto">
-                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#AI</span>
-                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#DataScience</span>
-                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#CyberSec</span>
-                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#Manila</span>
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                        <div class="lg:col-span-4">
+                            <span class="font-jetbrains text-xs uppercase tracking-widest text-white/50">About Us</span>
+                            <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] mt-3 mb-6 tracking-tight">AI &amp; Tech Manila</h2>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#AI</span>
+                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#UseCases</span>
+                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#Ethics</span>
+                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#Manila</span>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-8 space-y-5 font-inter text-base md:text-lg text-white/78 leading-relaxed">
+                            <p>AI &amp; Tech Manila (AITM) is a community for people who want to understand AI trends, discuss new breakthroughs, study use cases, and meet other technology enthusiasts. We are software engineers, entrepreneurs, organizational leaders, AI enthusiasts, and students.</p>
+                            <p>We recognize the monumental impact that AI will have on our society, and we bring together tech enthusiasts, futurists, and curious newcomers alike for thoughtful conversations on emerging AI capabilities and their impact on nearly every major aspect of our lives: from business, medicine, law, and engineering to how we interface with the internet, the cloud, and each other.</p>
+                            <p>At the same time, we acknowledge the sobering consequences of AI misuse and rogue AI agents, as well as arguably some of the most challenging problems of our times: AI values alignment, causal reasoning, monitoring and regulation, and achieving AGI emergence.</p>
+                            <p>If we are to build a flourishing post-AI society, we must give these challenges the spotlight they deserve in public discourse. AITM hosts in-person presentations, discussions, and workshops designed to help people understand and adapt to fast-moving technological change. Our goal is simple: build a strong, open community where people can learn, share ideas, sharpen their thinking, and use technology in ways that are ethical, practical, and pro-human flourishing.</p>
                         </div>
                     </div>
                 </div>
@@ -401,14 +423,39 @@
 
             <!-- Team Section -->
             <section id="team">
-                <div class="mb-12 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-outline-variant/20 pb-8">
-                    <div>
-                        <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-primary mb-4 tracking-tight">Our Team</h2>
-                        <p class="font-inter text-base md:text-lg text-on-surface-variant max-w-2xl">A volunteer organization spanning New York, San Francisco, Sydney, and Manila &mdash; united by a belief that AI will be transformational for our careers, the economy, and humanity's future.</p>
+                <div class="mb-10 md:mb-12 bg-surface-container-lowest border border-outline-variant/10 rounded-bento p-6 md:p-10 shadow-sm">
+                    <div class="flex flex-col lg:flex-row justify-between items-start gap-8">
+                        <div class="max-w-3xl">
+                            <span class="font-jetbrains text-xs uppercase tracking-widest text-primary/45">Volunteer-led</span>
+                            <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-primary mt-3 mb-5 tracking-tight">Our Team</h2>
+                            <div class="font-inter text-base md:text-lg text-on-surface-variant space-y-4 leading-relaxed">
+                                <p>We are a volunteer organization. AITM is built and run by people who care enough to give their time, energy, and ideas to grow a thriving tech community.</p>
+                                <p>We hail from all over the globe: from New York to San Francisco, from Sydney to Manila. Our members come from engineering, startups, business, law, and finance, united by a shared belief that AI and technology will transform our careers, the broader economy, and humanity's future.</p>
+                            </div>
+                        </div>
+                        <a href="/join-team" class="bg-primary text-on-primary font-manrope font-semibold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg shadow-primary/15 inline-flex items-center gap-2 shrink-0">
+                            Join Our Team <span class="material-symbols-outlined text-base">arrow_forward</span>
+                        </a>
                     </div>
-                    <a href="/join-team" class="text-primary font-manrope font-semibold hover:underline flex items-center gap-1 shrink-0">
-                        Join Our Team <span class="material-symbols-outlined">arrow_forward</span>
-                    </a>
+
+                    <div class="mt-8 pt-8 border-t border-outline-variant/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">newspaper</span>
+                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Instill a better understanding of AI news and trends.</p>
+                        </div>
+                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">school</span>
+                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Build skills to help our community thrive in the marketplace.</p>
+                        </div>
+                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">explore</span>
+                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Learn to navigate technological trends and help shape positive change in an AI-dominant society.</p>
+                        </div>
+                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">volunteer_activism</span>
+                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Share and provide technology for the common good, in service of humanity.</p>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Founders -->
@@ -539,7 +586,9 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
                         <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf?mode=gi_t" target="_blank" rel="noopener">
                             <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                                <span class="material-symbols-outlined text-4xl">chat</span>
+                                <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M12.04 2.5a9.45 9.45 0 0 0-8.12 14.3L2.75 21.5l4.82-1.12a9.44 9.44 0 1 0 4.47-17.88Zm0 17.2a7.67 7.67 0 0 1-3.9-1.06l-.33-.2-2.86.67.69-2.78-.22-.35a7.65 7.65 0 1 1 6.62 3.72Zm4.25-5.73c-.23-.12-1.37-.68-1.58-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.16-.27.18-.5.06-.23-.11-.98-.36-1.87-1.15-.69-.62-1.16-1.38-1.29-1.61-.14-.23-.01-.36.1-.47.1-.1.23-.27.35-.4.12-.14.15-.23.23-.39.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.72-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.16 1.62 2.47 3.93 3.46.55.24.98.38 1.31.49.55.17 1.05.15 1.45.09.44-.07 1.37-.56 1.56-1.1.19-.55.19-1.02.13-1.11-.06-.1-.21-.16-.44-.27Z"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="font-manrope font-bold text-2xl text-white mb-2">WhatsApp</h3>
@@ -548,7 +597,9 @@
                         </a>
                         <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener">
                             <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                                <span class="material-symbols-outlined text-4xl">work</span>
+                                <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.98h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.3ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="font-manrope font-bold text-2xl text-white mb-2">LinkedIn</h3>
@@ -557,7 +608,9 @@
                         </a>
                         <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">
                             <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-                                <span class="material-symbols-outlined text-4xl">groups</span>
+                                <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M14.2 8.1V6.6c0-.72.48-.89.82-.89h2.08V2.5l-2.86-.01c-3.18 0-3.9 2.38-3.9 3.9v1.71H8.5v3.31h1.84v10.1h3.86v-10.1h2.6l.35-3.31H14.2Z"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="font-manrope font-bold text-2xl text-white mb-2">Facebook</h3>
@@ -569,6 +622,27 @@
             </section>
         </div>
     </main>
+
+    <!-- Gallery Viewer -->
+    <div id="gallery-modal" class="hidden fixed inset-0 z-[80] bg-black/90 backdrop-blur-md items-center justify-center p-4 md:p-8" role="dialog" aria-modal="true" aria-labelledby="gallery-title">
+        <div class="absolute top-4 left-4 md:top-6 md:left-8 text-white">
+            <h2 id="gallery-title" class="font-manrope font-bold text-lg">AI &amp; Tech Manila Gallery</h2>
+            <p id="gallery-count" class="font-jetbrains text-xs text-white/60 mt-1 uppercase tracking-wider">1 / 1</p>
+        </div>
+        <button id="gallery-close" class="absolute top-4 right-4 md:top-6 md:right-8 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm flex items-center justify-center transition-colors" type="button" aria-label="Close gallery">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <button id="gallery-prev" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm flex items-center justify-center transition-colors" type="button" aria-label="Previous gallery item">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <div class="w-full max-w-6xl max-h-[78vh] flex items-center justify-center">
+            <img id="gallery-image" class="hidden max-w-full max-h-[78vh] rounded-2xl object-contain shadow-2xl shadow-black/40" alt="AI & Tech Manila Event">
+            <video id="gallery-video" class="hidden max-w-full max-h-[78vh] rounded-2xl object-contain shadow-2xl shadow-black/40" controls playsinline></video>
+        </div>
+        <button id="gallery-next" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-sm flex items-center justify-center transition-colors" type="button" aria-label="Next gallery item">
+            <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+    </div>
 
     <!-- Footer -->
     <footer id="contact" class="bg-surface border-t border-outline-variant/20 mt-12">
@@ -612,11 +686,21 @@
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const values = {
+                    days: String(days).padStart(2, '0'),
+                    hours: String(hours).padStart(2, '0'),
+                    minutes: String(minutes).padStart(2, '0'),
+                    seconds: String(seconds).padStart(2, '0')
+                };
 
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                document.getElementById('days').textContent = values.days;
+                document.getElementById('hours').textContent = values.hours;
+                document.getElementById('minutes').textContent = values.minutes;
+                document.getElementById('seconds').textContent = values.seconds;
+                document.getElementById('hero-days').textContent = values.days;
+                document.getElementById('hero-hours').textContent = values.hours;
+                document.getElementById('hero-minutes').textContent = values.minutes;
+                document.getElementById('hero-seconds').textContent = values.seconds;
             }
         }
 
@@ -693,6 +777,96 @@
         const nextBtn = document.getElementById('slider-next');
         if (prevBtn) prevBtn.addEventListener('click', prev);
         if (nextBtn) nextBtn.addEventListener('click', next);
+
+        const galleryModal = document.getElementById('gallery-modal');
+        const galleryOpen = document.getElementById('gallery-open');
+        const galleryClose = document.getElementById('gallery-close');
+        const galleryPrev = document.getElementById('gallery-prev');
+        const galleryNext = document.getElementById('gallery-next');
+        const galleryImage = document.getElementById('gallery-image');
+        const galleryVideo = document.getElementById('gallery-video');
+        const galleryCount = document.getElementById('gallery-count');
+        let galleryIndex = 0;
+
+        function getSlideMedia(index) {
+            const slide = slides[index];
+            const video = slide.querySelector('video');
+            if (video) {
+                const source = video.querySelector('source');
+                return {
+                    type: 'video',
+                    src: source ? source.getAttribute('src') : '',
+                    alt: 'AI & Tech Manila Event video'
+                };
+            }
+
+            const img = slide.querySelector('img');
+            return {
+                type: 'image',
+                src: img ? (img.getAttribute('src') || img.dataset.src) : '',
+                alt: img ? img.alt : 'AI & Tech Manila Event'
+            };
+        }
+
+        function showGallery(index) {
+            galleryIndex = (index + slides.length) % slides.length;
+            lazyLoad(galleryIndex);
+
+            const media = getSlideMedia(galleryIndex);
+            galleryImage.classList.add('hidden');
+            galleryVideo.classList.add('hidden');
+            galleryVideo.pause();
+            galleryVideo.removeAttribute('src');
+
+            if (media.type === 'video') {
+                galleryVideo.src = media.src;
+                galleryVideo.classList.remove('hidden');
+                galleryVideo.load();
+                galleryVideo.play().catch(() => {});
+            } else {
+                galleryImage.src = media.src;
+                galleryImage.alt = media.alt;
+                galleryImage.classList.remove('hidden');
+            }
+
+            galleryCount.textContent = (galleryIndex + 1) + ' / ' + slides.length;
+        }
+
+        function openGallery() {
+            if (!galleryModal) return;
+            clearInterval(interval);
+            const currentVideo = slides[current].querySelector('video');
+            if (currentVideo) currentVideo.pause();
+            showGallery(current);
+            galleryModal.classList.remove('hidden');
+            galleryModal.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeGallery() {
+            if (!galleryModal) return;
+            galleryModal.classList.add('hidden');
+            galleryModal.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+            galleryVideo.pause();
+            resetInterval();
+        }
+
+        if (galleryOpen) galleryOpen.addEventListener('click', openGallery);
+        if (galleryClose) galleryClose.addEventListener('click', closeGallery);
+        if (galleryPrev) galleryPrev.addEventListener('click', () => showGallery(galleryIndex - 1));
+        if (galleryNext) galleryNext.addEventListener('click', () => showGallery(galleryIndex + 1));
+        if (galleryModal) {
+            galleryModal.addEventListener('click', (event) => {
+                if (event.target === galleryModal) closeGallery();
+            });
+        }
+        document.addEventListener('keydown', (event) => {
+            if (!galleryModal || galleryModal.classList.contains('hidden')) return;
+            if (event.key === 'Escape') closeGallery();
+            if (event.key === 'ArrowLeft') showGallery(galleryIndex - 1);
+            if (event.key === 'ArrowRight') showGallery(galleryIndex + 1);
+        });
 
         function resetInterval() {
             clearInterval(interval);
