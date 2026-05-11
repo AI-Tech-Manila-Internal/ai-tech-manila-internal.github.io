@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,370 +28,649 @@
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
 
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#000000",
+              "on-primary": "#ffffff",
+              "primary-container": "#131b2e",
+              "on-primary-container": "#7c839b",
+              "primary-fixed": "#dae2fd",
+              "primary-fixed-dim": "#bec6e0",
+              "secondary": "#5f5e5b",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#e5e2dd",
+              "on-secondary-container": "#656461",
+              "tertiary": "#000000",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "background": "#faf9f6",
+              "on-background": "#1a1c1a",
+              "surface": "#ffffff",
+              "on-surface": "#1a1c1a",
+              "surface-dim": "#dbdad7",
+              "surface-bright": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f4f3f1",
+              "surface-container": "#efeeeb",
+              "surface-container-high": "#e9e8e5",
+              "surface-container-highest": "#e3e2e0",
+              "surface-variant": "#e3e2e0",
+              "on-surface-variant": "#45464d",
+              "outline": "#76777d",
+              "outline-variant": "#c6c6cd",
+              "brand-red": "#BF0A30",
+              "brand-blue": "#002868"
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px",
+              "card": "24px",
+              "bento": "32px"
+            },
+            spacing: {
+              "gutter": "24px",
+              "unit": "8px",
+              "margin-desktop": "48px",
+              "margin-mobile": "16px",
+              "container-max": "1280px"
+            },
+            fontFamily: {
+              "manrope": ["Manrope", "sans-serif"],
+              "inter": ["Inter", "sans-serif"],
+              "jetbrains": ["JetBrains Mono", "monospace"]
+            },
+            maxWidth: {
+              "container-max": "1280px"
+            }
+          }
+        }
+      }
+    </script>
+
     <link href="/assets/css/base.css" rel="stylesheet">
+    <style>
+        body { padding-top: 0 !important; font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        section.bg-\[\#001B47\] .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #efeeeb; }
+        ::-webkit-scrollbar-thumb { background: #c6c6cd; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #76777d; }
+
+        section[id] { scroll-margin-top: 96px; }
+
+        .hero-copy-shadow {
+            text-shadow: 0 3px 18px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.8);
+            -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Category card accent stripe */
+        .cat-card { position: relative; isolation: isolate; }
+        .cat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 6px; height: 100%;
+            border-radius: 32px 0 0 32px;
+        }
+        .cat-card.tech::before { background: #002868; }
+        .cat-card.marketing::before { background: #BF0A30; }
+        .cat-card.business::before { background: #002868; }
+        .cat-card.politics::before { background: #BF0A30; }
+
+        .question-pill {
+            display: flex;
+            gap: 14px;
+            padding: 14px 16px;
+            background: #faf9f6;
+            border: 1px solid rgba(0, 40, 104, 0.08);
+            border-radius: 16px;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+        .question-pill:hover {
+            background: #ffffff;
+            border-color: rgba(0, 40, 104, 0.2);
+        }
+
+        .quote-mark {
+            font-family: 'Manrope', sans-serif;
+            font-size: 8rem;
+            line-height: 0.6;
+            color: #BF0A30;
+            opacity: 0.25;
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Neural Background -->
-    <div class="neural-bg"></div>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
 
-    <!-- 3D Globe Container -->
-    <div id="globe-container"></div>
-
-    <!-- Cyber lines effect -->
-    <div class="cyber-lines" id="cyber-lines"></div>
-
-    <!-- Header -->
-    <header class="glass-dark fixed top-0 w-full z-50 border-b border-cyan-500/20">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-lg overflow-hidden neon-glow">
-                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
-                    </div>
-                    <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div class="relative flex items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-24">
+            <a href="/" class="pointer-events-auto w-16 h-16 rounded-full bg-white shadow-lg shadow-black/20 flex items-center justify-center overflow-hidden hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
+                <div class="w-11 h-11 rounded-full overflow-hidden">
+                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
                 </div>
-
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Home</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/events" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Events</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/join-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Join Our Team</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/partner" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Partner</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/speaker" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Speaker</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/chill-chat" class="relative group">
-                        <span class="glow-button holographic text-white font-semibold py-2 px-4 rounded-full hover:scale-105 transition-transform duration-300 inline-block neon-glow">
-                            Chill & Chat
-                        </span>
-                    </a>
-                </div>
-
-                <button id="mobile-menu-button" class="md:hidden text-cyan-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
+            </a>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/">Home</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/events">Events</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/join-team">Team</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/partner">Partners</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
+                <a class="text-white bg-brand-red rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors" href="/chill-chat">Chill &amp; Chat</a>
             </div>
+            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20" aria-label="Toggle menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden pointer-events-auto md:hidden mx-margin-mobile rounded-3xl border border-white/15 bg-brand-blue/90 px-5 py-4 shadow-xl shadow-black/25 backdrop-blur-xl">
+            <a href="/" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Home</a>
+            <a href="/events" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Events</a>
+            <a href="/join-team" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Join Our Team</a>
+            <a href="/partner" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Partner</a>
+            <a href="/speaker" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Speaker</a>
+            <a href="/chill-chat" class="block mt-2 text-center bg-white text-primary font-manrope font-semibold py-3 rounded-full">Chill &amp; Chat</a>
+        </div>
+    </nav>
 
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden mt-4 glass rounded-lg p-4 md:hidden">
-                <a href="/" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Home</a>
+    <main class="flex-grow">
+        <!-- Hero -->
+        <section class="max-w-container-max mx-auto pt-28 md:pt-32 pb-12 md:pb-16 px-margin-mobile md:px-margin-desktop">
+            <div class="relative w-full h-[560px] md:h-[600px] rounded-bento overflow-hidden shadow-xl">
+                <img src="/assets/img/slider/20250830_163219.webp" alt="Roundtable conversation" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/15"></div>
 
-                <a href="/events" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Events</a>
-                <a href="/join-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Join Our Team</a>
-                <a href="/partner" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Partner</a>
-                <a href="/speaker" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Speaker</a>
-                <a href="/chill-chat" class="block py-3 px-4 mt-2 holographic text-white font-bold text-center rounded-full neon-glow">Chill & Chat ✨</a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="relative z-10">
-        <!-- Hero Section -->
-        <section class="min-h-[40vh] flex items-center justify-center px-4 sm:px-6 relative pt-20">
-            <div class="container mx-auto text-center">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
-                    <span class="gradient-text-ai">AI & Humanity</span><br>
-                    <span class="text-white">Roundtable Discussion</span>
-                </h1>
-                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    Deep, insightful conversations exploring the intersection of technology and humanity
-                </p>
-            </div>
-        </section>
-
-        <!-- Event Format Section -->
-        <section class="py-6 px-6">
-            <div class="container mx-auto max-w-5xl">
-                <div class="glass rounded-2xl p-6 sm:p-8 md:p-10 mb-10">
-                    <h2 class="text-3xl font-bold gradient-text mb-6 text-center">Event Format</h2>
-
-                    <div class="grid md:grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center neon-glow">
-                                <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-cyan-400 mb-2">Duration</h3>
-                                <p class="text-gray-300">2.5 hours of engaging discussions</p>
-                            </div>
+                <div class="relative h-full flex flex-col justify-between p-6 md:p-12 lg:p-16">
+                    <div class="flex items-center justify-between gap-3 flex-wrap">
+                        <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
+                            <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                            <span class="font-jetbrains text-[11px] uppercase tracking-widest text-white">Chill &amp; Chat &middot; Q1 2026</span>
                         </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center neon-glow">
-                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-purple-400 mb-2">Participants</h3>
-                                <p class="text-gray-300">~30 attendees divided into 4 groups</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center neon-glow">
-                                <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-pink-400 mb-2">Rotation</h3>
-                                <p class="text-gray-300">Groups switch topics every 20 minutes</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center neon-glow">
-                                <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-blue-400 mb-2">Categories</h3>
-                                <p class="text-gray-300">Technology · Marketing · Business · Politics</p>
-                            </div>
+                        <div class="hidden sm:inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
+                            <span class="material-symbols-outlined text-white text-base">groups</span>
+                            <span class="font-jetbrains text-[11px] uppercase tracking-widest text-white">30 seats &middot; 4 tables</span>
                         </div>
                     </div>
 
-                    <div class="space-y-4 text-gray-300 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30 p-6">
-                        <p class="flex items-start space-x-3">
-                            <span class="text-cyan-400 flex-shrink-0">▸</span>
-                            <span>Each group will start at one discussion category.</span>
+                    <div class="max-w-3xl">
+                        <h1 class="hero-copy-shadow font-manrope text-white text-4xl md:text-6xl lg:text-[72px] lg:leading-[76px] font-extrabold mb-5 tracking-tighter">
+                            AI &amp; Humanity.<br>The roundtable.
+                        </h1>
+                        <p class="hero-copy-shadow font-inter text-base md:text-lg text-white/90 max-w-2xl mb-6">
+                            Four categories. Four tables. Twenty minutes each. A relaxed, structured evening of conversations about how we're really living with this technology — and what comes next.
                         </p>
-                        <p class="flex items-start space-x-3">
-                            <span class="text-purple-400 flex-shrink-0">▸</span>
-                            <span>After 20 minutes, groups will rotate to the next topic.</span>
-                        </p>
-                        <p class="flex items-start space-x-3">
-                            <span class="text-pink-400 flex-shrink-0">▸</span>
-                            <span>At the end of each 20-minute session, the group should select one key insight or provocative takeaway to share with everyone.</span>
-                        </p>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <a href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" rel="noopener" class="bg-brand-red text-white font-manrope font-semibold text-base md:text-lg px-7 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/30 inline-flex items-center gap-2">
+                                Reserve your seat
+                                <span class="material-symbols-outlined">arrow_forward</span>
+                            </a>
+                            <a href="#categories" class="bg-white/10 border border-white/30 text-white font-manrope font-semibold text-base px-6 py-4 rounded-full hover:bg-white/20 transition-all backdrop-blur-md inline-flex items-center gap-2">
+                                See the agenda
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Group Role Section -->
-                <div class="glass rounded-2xl p-6 sm:p-8 md:p-10 mb-10">
-                    <h2 class="text-3xl font-bold gradient-text mb-6 text-center">Group Role</h2>
-                    <p class="text-gray-300 mb-6">Each group must assign a leader/facilitator who will:</p>
-
-                    <div class="space-y-4">
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center border border-cyan-400/50">
-                                <span class="text-cyan-400 font-bold text-lg">1</span>
-                            </div>
-                            <p class="text-gray-300 pt-2">Guide the discussion to keep it balanced and inclusive.</p>
+                    <!-- Event meta strip -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+                        <div class="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-3 md:p-4">
+                            <div class="font-jetbrains text-[10px] uppercase tracking-widest text-white/65">Date</div>
+                            <div class="font-manrope font-bold text-white text-sm md:text-base mt-1">Apr 11, 2026</div>
                         </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center border border-purple-400/50">
-                                <span class="text-purple-400 font-bold text-lg">2</span>
-                            </div>
-                            <p class="text-gray-300 pt-2">Capture key points or themes on paper or digitally.</p>
+                        <div class="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-3 md:p-4">
+                            <div class="font-jetbrains text-[10px] uppercase tracking-widest text-white/65">Time</div>
+                            <div class="font-manrope font-bold text-white text-sm md:text-base mt-1">12:30 – 5:30 PM</div>
                         </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-pink-500/20 flex items-center justify-center border border-pink-400/50">
-                                <span class="text-pink-400 font-bold text-lg">3</span>
-                            </div>
-                            <p class="text-gray-300 pt-2">Present a 2-minute summary of the group's discussion when rotations end.</p>
+                        <div class="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-3 md:p-4">
+                            <div class="font-jetbrains text-[10px] uppercase tracking-widest text-white/65">Venue</div>
+                            <div class="font-manrope font-bold text-white text-sm md:text-base mt-1">LEAP Studios, Makati</div>
+                        </div>
+                        <div class="bg-white/10 border border-white/20 backdrop-blur-md rounded-2xl p-3 md:p-4">
+                            <div class="font-jetbrains text-[10px] uppercase tracking-widest text-white/65">Cost</div>
+                            <div class="font-manrope font-bold text-white text-sm md:text-base mt-1">Free, RSVP required</div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Discussion Categories Section -->
-        <section class="pt-2 pb-6 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-4xl font-bold gradient-text-ai mb-12 text-center">Discussion Categories</h2>
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-24 flex flex-col gap-20 md:gap-28">
 
-                <!-- Category 1: Technology -->
-                <div class="glass-dark rounded-2xl p-6 sm:p-8 md:p-10 mb-8 border-l-4 border-cyan-500">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-4xl">🧠</div>
-                        <div>
-                            <h3 class="text-3xl font-bold text-cyan-400">Category 1: Technology</h3>
-                            <p class="text-gray-400 italic">"Building Intelligence for Humanity"</p>
-                        </div>
+            <!-- Countdown + Highlights bento -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+                <!-- Countdown -->
+                <div class="lg:col-span-7 bg-surface-container-lowest rounded-bento p-6 md:p-10 shadow-sm border border-outline-variant/15">
+                    <div class="flex items-center gap-2 mb-5">
+                        <span class="material-symbols-outlined text-brand-red animate-pulse">radio_button_checked</span>
+                        <span class="font-jetbrains text-xs font-medium uppercase text-brand-red tracking-wider">Live countdown</span>
                     </div>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mb-2 tracking-tight">Until we sit down together.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mb-6"></div>
 
-                    <p class="text-gray-300 mb-6"><span class="font-semibold text-cyan-400">Focus:</span> tools, methods, architectures, and innovation</p>
-
-                    <div class="space-y-4">
-                        <div class="bg-black/30 rounded-lg p-4 border border-cyan-500/20">
-                            <p class="text-gray-300"><span class="text-cyan-400 font-bold">1.</span> What emerging AI development tools or frameworks (e.g., LangChain, OpenDevin, LlamaIndex, Hugging Face) are most effective for building real-world human-centered applications?</p>
+                    <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4" data-date="2026-04-11T12:30:00+08:00">
+                        <div class="bg-surface rounded-2xl p-3 sm:p-5 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="days" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Days</div>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-cyan-500/20">
-                            <p class="text-gray-300"><span class="text-cyan-400 font-bold">2.</span> How do we balance speed of innovation vs. reliability and safety when deploying generative or agent-based systems?</p>
+                        <div class="bg-surface rounded-2xl p-3 sm:p-5 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="hours" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Hours</div>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-cyan-500/20">
-                            <p class="text-gray-300"><span class="text-cyan-400 font-bold">3.</span> What are the biggest engineering challenges in integrating AI models into existing software systems — from APIs and microservices to versioning and testing?</p>
+                        <div class="bg-surface rounded-2xl p-3 sm:p-5 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="minutes" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Mins</div>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-cyan-500/20">
-                            <p class="text-gray-300"><span class="text-cyan-400 font-bold">4.</span> How can we embed human feedback loops and continuous model evaluation into production AI systems to ensure alignment with real user needs?</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Category 2: Marketing -->
-                <div class="glass-dark rounded-2xl p-6 sm:p-8 md:p-10 mb-8 border-l-4 border-purple-500">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-4xl">💡</div>
-                        <div>
-                            <h3 class="text-3xl font-bold text-purple-400">Category 2: Marketing</h3>
-                            <p class="text-gray-400 italic">"Redefining Connection Through AI"</p>
-                        </div>
-                    </div>
-
-                    <p class="text-gray-300 mb-6"><span class="font-semibold text-purple-400">Focus:</span> tools, automation, data, personalization, and human emotion</p>
-
-                    <div class="space-y-4">
-                        <div class="bg-black/30 rounded-lg p-4 border border-purple-500/20">
-                            <p class="text-gray-300"><span class="text-purple-400 font-bold">1.</span> How is generative AI transforming creative workflows — from content ideation to ad copy to video production?</p>
-                        </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-purple-500/20">
-                            <p class="text-gray-300"><span class="text-purple-400 font-bold">2.</span> With AI-driven personalization and predictive analytics, how can marketers avoid crossing into manipulation or "hyper-surveillance"?</p>
-                        </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-purple-500/20">
-                            <p class="text-gray-300"><span class="text-purple-400 font-bold">3.</span> What are the most impactful AI tools today for understanding human behavior and emotion in real time?</p>
-                        </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-purple-500/20">
-                            <p class="text-gray-300"><span class="text-purple-400 font-bold">4.</span> As automation scales content and campaigns, what does "authentic human storytelling" mean in an AI-saturated landscape?</p>
+                        <div class="bg-surface rounded-2xl p-3 sm:p-5 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="seconds" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Secs</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Category 3: Business -->
-                <div class="glass-dark rounded-2xl p-6 sm:p-8 md:p-10 mb-8 border-l-4 border-pink-500">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-4xl">💼</div>
-                        <div>
-                            <h3 class="text-3xl font-bold text-pink-400">Category 3: Business</h3>
-                            <p class="text-gray-400 italic">"Human-Driven Innovation in the AI Era"</p>
-                        </div>
+                <!-- Highlights checklist -->
+                <div class="lg:col-span-5 bg-[#001B47] text-white rounded-bento p-6 md:p-10 shadow-lg shadow-brand-blue/15 relative overflow-hidden">
+                    <span class="material-symbols-outlined absolute -right-6 -bottom-6 text-[180px] text-white/[0.04] pointer-events-none">checklist</span>
+                    <div class="relative">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-white/55">Included</span>
+                        <h3 class="font-manrope font-extrabold text-2xl md:text-3xl text-white mt-3 mb-3 tracking-tight">What's in the room</h3>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-6"></div>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-white/85 font-inter text-sm md:text-base">
+                                <div class="w-7 h-7 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-base">check</span>
+                                </div>
+                                Keynote by Roger H&oslash;gli (CEO, NordByte)
+                            </li>
+                            <li class="flex items-center gap-3 text-white/85 font-inter text-sm md:text-base">
+                                <div class="w-7 h-7 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-base">check</span>
+                                </div>
+                                Four rotating roundtable conversations
+                            </li>
+                            <li class="flex items-center gap-3 text-white/85 font-inter text-sm md:text-base">
+                                <div class="w-7 h-7 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-base">check</span>
+                                </div>
+                                Group share-back &amp; reflection
+                            </li>
+                            <li class="flex items-center gap-3 text-white/85 font-inter text-sm md:text-base">
+                                <div class="w-7 h-7 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-base">check</span>
+                                </div>
+                                Free food, drinks, and the venue — on our sponsors
+                            </li>
+                            <li class="flex items-center gap-3 text-white/85 font-inter text-sm md:text-base">
+                                <div class="w-7 h-7 rounded-full bg-brand-red/20 text-brand-red flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-base">check</span>
+                                </div>
+                                Open networking before &amp; after
+                            </li>
+                        </ul>
                     </div>
+                </div>
+            </section>
 
-                    <p class="text-gray-300 mb-6"><span class="font-semibold text-pink-400">Focus:</span> leadership, strategy, and organizational transformation</p>
+            <!-- How it works (4-up) -->
+            <section>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Event Format</span>
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">How the evening works.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">A simple structure that lets every voice in. Two and a half hours of structured discussion, plus open time before and after.</p>
+                </div>
 
-                    <div class="space-y-4">
-                        <div class="bg-black/30 rounded-lg p-4 border border-pink-500/20">
-                            <p class="text-gray-300"><span class="text-pink-400 font-bold">1.</span> How can companies integrate AI without eroding the human judgment that defines good leadership?</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                    <div class="bg-surface-container-lowest rounded-card p-6 md:p-7 shadow-sm border border-outline-variant/10">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">schedule</span>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-pink-500/20">
-                            <p class="text-gray-300"><span class="text-pink-400 font-bold">2.</span> What new roles or organizational structures are emerging because of AI integration?</p>
+                        <div class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red mb-1">Duration</div>
+                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">2.5 hours</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">of structured discussion time.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 md:p-7 shadow-sm border border-outline-variant/10">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">groups</span>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-pink-500/20">
-                            <p class="text-gray-300"><span class="text-pink-400 font-bold">3.</span> How should companies measure ROI when AI impacts not just efficiency, but creativity, culture, and innovation speed?</p>
+                        <div class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red mb-1">Setup</div>
+                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">~30 attendees</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">divided into four tables.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 md:p-7 shadow-sm border border-outline-variant/10">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">autorenew</span>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-pink-500/20">
-                            <p class="text-gray-300"><span class="text-pink-400 font-bold">4.</span> What ethical frameworks can guide AI adoption in business decisions that directly affect people's lives or livelihoods?</p>
+                        <div class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red mb-1">Rotation</div>
+                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Every 20 min</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">groups switch to a new topic.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 md:p-7 shadow-sm border border-outline-variant/10">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">category</span>
                         </div>
+                        <div class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red mb-1">Topics</div>
+                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">4 categories</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">Tech · Marketing · Business · Politics.</p>
                     </div>
                 </div>
 
-                <!-- Category 4: Politics -->
-                <div class="glass-dark rounded-2xl p-6 sm:p-8 md:p-10 mb-8 border-l-4 border-blue-500">
-                    <div class="flex items-center space-x-3 mb-6">
-                        <div class="text-4xl">🏛️</div>
-                        <div>
-                            <h3 class="text-3xl font-bold text-blue-400">Category 4: Politics</h3>
-                            <p class="text-gray-400 italic">"Governing Intelligence for the Common Good"</p>
+                <div class="mt-8 bg-surface-container-low rounded-bento p-6 md:p-8 border border-outline-variant/10 flex flex-col md:flex-row gap-6">
+                    <div class="flex items-start gap-3 flex-1">
+                        <div class="w-9 h-9 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-lg">looks_one</span>
+                        </div>
+                        <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">Pick a starting category.</span> Each table begins with one of the four topics.</p>
+                    </div>
+                    <div class="flex items-start gap-3 flex-1">
+                        <div class="w-9 h-9 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-lg">looks_two</span>
+                        </div>
+                        <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">Rotate after 20 min.</span> Groups move on so every table covers every topic.</p>
+                    </div>
+                    <div class="flex items-start gap-3 flex-1">
+                        <div class="w-9 h-9 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0">
+                            <span class="material-symbols-outlined text-lg">looks_3</span>
+                        </div>
+                        <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">Capture a takeaway.</span> Each round picks one provocative idea to share back to the room.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discussion Categories -->
+            <section id="categories">
+                <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-10 md:mb-12">
+                    <div class="max-w-2xl">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">The Tables</span>
+                        <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Four categories, one question.</h2>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                        <p class="font-inter text-base md:text-lg text-on-surface-variant">How do we build an AI-saturated future that's worth living in? Each table approaches it from a different angle.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 shrink-0">
+                        <span class="font-jetbrains text-xs bg-brand-blue/10 text-brand-blue px-3 py-1.5 rounded-full">#tech</span>
+                        <span class="font-jetbrains text-xs bg-brand-red/10 text-brand-red px-3 py-1.5 rounded-full">#marketing</span>
+                        <span class="font-jetbrains text-xs bg-brand-blue/10 text-brand-blue px-3 py-1.5 rounded-full">#business</span>
+                        <span class="font-jetbrains text-xs bg-brand-red/10 text-brand-red px-3 py-1.5 rounded-full">#politics</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                    <!-- Technology -->
+                    <div class="cat-card tech bg-surface-container-lowest rounded-bento p-7 md:p-10 pl-9 md:pl-12 shadow-sm border border-outline-variant/10">
+                        <div class="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                                <span class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-blue">Table 01 &middot; Technology</span>
+                                <h3 class="font-manrope font-extrabold text-2xl md:text-3xl text-brand-blue mt-2 tracking-tight">Building intelligence for humanity.</h3>
+                                <p class="font-inter italic text-sm text-on-surface-variant mt-1">Tools, architectures, and the engineering of trust.</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined">memory</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">01</span>
+                                <p class="font-inter text-sm text-on-surface">What emerging AI dev tools (LangChain, OpenDevin, LlamaIndex, Hugging Face) are most effective for building real-world, human-centered apps?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">02</span>
+                                <p class="font-inter text-sm text-on-surface">How do we balance speed of innovation vs. reliability and safety when deploying generative or agent-based systems?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">03</span>
+                                <p class="font-inter text-sm text-on-surface">What are the biggest engineering challenges integrating AI models into existing systems — APIs, microservices, versioning, testing?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">04</span>
+                                <p class="font-inter text-sm text-on-surface">How can we embed human feedback loops and continuous evaluation into production AI systems to keep them aligned with real user needs?</p>
+                            </div>
                         </div>
                     </div>
 
-                    <p class="text-gray-300 mb-6"><span class="font-semibold text-blue-400">Focus:</span> regulation, ethics, governance, and societal impact</p>
+                    <!-- Marketing -->
+                    <div class="cat-card marketing bg-surface-container-lowest rounded-bento p-7 md:p-10 pl-9 md:pl-12 shadow-sm border border-outline-variant/10">
+                        <div class="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                                <span class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red">Table 02 &middot; Marketing</span>
+                                <h3 class="font-manrope font-extrabold text-2xl md:text-3xl text-brand-blue mt-2 tracking-tight">Redefining connection through AI.</h3>
+                                <p class="font-inter italic text-sm text-on-surface-variant mt-1">Automation, personalization, and the human story.</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-brand-red text-white flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined">campaign</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">01</span>
+                                <p class="font-inter text-sm text-on-surface">How is generative AI transforming creative workflows — from ideation to ad copy to video production?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">02</span>
+                                <p class="font-inter text-sm text-on-surface">With AI-driven personalization and predictive analytics, how do marketers avoid crossing into manipulation or hyper-surveillance?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">03</span>
+                                <p class="font-inter text-sm text-on-surface">What are the most impactful AI tools today for understanding human behavior and emotion in real time?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">04</span>
+                                <p class="font-inter text-sm text-on-surface">As automation scales content and campaigns, what does "authentic human storytelling" mean in an AI-saturated landscape?</p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <div class="space-y-4">
-                        <div class="bg-black/30 rounded-lg p-4 border border-blue-500/20">
-                            <p class="text-gray-300"><span class="text-blue-400 font-bold">1.</span> How should governments and global institutions collaborate to regulate AI development without stifling innovation?</p>
+                    <!-- Business -->
+                    <div class="cat-card business bg-surface-container-lowest rounded-bento p-7 md:p-10 pl-9 md:pl-12 shadow-sm border border-outline-variant/10">
+                        <div class="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                                <span class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-blue">Table 03 &middot; Business</span>
+                                <h3 class="font-manrope font-extrabold text-2xl md:text-3xl text-brand-blue mt-2 tracking-tight">Human-driven innovation in the AI era.</h3>
+                                <p class="font-inter italic text-sm text-on-surface-variant mt-1">Leadership, strategy, and organizational change.</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined">corporate_fare</span>
+                            </div>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-blue-500/20">
-                            <p class="text-gray-300"><span class="text-blue-400 font-bold">2.</span> What's the right balance between national AI strategies (security, sovereignty) and global ethical standards?</p>
+                        <div class="space-y-3">
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">01</span>
+                                <p class="font-inter text-sm text-on-surface">How can companies integrate AI without eroding the human judgment that defines good leadership?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">02</span>
+                                <p class="font-inter text-sm text-on-surface">What new roles or organizational structures are emerging because of AI integration?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">03</span>
+                                <p class="font-inter text-sm text-on-surface">How should companies measure ROI when AI impacts not just efficiency, but creativity, culture, and innovation speed?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-blue shrink-0">04</span>
+                                <p class="font-inter text-sm text-on-surface">What ethical frameworks can guide AI adoption in decisions that directly affect people's lives or livelihoods?</p>
+                            </div>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-blue-500/20">
-                            <p class="text-gray-300"><span class="text-blue-400 font-bold">3.</span> How can citizens maintain agency when political discourse, media, and public opinion are increasingly influenced by AI-generated content?</p>
+                    </div>
+
+                    <!-- Politics -->
+                    <div class="cat-card politics bg-surface-container-lowest rounded-bento p-7 md:p-10 pl-9 md:pl-12 shadow-sm border border-outline-variant/10">
+                        <div class="flex items-start justify-between gap-4 mb-6">
+                            <div>
+                                <span class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red">Table 04 &middot; Politics</span>
+                                <h3 class="font-manrope font-extrabold text-2xl md:text-3xl text-brand-blue mt-2 tracking-tight">Governing intelligence for the common good.</h3>
+                                <p class="font-inter italic text-sm text-on-surface-variant mt-1">Regulation, ethics, and societal impact.</p>
+                            </div>
+                            <div class="w-12 h-12 rounded-2xl bg-brand-red text-white flex items-center justify-center shrink-0">
+                                <span class="material-symbols-outlined">gavel</span>
+                            </div>
                         </div>
-                        <div class="bg-black/30 rounded-lg p-4 border border-blue-500/20">
-                            <p class="text-gray-300"><span class="text-blue-400 font-bold">4.</span> Should there be an international "AI Bill of Rights" to protect humanity from misuse and bias in algorithmic systems?</p>
+                        <div class="space-y-3">
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">01</span>
+                                <p class="font-inter text-sm text-on-surface">How should governments and global institutions collaborate to regulate AI development without stifling innovation?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">02</span>
+                                <p class="font-inter text-sm text-on-surface">What's the right balance between national AI strategies (security, sovereignty) and global ethical standards?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">03</span>
+                                <p class="font-inter text-sm text-on-surface">How can citizens maintain agency when political discourse and public opinion are increasingly influenced by AI-generated content?</p>
+                            </div>
+                            <div class="question-pill">
+                                <span class="font-jetbrains text-xs font-bold text-brand-red shrink-0">04</span>
+                                <p class="font-inter text-sm text-on-surface">Should there be an international "AI Bill of Rights" to protect humanity from misuse and bias in algorithmic systems?</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Bonus Reflection Section -->
-        <section class="py-6 px-6 mb-8">
-            <div class="container mx-auto max-w-4xl">
-                <div class="holographic rounded-2xl p-8 sm:p-10 md:p-12 text-center">
-                    <h2 class="text-3xl font-bold text-white mb-6">Bonus Reflection</h2>
-                    <p class="text-xl text-white mb-4">After all the discussions, ask yourself:</p>
-                    <blockquote class="text-2xl md:text-3xl font-bold text-white italic">
-                        "What immediate action will I take to shape the future through technology — a future where humanity will truly thrive?"
-                    </blockquote>
+            <!-- Group Role -->
+            <section class="bg-surface-container-lowest rounded-bento p-8 md:p-12 shadow-sm border border-outline-variant/15">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+                    <div class="lg:col-span-5">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Group Role</span>
+                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">Every table picks a facilitator.</h2>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                        <p class="font-inter text-base md:text-lg text-on-surface-variant mb-6">It's not a moderator or a presenter — just someone willing to keep the conversation moving and share what surfaced.</p>
+                        <div class="bg-surface-container-low rounded-2xl p-4 border border-outline-variant/10 flex items-start gap-3">
+                            <span class="material-symbols-outlined text-brand-blue">tips_and_updates</span>
+                            <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">First time?</span> Don't worry — facilitators rotate, and the hosts are around to help.</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="flex items-start gap-5 bg-surface-container-low rounded-2xl p-5 md:p-6 border border-outline-variant/10">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg shrink-0 shadow-md shadow-brand-red/25">1</div>
+                            <div>
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue mb-1">Guide the discussion.</h4>
+                                <p class="font-inter text-sm md:text-base text-on-surface-variant">Keep it balanced and inclusive. Make sure quieter voices get heard.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 bg-surface-container-low rounded-2xl p-5 md:p-6 border border-outline-variant/10">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg shrink-0 shadow-md shadow-brand-red/25">2</div>
+                            <div>
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue mb-1">Capture key points.</h4>
+                                <p class="font-inter text-sm md:text-base text-on-surface-variant">Notes on paper or your phone — whatever's easiest. Just enough to remember the threads.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 bg-surface-container-low rounded-2xl p-5 md:p-6 border border-outline-variant/10">
+                            <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg shrink-0 shadow-md shadow-brand-red/25">3</div>
+                            <div>
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue mb-1">Share back at the end.</h4>
+                                <p class="font-inter text-sm md:text-base text-on-surface-variant">A 2-minute summary of what your group surfaced — bring back one provocative takeaway.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Bonus Reflection -->
+            <section class="bg-[#001B47] rounded-bento p-10 md:p-20 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-white/55">Bonus reflection</span>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-white mt-3 mb-3 tracking-tight">Before you leave the room.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-8"></div>
+
+                    <div class="relative">
+                        <span class="quote-mark absolute -top-8 -left-2 select-none">"</span>
+                        <blockquote class="relative font-manrope text-2xl md:text-3xl lg:text-4xl text-white font-bold italic leading-snug">
+                            What immediate action will I take to shape the future through technology — a future where humanity will truly thrive?
+                        </blockquote>
+                        <span class="quote-mark absolute -bottom-12 -right-2 select-none">"</span>
+                    </div>
+
+                    <p class="font-inter text-white/65 text-sm md:text-base mt-12">Take it home. Sleep on it. Bring your answer back to the WhatsApp group next week.</p>
+                </div>
+            </section>
+
+            <!-- Register CTA -->
+            <section class="bg-surface-container-lowest rounded-bento p-8 md:p-12 shadow-sm border border-outline-variant/15 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="max-w-xl">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Reserve a seat</span>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">30 seats. First-come, first-served.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mb-4"></div>
+                    <p class="font-inter text-base text-on-surface-variant">Free to attend — but RSVP closes once we hit capacity. Past sessions have sold out the week of.</p>
+                </div>
+                <a href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" rel="noopener" class="bg-brand-red text-white font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-brand-red/20 inline-flex items-center gap-2 shrink-0">
+                    Register on Eventbrite
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="glass-dark border-t border-cyan-500/20 py-12 px-6">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg overflow-hidden">
-                            <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
-                        </div>
-                        <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+    <footer id="contact" class="bg-[#001B47] text-white mt-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto py-12 px-margin-mobile md:px-margin-desktop gap-8">
+            <div class="flex flex-col items-center md:items-start gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg overflow-hidden">
+                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover">
                     </div>
-                    <p class="text-sm text-gray-400 max-w-xs">Shaping the future of Artificial Intelligence for the benefit of all mankind.</p>
+                    <span class="font-manrope text-xl font-bold text-white tracking-tight">AI &amp; Tech Manila</span>
                 </div>
-
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61578227953203" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/>
-                        </svg>
-                    </a>
-                    <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm11.892-21.891c-5.448 0-9.881 4.433-9.881 9.881s4.433 9.881 9.881 9.881 9.881-4.433 9.881-9.881-4.433-9.881-9.881-9.881z"/>
-                        </svg>
-                    </a>
-                </div>
+                <p class="font-inter text-sm text-white/65 text-center md:text-left max-w-xs">
+                    &copy; <span id="copyright-year"></span> AI &amp; Tech Manila. Shaping the future for the benefit of all mankind.
+                </p>
             </div>
-
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p class="text-sm text-gray-500">&copy; <span id="copyright-year"></span> AI & Tech Manila. Powered by Intelligence.</p>
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">Facebook</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/partner">Partner With Us</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/speaker">Become a Speaker</a>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="/assets/js/base.js?v=1"></script>
+    <script src="/assets/js/base.js?v=2"></script>
+    <script>
+        // Countdown timer
+        function updateCountdown() {
+            const el = document.getElementById('countdown');
+            if (!el) return;
+            const eventDate = new Date(el.dataset.date).getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
 </body>
 </html>

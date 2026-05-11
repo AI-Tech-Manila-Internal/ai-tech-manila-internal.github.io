@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,267 +28,489 @@
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
 
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#000000",
+              "on-primary": "#ffffff",
+              "primary-container": "#131b2e",
+              "on-primary-container": "#7c839b",
+              "primary-fixed": "#dae2fd",
+              "primary-fixed-dim": "#bec6e0",
+              "secondary": "#5f5e5b",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#e5e2dd",
+              "on-secondary-container": "#656461",
+              "tertiary": "#000000",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "background": "#faf9f6",
+              "on-background": "#1a1c1a",
+              "surface": "#ffffff",
+              "on-surface": "#1a1c1a",
+              "surface-dim": "#dbdad7",
+              "surface-bright": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f4f3f1",
+              "surface-container": "#efeeeb",
+              "surface-container-high": "#e9e8e5",
+              "surface-container-highest": "#e3e2e0",
+              "surface-variant": "#e3e2e0",
+              "on-surface-variant": "#45464d",
+              "outline": "#76777d",
+              "outline-variant": "#c6c6cd",
+              "brand-red": "#BF0A30",
+              "brand-blue": "#002868"
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px",
+              "card": "24px",
+              "bento": "32px"
+            },
+            spacing: {
+              "gutter": "24px",
+              "unit": "8px",
+              "margin-desktop": "48px",
+              "margin-mobile": "16px",
+              "container-max": "1280px"
+            },
+            fontFamily: {
+              "manrope": ["Manrope", "sans-serif"],
+              "inter": ["Inter", "sans-serif"],
+              "jetbrains": ["JetBrains Mono", "monospace"]
+            },
+            maxWidth: {
+              "container-max": "1280px"
+            }
+          }
+        }
+      }
+    </script>
+
     <link href="/assets/css/base.css" rel="stylesheet">
+    <style>
+        body { padding-top: 0 !important; font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        section.bg-\[\#001B47\] .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #efeeeb; }
+        ::-webkit-scrollbar-thumb { background: #c6c6cd; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #76777d; }
+
+        section[id] { scroll-margin-top: 96px; }
+
+        .hero-copy-shadow {
+            text-shadow: 0 3px 18px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.8);
+            -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Timeline connector */
+        .step-rail::before {
+            content: '';
+            position: absolute;
+            left: 23px;
+            top: 48px;
+            bottom: -32px;
+            width: 2px;
+            background: linear-gradient(to bottom, rgba(191, 10, 48, 0.4), rgba(0, 40, 104, 0.15));
+        }
+        .step-rail:last-child::before { display: none; }
+        @media (min-width: 768px) {
+            .step-rail-h::before {
+                content: '';
+                position: absolute;
+                top: 23px;
+                left: 48px;
+                right: -32px;
+                height: 2px;
+                background: linear-gradient(to right, rgba(191, 10, 48, 0.4), rgba(0, 40, 104, 0.15));
+            }
+            .step-rail-h:last-child::before { display: none; }
+        }
+
+        /* Masonry-ish photo wall */
+        .photo-tile { transition: transform 0.4s ease, filter 0.4s ease; }
+        .photo-tile:hover { transform: scale(1.02); filter: saturate(1.15); }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Neural Background -->
-    <div class="neural-bg"></div>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
 
-    <!-- 3D Globe Container -->
-    <div id="globe-container"></div>
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div class="relative flex items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-24">
+            <a href="/" class="pointer-events-auto w-16 h-16 rounded-full bg-white shadow-lg shadow-black/20 flex items-center justify-center overflow-hidden hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
+                <div class="w-11 h-11 rounded-full overflow-hidden">
+                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
+                </div>
+            </a>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/">Home</a>
+                <a class="text-white bg-brand-red rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors" href="/events">Events</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/join-team">Team</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/partner">Partners</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/chill-chat">Chill &amp; Chat</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20" aria-label="Toggle menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden pointer-events-auto md:hidden mx-margin-mobile rounded-3xl border border-white/15 bg-brand-blue/90 px-5 py-4 shadow-xl shadow-black/25 backdrop-blur-xl">
+            <a href="/" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Home</a>
+            <a href="/events" class="block rounded-full px-4 py-2 text-white bg-brand-red font-inter">Events</a>
+            <a href="/join-team" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Join Our Team</a>
+            <a href="/partner" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Partner</a>
+            <a href="/speaker" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Speaker</a>
+            <a href="/chill-chat" class="block mt-2 text-center bg-white text-primary font-manrope font-semibold py-3 rounded-full">Chill &amp; Chat</a>
+        </div>
+    </nav>
 
-    <!-- Cyber lines effect -->
-    <div class="cyber-lines" id="cyber-lines"></div>
+    <main class="flex-grow">
+        <!-- Hero -->
+        <section class="max-w-container-max mx-auto pt-28 md:pt-32 pb-12 md:pb-16 px-margin-mobile md:px-margin-desktop">
+            <div class="relative w-full h-[420px] md:h-[460px] rounded-bento overflow-hidden shadow-xl">
+                <img src="/assets/img/slider/2.webp" alt="AI & Tech Manila community at an event" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/90 via-brand-blue/70 to-brand-blue/30"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15"></div>
 
-    <!-- Header -->
-    <header class="glass-dark fixed top-0 w-full z-50 border-b border-cyan-500/20">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-lg overflow-hidden neon-glow">
-                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+                <div class="relative h-full flex flex-col justify-between p-8 md:p-12 lg:p-16">
+                    <div class="inline-flex items-center gap-2 self-start bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
+                        <span class="material-symbols-outlined text-white text-base">event</span>
+                        <span class="font-jetbrains text-[11px] uppercase tracking-widest text-white">Monthly · Manila</span>
                     </div>
-                    <a href="/" class="text-xl font-bold gradient-text-ai">AI & Tech Manila</a>
+
+                    <div class="max-w-3xl">
+                        <h1 class="hero-copy-shadow font-manrope text-white text-4xl md:text-6xl lg:text-[64px] lg:leading-[68px] font-extrabold mb-5 tracking-tighter">
+                            Where Manila's<br>tech community meets.
+                        </h1>
+                        <p class="hero-copy-shadow font-inter text-base md:text-lg text-white/90 max-w-xl">
+                            Monthly gatherings that spark innovation, foster collaboration, and bring together founders, engineers, and curious minds across the city.
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3">
+                        <a href="#formats" class="bg-brand-red text-white font-manrope font-semibold text-base px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 inline-flex items-center gap-2">
+                            See event formats
+                            <span class="material-symbols-outlined text-lg">arrow_downward</span>
+                        </a>
+                        <a href="/chill-chat" class="bg-white/10 border border-white/30 text-white font-manrope font-semibold text-base px-6 py-3 rounded-full hover:bg-white/20 transition-all backdrop-blur-md inline-flex items-center gap-2">
+                            Next event
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </a>
+                    </div>
                 </div>
-
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Home</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/events" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Events</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/join-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Join Our Team</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/partner" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Partner</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/speaker" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Speaker</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/chill-chat" class="relative group">
-                        <span class="glow-button holographic text-white font-semibold py-2 px-4 rounded-full hover:scale-105 transition-transform duration-300 inline-block neon-glow">
-                            Chill & Chat
-                        </span>
-                    </a>
-                </div>
-
-                <button id="mobile-menu-button" class="md:hidden text-cyan-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden mt-4 glass rounded-lg p-4 md:hidden">
-                <a href="/" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Home</a>
-
-                <a href="/events" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Events</a>
-                <a href="/join-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Join Our Team</a>
-                <a href="/partner" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Partner</a>
-                <a href="/speaker" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Speaker</a>
-                <a href="/chill-chat" class="block py-3 px-4 mt-2 holographic text-white font-bold text-center rounded-full neon-glow">Chill & Chat ✨</a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="relative z-10 pt-24">
-        <!-- Hero Section -->
-        <section class="min-h-[40vh] flex items-center justify-center px-4 sm:px-6">
-            <div class="container mx-auto text-center">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
-                    <span class="gradient-text-ai">Our Events</span>
-                </h1>
-                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    Monthly gatherings that spark innovation, foster collaboration, and build community
-                </p>
             </div>
         </section>
 
-        <!-- Event Formats Overview -->
-        <section class="py-20 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold gradient-text mb-4">Two Event Formats, One Community</h2>
-                    <p class="text-gray-300 text-lg">We host monthly gatherings, alternating between two formats:</p>
+        <!-- Main content -->
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-24 flex flex-col gap-24 md:gap-32">
+
+            <!-- At-a-glance stats -->
+            <section class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mt-6 md:-mt-10 relative z-10">
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">12+</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Sessions / year</div>
+                </div>
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">350+</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Community members</div>
+                </div>
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">2</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Event formats</div>
+                </div>
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">100%</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Volunteer-run</div>
+                </div>
+            </section>
+
+            <!-- Two Event Formats -->
+            <section id="formats">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Event Formats</span>
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Two formats. One community.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">We host monthly gatherings, alternating between intimate roundtables and stage-driven nights — so there's a way to engage that fits the moment you're in.</p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
                     <!-- Chill & Chat -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="text-5xl">💬</div>
-                            <h3 class="text-3xl font-bold gradient-text">Chill & Chat</h3>
-                        </div>
-
-                        <div class="space-y-4 text-gray-300">
-                            <p class="text-lg font-semibold text-cyan-400">A relaxed, small-group setting for 15–30 participants</p>
-
-                            <div class="space-y-3">
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>Guided tech discussions on AI and technology trends</p>
+                    <a href="/chill-chat" class="group block bg-surface-container-lowest rounded-bento p-8 md:p-10 shadow-sm border border-outline-variant/15 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-6 -bottom-6 text-[200px] text-brand-blue/[0.04] pointer-events-none">forum</span>
+                        <div class="relative">
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-blue text-white flex items-center justify-center shadow-lg shadow-brand-blue/25">
+                                    <span class="material-symbols-outlined text-3xl">forum</span>
                                 </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>Open Q&A & member-driven topics</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>2–3 hours of meaningful conversation</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>Networking opportunities with like-minded peers</p>
-                                </div>
+                                <span class="font-jetbrains text-[10px] uppercase tracking-widest text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-full">Intimate · 15–30</span>
                             </div>
+                            <h3 class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue mb-2 tracking-tight">Chill &amp; Chat</h3>
+                            <p class="font-inter text-base text-on-surface-variant mb-6">A relaxed, small-group roundtable for thoughtful conversation.</p>
 
-                            <div class="mt-6 p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30">
-                                <p class="text-sm text-cyan-300">
-                                    <span class="font-semibold">Perfect for:</span> Deep discussions, building relationships, and exploring ideas in an intimate setting
-                                </p>
+                            <ul class="space-y-3 font-inter text-sm md:text-base text-on-surface-variant mb-6">
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>
+                                    Guided discussions on AI, tech, and industry trends
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>
+                                    Open Q&amp;A and member-driven topics
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>
+                                    2–3 hours of conversation that actually goes somewhere
+                                </li>
+                            </ul>
+
+                            <div class="flex items-center gap-2 font-manrope font-semibold text-brand-blue group-hover:gap-3 transition-all">
+                                Explore Chill &amp; Chat
+                                <span class="material-symbols-outlined text-base">arrow_forward</span>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Tech Spotlight -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="text-5xl">🎤</div>
-                            <h3 class="text-3xl font-bold gradient-text">Tech Spotlight</h3>
-                        </div>
-
-                        <div class="space-y-4 text-gray-300">
-                            <p class="text-lg font-semibold text-purple-400">A speaker-driven event attracting 60–100 attendees</p>
-
-                            <div class="space-y-3">
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>2–4 volunteer speakers per session</p>
+                    <div class="block bg-[#001B47] text-surface-bright rounded-bento p-8 md:p-10 shadow-lg shadow-brand-blue/15 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-6 -bottom-6 text-[200px] text-white/[0.04] pointer-events-none">mic</span>
+                        <div class="relative">
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-brand-red text-white flex items-center justify-center shadow-lg shadow-brand-red/30">
+                                    <span class="material-symbols-outlined text-3xl">mic</span>
                                 </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>Topics spanning AI, software, hardware, and emerging tech</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>Engaging presentations and demonstrations</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0"></div>
-                                    <p>Networking sessions to spark collaboration</p>
-                                </div>
+                                <span class="font-jetbrains text-[10px] uppercase tracking-widest text-white/70 bg-white/10 border border-white/15 px-3 py-1.5 rounded-full">Stage · 60–100</span>
                             </div>
+                            <h3 class="font-manrope font-extrabold text-3xl md:text-4xl text-white mb-2 tracking-tight">Tech Spotlight</h3>
+                            <p class="font-inter text-base text-white/72 mb-6">A speaker-driven evening of presentations and demos.</p>
 
-                            <div class="mt-6 p-4 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-lg border border-purple-500/30">
-                                <p class="text-sm text-purple-300">
-                                    <span class="font-semibold">Perfect for:</span> Learning from experts, discovering new technologies, and expanding your network
-                                </p>
-                            </div>
+                            <ul class="space-y-3 font-inter text-sm md:text-base text-white/80 mb-6">
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>
+                                    2–4 volunteer speakers per session
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>
+                                    Talks spanning AI, software, hardware, and emerging tech
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>
+                                    Live demos, Q&amp;A, and structured networking time
+                                </li>
+                            </ul>
+
+                            <a href="/speaker" class="inline-flex items-center gap-2 font-manrope font-semibold text-white hover:gap-3 transition-all">
+                                Become a speaker
+                                <span class="material-symbols-outlined text-base">arrow_forward</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Event Experience Section -->
-        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-4xl font-bold gradient-text-ai mb-12 text-center">What to Expect</h2>
+            <!-- Inside a typical evening (timeline) -->
+            <section class="bg-surface-container-lowest border border-outline-variant/10 rounded-bento p-6 md:p-12 shadow-sm">
+                <div class="max-w-3xl mb-10 md:mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Inside an Evening</span>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">How a session flows</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">Every event has a different agenda, but the rhythm is familiar — designed so newcomers feel at home and regulars find something fresh.</p>
+                </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="glass rounded-lg p-6">
-                        <div class="text-4xl mb-4 text-center">🧠</div>
-                        <h3 class="text-2xl font-bold text-cyan-400 mb-3 text-center">Learn</h3>
-                        <p class="text-gray-300 text-center">Stay ahead of the curve with insights on the latest AI trends, tools, and best practices from industry practitioners</p>
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-5 md:gap-8">
+                    <div class="relative step-rail-h">
+                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">1</div>
+                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Arrive &amp; settle</h4>
+                        <p class="font-inter text-sm text-on-surface-variant">Sign in, grab refreshments, find a comfortable seat near the people you came with — or didn't.</p>
                     </div>
-
-                    <div class="glass rounded-lg p-6">
-                        <div class="text-4xl mb-4 text-center">🤝</div>
-                        <h3 class="text-2xl font-bold text-purple-400 mb-3 text-center">Connect</h3>
-                        <p class="text-gray-300 text-center">Meet founders, developers, professionals, and enthusiasts who share your passion for technology and innovation</p>
+                    <div class="relative step-rail-h">
+                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">2</div>
+                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Warm-up intros</h4>
+                        <p class="font-inter text-sm text-on-surface-variant">A short framing of the evening's theme, hosts and speakers, and the conversation we'll be having.</p>
                     </div>
-
-                    <div class="glass rounded-lg p-6">
-                        <div class="text-4xl mb-4 text-center">🚀</div>
-                        <h3 class="text-2xl font-bold text-pink-400 mb-3 text-center">Collaborate</h3>
-                        <p class="text-gray-300 text-center">Find potential partners, mentors, and collaborators for your next project or startup venture</p>
+                    <div class="relative step-rail-h">
+                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">3</div>
+                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Main programme</h4>
+                        <p class="font-inter text-sm text-on-surface-variant">Talks, demos, or rotating roundtable discussions — depending on the format.</p>
+                    </div>
+                    <div class="relative step-rail-h">
+                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">4</div>
+                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Open networking</h4>
+                        <p class="font-inter text-sm text-on-surface-variant">Continue the threads that interested you, meet new people, swap contacts and ideas.</p>
+                    </div>
+                    <div class="relative step-rail-h">
+                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">5</div>
+                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Carry it forward</h4>
+                        <p class="font-inter text-sm text-on-surface-variant">The conversation continues all month in our WhatsApp community — the events are just the spark.</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- CTA Section -->
-        <section class="py-20 px-6">
-            <div class="container mx-auto max-w-4xl">
-                <div class="glass rounded-2xl p-8 md:p-12 text-center">
-                    <h2 class="text-4xl font-bold gradient-text-ai mb-6">Join Our Next Event</h2>
-                    <p class="text-xl text-gray-300 mb-8">
-                        Be part of Manila's most vibrant AI and tech community. Connect with innovators, learn from experts, and shape the future together.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="/#event" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 neon-glow">
-                            View Upcoming Events
+            <!-- Highlights from past events (photo wall) -->
+            <section>
+                <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-10 md:mb-12">
+                    <div class="max-w-2xl">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Past Events</span>
+                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">Highlights from the room.</h2>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                        <p class="font-inter text-base md:text-lg text-on-surface-variant">A glimpse of what's happened — speakers, debates, demos, and the conversations that spilled out into the city afterward.</p>
+                    </div>
+                    <a href="/#gallery" class="bg-surface-container-lowest border border-outline-variant/30 text-brand-blue font-manrope font-semibold px-5 py-3 rounded-full hover:bg-surface-container-low transition-all inline-flex items-center gap-2 shrink-0 shadow-sm">
+                        Full gallery
+                        <span class="material-symbols-outlined text-base">photo_library</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-6 grid-rows-2 gap-3 md:gap-4 h-[440px] md:h-[560px]">
+                    <div class="col-span-3 row-span-2 rounded-bento overflow-hidden relative group">
+                        <img src="/assets/img/slider/20250830_163219.webp" alt="Event photo" class="photo-tile absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-x-0 bottom-0 p-5 md:p-6 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                            <span class="font-jetbrains text-[10px] uppercase tracking-widest text-white/80 bg-white/15 backdrop-blur-md border border-white/25 px-2.5 py-1 rounded-full">Tech Spotlight</span>
+                            <h4 class="font-manrope font-bold text-white text-lg md:text-xl mt-3">A full house in Makati</h4>
+                        </div>
+                    </div>
+                    <div class="col-span-3 md:col-span-2 row-span-1 rounded-card overflow-hidden">
+                        <img src="/assets/img/slider/3.webp" alt="Event photo" class="photo-tile w-full h-full object-cover">
+                    </div>
+                    <div class="hidden md:block col-span-1 row-span-1 rounded-card overflow-hidden">
+                        <img src="/assets/img/slider/4.webp" alt="Event photo" class="photo-tile w-full h-full object-cover">
+                    </div>
+                    <div class="col-span-3 md:col-span-2 row-span-1 rounded-card overflow-hidden">
+                        <img src="/assets/img/slider/20250830_155049.webp" alt="Event photo" class="photo-tile w-full h-full object-cover">
+                    </div>
+                    <div class="hidden md:block col-span-1 row-span-1 rounded-card overflow-hidden">
+                        <img src="/assets/img/slider/9.webp" alt="Event photo" class="photo-tile w-full h-full object-cover">
+                    </div>
+                </div>
+            </section>
+
+            <!-- What to Expect -->
+            <section>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">What To Expect</span>
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Learn. Connect. Build.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">The reason people keep coming back — and what we hope you'll take with you when you leave.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">school</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-5">
+                                <span class="material-symbols-outlined">school</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Learn</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Stay ahead with insights on AI trends, tools, and best practices — straight from people building with them.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">groups</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-5">
+                                <span class="material-symbols-outlined">groups</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Connect</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Meet founders, developers, professionals, and curious newcomers who share your appetite for what's next.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">rocket_launch</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-5">
+                                <span class="material-symbols-outlined">rocket_launch</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Collaborate</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Find partners, mentors, and collaborators for your next project, startup, or experiment.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Closing CTA -->
+            <section class="bg-[#001B47] rounded-bento p-10 md:p-20 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-white/55">Get Involved</span>
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mt-3 mb-3 tracking-tight">Pick the way you want to show up.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-6"></div>
+                    <p class="font-inter text-base md:text-lg text-white/72 mb-10">Whether you want to listen, talk, host, or partner — we have a door open for you.</p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <a href="/#event" class="group glass-card rounded-2xl p-6 hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-red text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined">calendar_add_on</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-white text-lg mb-1">Attend the next event</h3>
+                            <p class="font-inter text-xs text-white/65">Check the homepage for dates &amp; registration.</p>
                         </a>
-                        <a href="/speaker" class="glass border border-cyan-500/50 text-cyan-400 font-bold py-4 px-8 rounded-full hover:bg-cyan-500/10 transition-all duration-300">
-                            Become a Speaker
+                        <a href="/speaker" class="group glass-card rounded-2xl p-6 hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-red text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined">campaign</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-white text-lg mb-1">Speak on stage</h3>
+                            <p class="font-inter text-xs text-white/65">Apply for our next Tech Spotlight.</p>
+                        </a>
+                        <a href="/partner" class="group glass-card rounded-2xl p-6 hover:-translate-y-1 transition-all flex flex-col items-center text-center">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-red text-white flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined">handshake</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-white text-lg mb-1">Host or partner</h3>
+                            <p class="font-inter text-xs text-white/65">Power the community alongside us.</p>
                         </a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="glass-dark border-t border-cyan-500/20 py-12 px-6">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg overflow-hidden">
-                            <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
-                        </div>
-                        <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+    <footer id="contact" class="bg-[#001B47] text-white mt-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto py-12 px-margin-mobile md:px-margin-desktop gap-8">
+            <div class="flex flex-col items-center md:items-start gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg overflow-hidden">
+                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover">
                     </div>
-                    <p class="text-sm text-gray-400 max-w-xs">Shaping the future of Artificial Intelligence for the benefit of all mankind.</p>
+                    <span class="font-manrope text-xl font-bold text-white tracking-tight">AI &amp; Tech Manila</span>
                 </div>
-
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61578227953203" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/>
-                        </svg>
-                    </a>
-                    <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm11.892-21.891c-5.448 0-9.881 4.433-9.881 9.881s4.433 9.881 9.881 9.881 9.881-4.433 9.881-9.881-4.433-9.881-9.881-9.881z"/>
-                        </svg>
-                    </a>
-                </div>
+                <p class="font-inter text-sm text-white/65 text-center md:text-left max-w-xs">
+                    &copy; <span id="copyright-year"></span> AI &amp; Tech Manila. Shaping the future for the benefit of all mankind.
+                </p>
             </div>
-
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p class="text-sm text-gray-500">&copy; <span id="copyright-year"></span> AI & Tech Manila. Powered by Intelligence.</p>
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">Facebook</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/partner">Partner With Us</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/speaker">Become a Speaker</a>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="/assets/js/base.js?v=1"></script>
+    <script src="/assets/js/base.js?v=2"></script>
 </body>
 </html>
