@@ -53,10 +53,10 @@
               "error": "#ba1a1a",
               "background": "#faf9f6",
               "on-background": "#1a1c1a",
-              "surface": "#faf9f6",
+              "surface": "#ffffff",
               "on-surface": "#1a1c1a",
               "surface-dim": "#dbdad7",
-              "surface-bright": "#faf9f6",
+              "surface-bright": "#ffffff",
               "surface-container-lowest": "#ffffff",
               "surface-container-low": "#f4f3f1",
               "surface-container": "#efeeeb",
@@ -65,7 +65,9 @@
               "surface-variant": "#e3e2e0",
               "on-surface-variant": "#45464d",
               "outline": "#76777d",
-              "outline-variant": "#c6c6cd"
+              "outline-variant": "#c6c6cd",
+              "brand-red": "#BF0A30",
+              "brand-blue": "#002868"
             },
             borderRadius: {
               "DEFAULT": "0.25rem",
@@ -109,7 +111,9 @@
         }
 
         /* Glass-card variant inside the dark "Join Us" section */
-        section.bg-primary .glass-card {
+        section.bg-primary .glass-card,
+        section.bg-brand-blue .glass-card,
+        section.bg-\[\#001B47\] .glass-card {
             background: rgba(255, 255, 255, 0.08);
             border-color: rgba(255, 255, 255, 0.15);
         }
@@ -130,6 +134,10 @@
             text-shadow: 0 3px 18px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.8);
             -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.25);
         }
+
+        .social-icon-accent {
+            box-shadow: 0 3px 0 rgba(191, 10, 48, 0.55), 0 12px 22px rgba(0, 0, 0, 0.18);
+        }
     </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
@@ -142,21 +150,21 @@
                     <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
                 </div>
             </a>
-            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-primary/70 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
-                <a class="text-white bg-white/15 rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-white/20 transition-colors" href="/">Home</a>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
+                <a class="text-white bg-brand-red rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors" href="/">Home</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/events">Events</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/join-team">Team</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/partner">Partners</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/chill-chat">Chill &amp; Chat</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-primary/70 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20" aria-label="Toggle menu">
+            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20" aria-label="Toggle menu">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden pointer-events-auto md:hidden mx-margin-mobile rounded-3xl border border-white/15 bg-primary/80 px-5 py-4 shadow-xl shadow-black/25 backdrop-blur-xl">
-            <a href="/" class="block rounded-full px-4 py-2 text-white bg-white/15 font-inter">Home</a>
+        <div id="mobile-menu" class="hidden pointer-events-auto md:hidden mx-margin-mobile rounded-3xl border border-white/15 bg-brand-blue/90 px-5 py-4 shadow-xl shadow-black/25 backdrop-blur-xl">
+            <a href="/" class="block rounded-full px-4 py-2 text-white bg-brand-red font-inter">Home</a>
             <a href="/events" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Events</a>
             <a href="/join-team" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Join Our Team</a>
             <a href="/partner" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Partner</a>
@@ -252,17 +260,17 @@
 
                 <!-- Social links -->
                 <div class="absolute right-3 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-1.5 md:gap-2">
-                    <a href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on LinkedIn" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+                    <a href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on LinkedIn" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-brand-blue/25 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low hover:border-brand-blue/45 transition-colors">
                         <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.98h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.3ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/>
                         </svg>
                     </a>
-                    <a href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on Facebook" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+                    <a href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on Facebook" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-brand-blue/25 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low hover:border-brand-blue/45 transition-colors">
                         <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M14.2 8.1V6.6c0-.72.48-.89.82-.89h2.08V2.5l-2.86-.01c-3.18 0-3.9 2.38-3.9 3.9v1.71H8.5v3.31h1.84v10.1h3.86v-10.1h2.6l.35-3.31H14.2Z"/>
                         </svg>
                     </a>
-                    <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on WhatsApp" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-outline-variant/40 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low transition-colors">
+                    <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on WhatsApp" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-brand-blue/25 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low hover:border-brand-blue/45 transition-colors">
                         <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M12.04 2.5a9.45 9.45 0 0 0-8.12 14.3L2.75 21.5l4.82-1.12a9.44 9.44 0 1 0 4.47-17.88Zm0 17.2a7.67 7.67 0 0 1-3.9-1.06l-.33-.2-2.86.67.69-2.78-.22-.35a7.65 7.65 0 1 1 6.62 3.72Zm4.25-5.73c-.23-.12-1.37-.68-1.58-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.16-.27.18-.5.06-.23-.11-.98-.36-1.87-1.15-.69-.62-1.16-1.38-1.29-1.61-.14-.23-.01-.36.1-.47.1-.1.23-.27.35-.4.12-.14.15-.23.23-.39.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.72-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.16 1.62 2.47 3.93 3.46.55.24.98.38 1.31.49.55.17 1.05.15 1.45.09.44-.07 1.37-.56 1.56-1.1.19-.55.19-1.02.13-1.11-.06-.1-.21-.16-.44-.27Z"/>
                         </svg>
@@ -293,7 +301,7 @@
                             Manila's premier community where entrepreneurs, developers, professionals, and tech enthusiasts converge to learn, grow, and thrive in the age of AI.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                            <a href="#event" class="bg-white text-primary font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 inline-flex items-center justify-center gap-2 pointer-events-auto">
+                            <a href="#event" class="bg-brand-red text-white font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 inline-flex items-center justify-center gap-2 pointer-events-auto">
                                 Join Our Next Event
                                 <span class="material-symbols-outlined">arrow_forward</span>
                             </a>
@@ -307,14 +315,14 @@
                     <div class="absolute bottom-0 left-0">
                         <a href="#event" class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm rounded-[28px] px-6 py-4 inline-flex flex-col gap-2 pointer-events-auto hover:bg-surface-container-low transition-colors group">
                             <span class="inline-flex items-center gap-2.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
                                 <span class="text-primary font-jetbrains text-sm uppercase tracking-wider">Next event &middot; Apr 11, 2026</span>
                             </span>
                             <span class="grid grid-cols-4 gap-3 font-jetbrains text-[11px] uppercase tracking-wider text-on-surface-variant" aria-label="Countdown to next event">
-                                <span><strong id="hero-days" class="text-primary font-bold">00</strong>d</span>
-                                <span><strong id="hero-hours" class="text-primary font-bold">00</strong>h</span>
-                                <span><strong id="hero-minutes" class="text-primary font-bold">00</strong>m</span>
-                                <span><strong id="hero-seconds" class="text-primary font-bold">00</strong>s</span>
+                                <span><strong id="hero-days" class="text-brand-blue font-bold">00</strong>d</span>
+                                <span><strong id="hero-hours" class="text-brand-blue font-bold">00</strong>h</span>
+                                <span><strong id="hero-minutes" class="text-brand-blue font-bold">00</strong>m</span>
+                                <span><strong id="hero-seconds" class="text-brand-blue font-bold">00</strong>s</span>
                             </span>
                         </a>
                     </div>
@@ -331,10 +339,11 @@
                 <div class="md:col-span-12 bg-surface-container-lowest rounded-bento p-6 sm:p-8 md:p-12 shadow-sm border border-outline-variant/20 flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <div class="flex items-center gap-2 mb-6">
-                            <span class="material-symbols-outlined text-error animate-pulse">radio_button_checked</span>
-                            <span class="font-jetbrains text-xs font-medium uppercase text-error tracking-wider">Live Countdown</span>
+                            <span class="material-symbols-outlined text-brand-red animate-pulse">radio_button_checked</span>
+                            <span class="font-jetbrains text-xs font-medium uppercase text-brand-red tracking-wider">Live Countdown</span>
                         </div>
-                        <h2 class="font-manrope text-3xl md:text-[40px] md:leading-[48px] font-bold text-primary mb-4">AI &amp; Tech Manila: Chill &amp; Chat 2026</h2>
+                        <h2 class="font-manrope text-3xl md:text-[40px] md:leading-[48px] font-bold text-brand-blue mb-3">AI &amp; Tech Manila: Chill &amp; Chat 2026</h2>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                         <p class="font-inter text-base md:text-lg text-on-surface-variant mb-2 max-w-lg">
                             Q1 2026: What just happened? And what's next? Join us for our first Chill &amp; Chat of 2026 &mdash; an evening of insightful discussions and relaxed networking.
                         </p>
@@ -351,44 +360,44 @@
                     </div>
                     <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 mb-8" data-date="2026-04-11T12:30:00+08:00">
                         <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
-                            <div id="days" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div id="days" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
                             <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Days</div>
                         </div>
                         <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
-                            <div id="hours" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div id="hours" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
                             <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Hours</div>
                         </div>
                         <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
-                            <div id="minutes" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div id="minutes" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
                             <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Mins</div>
                         </div>
                         <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
-                            <div id="seconds" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div id="seconds" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
                             <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Secs</div>
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-outline-variant/20 pt-8 mt-auto">
                         <ul class="space-y-3">
                             <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
-                                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <div class="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0">
                                     <span class="material-symbols-outlined text-sm">check</span>
                                 </div>
                                 Keynote by Roger H&oslash;gli (CEO, NordByte)
                             </li>
                             <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
-                                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <div class="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0">
                                     <span class="material-symbols-outlined text-sm">check</span>
                                 </div>
                                 Roundtable Q&amp;A and networking
                             </li>
                             <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
-                                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                <div class="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0">
                                     <span class="material-symbols-outlined text-sm">check</span>
                                 </div>
                                 FREE food &amp; venue, courtesy of our sponsors
                             </li>
                         </ul>
-                        <a href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" rel="noopener" class="w-full sm:w-auto bg-primary text-on-primary font-manrope font-semibold text-base md:text-lg px-8 md:px-10 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-primary/20 whitespace-nowrap text-center inline-flex items-center justify-center gap-2">
+                        <a href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" rel="noopener" class="w-full sm:w-auto bg-brand-red text-white font-manrope font-semibold text-base md:text-lg px-8 md:px-10 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-brand-red/20 whitespace-nowrap text-center inline-flex items-center justify-center gap-2">
                             Register Today
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
@@ -396,22 +405,23 @@
                 </div>
 
                 <!-- About Us -->
-                <div id="about" class="md:col-span-12 bg-primary text-surface-bright rounded-bento p-8 md:p-12 shadow-lg shadow-primary/10 relative overflow-hidden">
+                <div id="about" class="md:col-span-12 bg-[#001B47] text-surface-bright rounded-bento p-8 md:p-12 shadow-lg shadow-brand-blue/10 relative overflow-hidden">
                     <div class="absolute -bottom-16 -right-10 opacity-10 pointer-events-none">
                         <span class="material-symbols-outlined text-[240px]">psychology</span>
                     </div>
                     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
                         <div class="lg:col-span-4">
-                            <span class="font-jetbrains text-xs uppercase tracking-widest text-white/50">About Us</span>
+                            <span class="font-jetbrains text-xs uppercase tracking-widest text-white/40">About Us</span>
                             <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] mt-3 mb-6 tracking-tight">AI &amp; Tech Manila</h2>
+                            <div class="w-16 h-1 rounded-full bg-brand-red mb-6"></div>
                             <div class="flex flex-wrap gap-2">
-                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#AI</span>
-                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#UseCases</span>
-                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#Ethics</span>
-                                <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20">#Manila</span>
+                                <span class="font-jetbrains text-xs bg-white/7 px-3 py-1.5 rounded-full border border-white/15 text-white/85">#AI</span>
+                                <span class="font-jetbrains text-xs bg-white/7 px-3 py-1.5 rounded-full border border-white/15 text-white/85">#UseCases</span>
+                                <span class="font-jetbrains text-xs bg-white/7 px-3 py-1.5 rounded-full border border-white/15 text-white/85">#Ethics</span>
+                                <span class="font-jetbrains text-xs bg-white/7 px-3 py-1.5 rounded-full border border-white/15 text-white/85">#Manila</span>
                             </div>
                         </div>
-                        <div class="lg:col-span-8 space-y-5 font-inter text-base md:text-lg text-white/78 leading-relaxed">
+                        <div class="lg:col-span-8 space-y-5 font-inter text-base md:text-lg text-white/72 leading-relaxed">
                             <p>AI &amp; Tech Manila (AITM) is a community for people who want to understand AI trends, discuss new breakthroughs, study use cases, and meet other technology enthusiasts. We are software engineers, entrepreneurs, organizational leaders, AI enthusiasts, and students.</p>
                             <p>We recognize the monumental impact that AI will have on our society, and we bring together tech enthusiasts, futurists, and curious newcomers alike for thoughtful conversations on emerging AI capabilities and their impact on nearly every major aspect of our lives: from business, medicine, law, and engineering to how we interface with the internet, the cloud, and each other.</p>
                             <p>At the same time, we acknowledge the sobering consequences of AI misuse and rogue AI agents, as well as arguably some of the most challenging problems of our times: AI values alignment, causal reasoning, monitoring and regulation, and achieving AGI emergence.</p>
@@ -426,33 +436,34 @@
                 <div class="mb-10 md:mb-12 bg-surface-container-lowest border border-outline-variant/10 rounded-bento p-6 md:p-10 shadow-sm">
                     <div class="flex flex-col lg:flex-row justify-between items-start gap-8">
                         <div class="max-w-3xl">
-                            <span class="font-jetbrains text-xs uppercase tracking-widest text-primary/45">Volunteer-led</span>
-                            <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-primary mt-3 mb-5 tracking-tight">Our Team</h2>
+                            <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Volunteer-led</span>
+                            <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Our Team</h2>
+                            <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                             <div class="font-inter text-base md:text-lg text-on-surface-variant space-y-4 leading-relaxed">
                                 <p>We are a volunteer organization. AITM is built and run by people who care enough to give their time, energy, and ideas to grow a thriving tech community.</p>
                                 <p>We hail from all over the globe: from New York to San Francisco, from Sydney to Manila. Our members come from engineering, startups, business, law, and finance, united by a shared belief that AI and technology will transform our careers, the broader economy, and humanity's future.</p>
                             </div>
                         </div>
-                        <a href="/join-team" class="bg-primary text-on-primary font-manrope font-semibold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg shadow-primary/15 inline-flex items-center gap-2 shrink-0">
+                        <a href="/join-team" class="bg-brand-blue text-white font-manrope font-semibold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg shadow-brand-blue/15 inline-flex items-center gap-2 shrink-0">
                             Join Our Team <span class="material-symbols-outlined text-base">arrow_forward</span>
                         </a>
                     </div>
 
                     <div class="mt-8 pt-8 border-t border-outline-variant/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">newspaper</span>
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">newspaper</span>
                             <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Instill a better understanding of AI news and trends.</p>
                         </div>
                         <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">school</span>
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">school</span>
                             <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Build skills to help our community thrive in the marketplace.</p>
                         </div>
                         <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">explore</span>
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">explore</span>
                             <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Learn to navigate technological trends and help shape positive change in an AI-dominant society.</p>
                         </div>
                         <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-primary/[0.025] pointer-events-none">volunteer_activism</span>
+                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">volunteer_activism</span>
                             <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Share and provide technology for the common good, in service of humanity.</p>
                         </div>
                     </div>
@@ -460,13 +471,13 @@
 
                 <!-- Founders -->
                 <div class="mb-16">
-                    <h3 class="font-jetbrains text-sm text-primary/60 mb-8 uppercase tracking-widest font-medium">Founders</h3>
+                    <h3 class="font-jetbrains text-sm text-brand-red mb-8 uppercase tracking-widest font-medium">Founders</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
                         <a href="https://www.linkedin.com/in/jackdiao/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-8 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
                             <div class="w-32 h-32 rounded-full bg-surface-container mb-6 overflow-hidden relative">
                                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="/assets/img/team/jack.jpeg" alt="Jack Diao">
                             </div>
-                            <h4 class="font-manrope font-bold text-2xl text-primary mb-1">Jack Diao</h4>
+                            <h4 class="font-manrope font-bold text-2xl text-brand-blue mb-1">Jack Diao</h4>
                             <p class="font-inter text-base text-primary/60">Economic Consultant / Founder</p>
                             <p class="font-inter text-sm text-on-surface-variant mt-3">Driving community growth and operational excellence at AI &amp; Tech Manila.</p>
                         </a>
@@ -474,7 +485,7 @@
                             <div class="w-32 h-32 rounded-full bg-surface-container mb-6 overflow-hidden relative">
                                 <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
                             </div>
-                            <h4 class="font-manrope font-bold text-2xl text-primary mb-1">Rosselle Mabunga</h4>
+                            <h4 class="font-manrope font-bold text-2xl text-brand-blue mb-1">Rosselle Mabunga</h4>
                             <p class="font-inter text-base text-primary/60">Founder Emeritus</p>
                             <p class="font-inter text-sm text-on-surface-variant mt-3">Leading technical innovation and building solutions that shape the future of AI &amp; Tech Manila.</p>
                         </a>
@@ -483,14 +494,14 @@
 
                 <!-- Marketing -->
                 <div class="mb-16">
-                    <h3 class="font-jetbrains text-sm text-primary/60 mb-8 uppercase tracking-widest font-medium">Marketing</h3>
+                    <h3 class="font-jetbrains text-sm text-brand-red mb-8 uppercase tracking-widest font-medium">Marketing</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
                             <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
                                 <img class="w-full h-full object-cover" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Ingrid Honrado</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Ingrid Honrado</h4>
                                 <p class="font-inter text-sm text-primary/60">Tech Community Journalist &amp; Storyteller</p>
                             </div>
                         </a>
@@ -499,7 +510,7 @@
                                 <img class="w-full h-full object-cover" src="/assets/img/team/annalee.png" alt="Annalee Olermo">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Annalee Olermo</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Annalee Olermo</h4>
                                 <p class="font-inter text-sm text-primary/60">Community Weaver</p>
                             </div>
                         </a>
@@ -508,7 +519,7 @@
                                 <img class="w-full h-full object-cover" src="/assets/img/team/sarah.jpeg" alt="Sarah Jane Lee">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Sarah Jane Lee</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Sarah Jane Lee</h4>
                                 <p class="font-inter text-sm text-primary/60">Marketing Team</p>
                             </div>
                         </a>
@@ -517,7 +528,7 @@
                                 <img class="w-full h-full object-cover" src="/assets/img/team/andy.png" alt="Andy Kulkarni">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Andy Kulkarni</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Andy Kulkarni</h4>
                                 <p class="font-inter text-sm text-primary/60">Web2/Web3 Digital Marketing</p>
                             </div>
                         </a>
@@ -526,7 +537,7 @@
                                 <img class="w-full h-full object-cover" src="/assets/img/team/keith.jpeg" alt="Keith Hidalgo">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Keith Hidalgo</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Keith Hidalgo</h4>
                                 <p class="font-inter text-sm text-primary/60">Marketing Team</p>
                             </div>
                         </a>
@@ -535,7 +546,7 @@
                                 <img class="w-full h-full object-cover" src="/assets/img/team/margarette.png" alt="Margarette Garcia">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Margarette Garcia</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Margarette Garcia</h4>
                                 <p class="font-inter text-sm text-primary/60">Marketing Team</p>
                             </div>
                         </a>
@@ -544,14 +555,14 @@
 
                 <!-- Audio, Visual, and Tech -->
                 <div>
-                    <h3 class="font-jetbrains text-sm text-primary/60 mb-8 uppercase tracking-widest font-medium">Audio, Visual, and Tech</h3>
+                    <h3 class="font-jetbrains text-sm text-brand-red mb-8 uppercase tracking-widest font-medium">Audio, Visual, and Tech</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <a href="https://www.linkedin.com/in/heyitsistvan/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
                             <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
                                 <img class="w-full h-full object-cover" src="/assets/img/team/istvan.jpeg" alt="Istvan Szabo">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Istvan Szabo</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Istvan Szabo</h4>
                                 <p class="font-inter text-sm text-primary/60">Software Engineer</p>
                             </div>
                         </a>
@@ -560,7 +571,7 @@
                                 <img class="w-full h-full object-cover" src="/assets/img/team/adrian.jpeg" alt="Adrian Arvizo">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Adrian Arvizo</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Adrian Arvizo</h4>
                                 <p class="font-inter text-sm text-primary/60">Audio, Visual, and Tech</p>
                             </div>
                         </a>
@@ -569,7 +580,7 @@
                                 <img class="w-full h-full object-cover" src="/assets/img/team/jerry.jpeg" alt="Jerry Muscarella">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Jerry Muscarella</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Jerry Muscarella</h4>
                                 <p class="font-inter text-sm text-primary/60">Photographer</p>
                             </div>
                         </a>
@@ -578,14 +589,15 @@
             </section>
 
             <!-- Join Us Online -->
-            <section class="bg-primary rounded-bento p-10 md:p-20 text-center relative overflow-hidden">
+            <section class="bg-[#001B47] rounded-bento p-10 md:p-20 text-center relative overflow-hidden">
                 <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
                 <div class="relative z-10">
-                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mb-6">Join Us Online</h2>
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mb-3">Join Us Online</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-6"></div>
                     <p class="font-inter text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-12 md:mb-16">If you want better conversations about AI and technology, join us. Whatever your field or experience, there's a place for you here &mdash; if you're willing to learn, share, and contribute.</p>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
                         <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf?mode=gi_t" target="_blank" rel="noopener">
-                            <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                            <div class="social-icon-accent w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M12.04 2.5a9.45 9.45 0 0 0-8.12 14.3L2.75 21.5l4.82-1.12a9.44 9.44 0 1 0 4.47-17.88Zm0 17.2a7.67 7.67 0 0 1-3.9-1.06l-.33-.2-2.86.67.69-2.78-.22-.35a7.65 7.65 0 1 1 6.62 3.72Zm4.25-5.73c-.23-.12-1.37-.68-1.58-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.16-.27.18-.5.06-.23-.11-.98-.36-1.87-1.15-.69-.62-1.16-1.38-1.29-1.61-.14-.23-.01-.36.1-.47.1-.1.23-.27.35-.4.12-.14.15-.23.23-.39.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.72-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.16 1.62 2.47 3.93 3.46.55.24.98.38 1.31.49.55.17 1.05.15 1.45.09.44-.07 1.37-.56 1.56-1.1.19-.55.19-1.02.13-1.11-.06-.1-.21-.16-.44-.27Z"/>
                                 </svg>
@@ -596,7 +608,7 @@
                             </div>
                         </a>
                         <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener">
-                            <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                            <div class="social-icon-accent w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.98h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.3ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/>
                                 </svg>
@@ -607,7 +619,7 @@
                             </div>
                         </a>
                         <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">
-                            <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                            <div class="social-icon-accent w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
                                 <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M14.2 8.1V6.6c0-.72.48-.89.82-.89h2.08V2.5l-2.86-.01c-3.18 0-3.9 2.38-3.9 3.9v1.71H8.5v3.31h1.84v10.1h3.86v-10.1h2.6l.35-3.31H14.2Z"/>
                                 </svg>
@@ -645,25 +657,26 @@
     </div>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-surface border-t border-outline-variant/20 mt-12">
-        <div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto py-12 px-margin-mobile md:px-margin-desktop gap-8">
+    <footer id="contact" class="bg-[#001B47] text-white mt-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto py-12 px-margin-mobile md:px-margin-desktop gap-8">
             <div class="flex flex-col items-center md:items-start gap-3">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-lg overflow-hidden">
                         <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover">
                     </div>
-                    <span class="font-manrope text-xl font-bold text-primary tracking-tight">AI &amp; Tech Manila</span>
+                    <span class="font-manrope text-xl font-bold text-white tracking-tight">AI &amp; Tech Manila</span>
                 </div>
-                <p class="font-inter text-sm text-on-surface-variant text-center md:text-left max-w-xs">
+                <p class="font-inter text-sm text-white/65 text-center md:text-left max-w-xs">
                     &copy; <span id="copyright-year"></span> AI &amp; Tech Manila. Shaping the future for the benefit of all mankind.
                 </p>
             </div>
             <div class="flex flex-wrap justify-center gap-6 md:gap-8">
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener">WhatsApp</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" rel="noopener">LinkedIn</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">Facebook</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="/partner">Partner With Us</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="/speaker">Become a Speaker</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">Facebook</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/partner">Partner With Us</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/speaker">Become a Speaker</a>
             </div>
         </div>
     </footer>
