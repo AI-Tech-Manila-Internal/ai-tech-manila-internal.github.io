@@ -49,7 +49,8 @@ let mouseX = 0, mouseY = 0;
 
 function initGlobe() {
     const container = document.getElementById('globe-container');
-    
+    if (!container || typeof THREE === 'undefined') return;
+
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 30;
@@ -93,6 +94,7 @@ function initGlobe() {
 }
 
 function animate() {
+    if (!globe || !particles) return;
     requestAnimationFrame(animate);
 
     globe.rotation.y += 0.005;
@@ -114,6 +116,7 @@ document.addEventListener('mousemove', function(event) {
 
 // Window resize
 window.addEventListener('resize', function() {
+    if (!camera || !renderer) return;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -124,18 +127,22 @@ initGlobe();
 
 // Cyber lines animation
 function createCyberLine() {
+    const container = document.getElementById('cyber-lines');
+    if (!container) return;
     const line = document.createElement('div');
     line.className = 'cyber-line';
     line.style.left = Math.random() * 100 + '%';
     line.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    document.getElementById('cyber-lines').appendChild(line);
+    container.appendChild(line);
 
     setTimeout(() => {
         line.remove();
     }, 5000);
 }
 
-setInterval(createCyberLine, 200);
+if (document.getElementById('cyber-lines')) {
+    setInterval(createCyberLine, 200);
+}
 
 // Copyright year
 const copyrightYear = document.getElementById('copyright-year');

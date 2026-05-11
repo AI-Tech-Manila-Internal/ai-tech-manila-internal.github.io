@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,482 +28,572 @@
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
-    
+
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#000000",
+              "on-primary": "#ffffff",
+              "primary-container": "#131b2e",
+              "on-primary-container": "#7c839b",
+              "primary-fixed": "#dae2fd",
+              "primary-fixed-dim": "#bec6e0",
+              "secondary": "#5f5e5b",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#e5e2dd",
+              "on-secondary-container": "#656461",
+              "tertiary": "#000000",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "background": "#faf9f6",
+              "on-background": "#1a1c1a",
+              "surface": "#faf9f6",
+              "on-surface": "#1a1c1a",
+              "surface-dim": "#dbdad7",
+              "surface-bright": "#faf9f6",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f4f3f1",
+              "surface-container": "#efeeeb",
+              "surface-container-high": "#e9e8e5",
+              "surface-container-highest": "#e3e2e0",
+              "surface-variant": "#e3e2e0",
+              "on-surface-variant": "#45464d",
+              "outline": "#76777d",
+              "outline-variant": "#c6c6cd"
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px",
+              "card": "24px",
+              "bento": "32px"
+            },
+            spacing: {
+              "gutter": "24px",
+              "unit": "8px",
+              "margin-desktop": "48px",
+              "margin-mobile": "16px",
+              "container-max": "1280px"
+            },
+            fontFamily: {
+              "manrope": ["Manrope", "sans-serif"],
+              "inter": ["Inter", "sans-serif"],
+              "jetbrains": ["JetBrains Mono", "monospace"]
+            },
+            maxWidth: {
+              "container-max": "1280px"
+            }
+          }
+        }
+      }
+    </script>
+
     <link href="/assets/css/base.css" rel="stylesheet">
+    <style>
+        /* Home-page overrides — nav here is sticky, not fixed */
+        body { padding-top: 0 !important; font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Glass-card variant inside the dark "Join Us" section */
+        section.bg-primary .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Light-theme scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #efeeeb; }
+        ::-webkit-scrollbar-thumb { background: #c6c6cd; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #76777d; }
+
+        /* Hero slider — first slide visible while JS boots */
+        #hero-slider .hero-slide:first-child { opacity: 1; }
+
+        /* Anchor link offset so sticky nav doesn't cover the section heading */
+        section[id] { scroll-margin-top: 96px; }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Neural Background -->
-    <div class="neural-bg"></div>
-    
-    <!-- 3D Globe Container -->
-    <div id="globe-container"></div>
-    
-    <!-- Cyber lines effect -->
-    <div class="cyber-lines" id="cyber-lines"></div>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header class="glass-dark fixed top-0 w-full z-50 border-b border-cyan-500/20">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-lg overflow-hidden neon-glow">
-                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
+    <!-- TopNavBar -->
+    <nav class="bg-surface/80 backdrop-blur-md sticky top-0 z-50 border-b border-outline-variant/20">
+        <div class="flex justify-between items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-20">
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg overflow-hidden">
+                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover">
+                </div>
+                <span class="font-manrope text-xl font-bold text-primary tracking-tight">AI &amp; Tech Manila</span>
+            </a>
+            <div class="hidden md:flex items-center gap-6">
+                <a class="text-primary border-b-2 border-primary pb-1 font-inter text-base hover:opacity-70 transition-opacity" href="/">Home</a>
+                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/events">Events</a>
+                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/join-team">Join Our Team</a>
+                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/partner">Become a Partner</a>
+                <a class="text-secondary hover:text-primary transition-colors font-inter text-base" href="/speaker">Become a Speaker</a>
+            </div>
+            <a href="/chill-chat" class="hidden md:inline-block bg-primary text-on-primary font-manrope font-semibold text-base px-6 py-2 rounded-full hover:scale-105 transition-all shadow-lg hover:shadow-xl shadow-primary/20">
+                Chill &amp; Chat
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-primary" aria-label="Toggle menu">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant/20 bg-surface-container-lowest px-margin-mobile py-4">
+            <a href="/" class="block py-2 text-primary font-inter">Home</a>
+            <a href="/events" class="block py-2 text-secondary font-inter">Events</a>
+            <a href="/join-team" class="block py-2 text-secondary font-inter">Join Our Team</a>
+            <a href="/partner" class="block py-2 text-secondary font-inter">Become a Partner</a>
+            <a href="/speaker" class="block py-2 text-secondary font-inter">Become a Speaker</a>
+            <a href="/chill-chat" class="block mt-3 text-center bg-primary text-on-primary font-manrope font-semibold py-3 rounded-full">Chill &amp; Chat</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <!-- Hero Section (Bento Grid) -->
+        <section class="max-w-container-max mx-auto pt-12 md:pt-16 pb-16 md:pb-24 px-margin-mobile md:px-margin-desktop">
+            <div class="text-center mb-12 max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 bg-surface-container-highest/50 border border-outline-variant/50 backdrop-blur-md px-4 py-1.5 rounded-full mb-6">
+                    <span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+                    <span class="font-jetbrains text-xs text-primary uppercase tracking-wider font-medium">Live Soon &mdash; Chill &amp; Chat 2026</span>
+                </div>
+                <h1 class="font-manrope text-4xl sm:text-5xl md:text-6xl lg:text-[64px] lg:leading-[72px] font-extrabold text-primary mb-6 tracking-tighter">
+                    Shaping the future of Artificial Intelligence for the benefit of all mankind.
+                </h1>
+                <p class="font-inter text-lg text-on-surface-variant max-w-2xl mx-auto mb-8">
+                    Manila's premier community where entrepreneurs, developers, professionals, and tech enthusiasts converge to learn, grow, and thrive in the age of AI.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#event" class="bg-primary text-on-primary font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-primary/20 inline-flex items-center justify-center gap-2">
+                        Join Our Next Event
+                        <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                    <a href="#about" class="border border-outline-variant text-primary font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:bg-surface-container transition-all inline-flex items-center justify-center">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bento Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[200px] md:auto-rows-[300px]">
+                <!-- Main Image / Slider -->
+                <div id="hero-slider" class="md:col-span-8 md:row-span-2 rounded-bento overflow-hidden relative group bg-surface-container">
+                    <!-- Slide 1 - Video (eager) -->
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-type="video">
+                        <video class="w-full h-full object-cover" muted loop playsinline preload="auto">
+                            <source src="/assets/img/slider/229d3a8e-57c5-4a3a-bd98-b4f4fd857a3c_480p_vertical.mp4" type="video/mp4">
+                        </video>
                     </div>
-                    <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+                    <!-- Slide 2 (eager) -->
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img src="/assets/img/slider/1.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/20250830_163219.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/2.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/20250830_161108.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/3.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/20250830_155049.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/4.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/5.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/6.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/7.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/8.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/9.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+                    <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
+                        <img data-src="/assets/img/slider/image (1).webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Gradient overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none z-10"></div>
+
+                    <!-- Caption overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 z-20">
+                        <div class="glass-card rounded-full px-4 py-2 inline-flex items-center gap-2 mb-3">
+                            <div class="flex -space-x-2">
+                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="/assets/img/team/jack.jpeg" alt="">
+                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="/assets/img/team/rosselle.jpeg" alt="">
+                                <img class="w-8 h-8 rounded-full border-2 border-white object-cover" src="/assets/img/team/istvan.jpeg" alt="">
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-primary text-white flex items-center justify-center text-[10px] font-bold">+50</div>
+                            </div>
+                            <span class="text-white font-jetbrains text-xs uppercase tracking-wider">Members &amp; growing</span>
+                        </div>
+                        <h3 class="text-white font-manrope text-2xl md:text-3xl font-bold mb-1">Manila's AI community</h3>
+                        <p class="text-white/80 font-inter text-sm md:text-base">Real conversations, real builders, real impact.</p>
+                    </div>
+
+                    <!-- Slider Navigation Arrows -->
+                    <button id="slider-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Previous slide">
+                        <span class="material-symbols-outlined text-lg">chevron_left</span>
+                    </button>
+                    <button id="slider-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Next slide">
+                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    </button>
+
+                    <!-- Slider Dots -->
+                    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 hidden md:flex gap-1.5" id="slider-dots"></div>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Home</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/events" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Events</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/join-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Join Our Team</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/partner" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Partner</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/speaker" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Speaker</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/chill-chat" class="relative group">
-                        <span class="glow-button holographic text-white font-semibold py-2 px-4 rounded-full hover:scale-105 transition-transform duration-300 inline-block neon-glow">
-                            Chill & Chat
-                        </span>
+
+                <!-- Secondary Card 1: Next Event Teaser -->
+                <a href="#event" class="md:col-span-4 rounded-bento overflow-hidden relative group bg-surface-container block">
+                    <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="/assets/img/slider/1.webp" alt="Chill & Chat 2026">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <span class="bg-error text-white text-xs font-bold font-jetbrains uppercase tracking-wider px-2 py-1 rounded mb-2 inline-block">Upcoming</span>
+                        <h4 class="text-white font-manrope font-semibold text-xl">Chill &amp; Chat 2026</h4>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="text-white/70 text-sm font-inter">April 11, 2026</span>
+                            <span class="w-8 h-8 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Secondary Card 2: Featured Speakers -->
+                <div class="md:col-span-4 rounded-bento overflow-hidden relative group bg-primary p-8 flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-white font-manrope font-bold text-2xl mb-2">Our Community</h4>
+                        <p class="text-white/70 font-inter text-sm">Volunteers shaping Manila's tech scene.</p>
+                    </div>
+                    <div class="flex -space-x-4 mb-4">
+                        <img class="w-14 h-14 rounded-full border-4 border-primary object-cover z-30" src="/assets/img/team/jack.jpeg" alt="Jack">
+                        <img class="w-14 h-14 rounded-full border-4 border-primary object-cover z-20" src="/assets/img/team/rosselle.jpeg" alt="Rosselle">
+                        <img class="w-14 h-14 rounded-full border-4 border-primary object-cover z-10" src="/assets/img/team/ingrid.jpeg" alt="Ingrid">
+                    </div>
+                    <a href="#team" class="bg-white text-primary font-manrope font-semibold py-3 px-6 rounded-full w-full text-center hover:bg-surface-container transition-colors">
+                        Meet the Team
                     </a>
                 </div>
-                
-                <button id="mobile-menu-button" class="md:hidden text-cyan-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
-                </button>
             </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden mt-4 glass rounded-lg p-4 md:hidden">
-                <a href="/" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Home</a>
-                <a href="/events" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Events</a>
-                <a href="/join-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Join Our Team</a>
-                <a href="/partner" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Partner</a>
-                <a href="/speaker" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Speaker</a>
-                <a href="/chill-chat" class="block py-3 px-4 mt-2 holographic text-white font-bold text-center rounded-full neon-glow">Chill & Chat ✨</a>
-            </div>
-        </nav>
-    </header>
+        </section>
 
-    <main class="relative z-10">
-        <!-- Hero Section -->
-        <!-- Hero Splash Slider -->
-        <section id="hero-section" class="relative -mt-20" style="height: 250vh;">
-            <!-- Slider Container (sticky) -->
-            <div id="hero-slider" class="sticky top-20 w-full h-[calc(100vh-5rem)] overflow-hidden rounded-t-2xl">
-                <!-- Slide 1 - Video (eager) -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000" data-type="video">
-                    <video class="w-full h-full object-cover" muted loop playsinline preload="auto">
-                        <source src="/assets/img/slider/229d3a8e-57c5-4a3a-bd98-b4f4fd857a3c_480p_vertical.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <!-- Slide 2 (eager - next up) -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img src="/assets/img/slider/1.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 3 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/20250830_163219.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 4 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/2.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 5 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/20250830_161108.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 6 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/3.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 7 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/20250830_155049.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 8 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/4.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 9 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/5.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 10 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/6.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 11 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/7.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 12 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/8.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 13 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/9.webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
-                <!-- Slide 14 -->
-                <div class="hero-slide absolute inset-0 opacity-0 transition-opacity duration-1000">
-                    <img data-src="/assets/img/slider/image (1).webp" alt="AI & Tech Manila Event" class="w-full h-full object-cover">
-                </div>
+        <!-- Main Content Area -->
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-24 flex flex-col gap-24 md:gap-32">
 
-                <!-- Dark Overlay -->
-                <div id="hero-overlay" class="absolute inset-0 bg-black z-10" style="will-change: opacity; opacity: 0.5;"></div>
-
-                <!-- Hero Content -->
-                <div id="hero-content" class="absolute inset-0 z-20 flex items-center justify-center px-0 md:px-6" style="will-change: transform, opacity;">
-                    <div class="container mx-auto text-center bg-black/40 backdrop-blur-sm rounded-none md:rounded-3xl py-12 px-6 max-w-none md:max-w-4xl h-full md:h-auto flex flex-col justify-center">
-                        <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
-                            <span class="gradient-text-ai">Shaping the future of</span><br>
-                            <span class="gradient-text">Artificial Intelligence</span><br>
-                            <span class="text-white">for the benefit of all mankind.</span>
-                        </h1>
-                        <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                            Manila's premier community where entrepreneurs, developers, professionals, and tech enthusiasts converge to learn, grow, and thrive in the age of AI.
+            <!-- Event + About Bento -->
+            <section id="event" class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+                <!-- Next Event Card (Large) -->
+                <div class="md:col-span-8 bg-surface-container-lowest rounded-bento p-6 sm:p-8 md:p-12 shadow-sm border border-outline-variant/20 flex flex-col justify-between hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="flex items-center gap-2 mb-6">
+                            <span class="material-symbols-outlined text-error animate-pulse">radio_button_checked</span>
+                            <span class="font-jetbrains text-xs font-medium uppercase text-error tracking-wider">Live Countdown</span>
+                        </div>
+                        <h2 class="font-manrope text-3xl md:text-[40px] md:leading-[48px] font-bold text-primary mb-4">AI &amp; Tech Manila: Chill &amp; Chat 2026</h2>
+                        <p class="font-inter text-base md:text-lg text-on-surface-variant mb-2 max-w-lg">
+                            Q1 2026: What just happened? And what's next? Join us for our first Chill &amp; Chat of 2026 &mdash; an evening of insightful discussions and relaxed networking.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                            <a href="#event" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 neon-glow">
-                                Join Our Next Event
-                            </a>
-                            <a href="#about" class="glass border border-cyan-500/50 text-cyan-400 font-bold py-4 px-8 rounded-full hover:bg-cyan-500/10 transition-all duration-300">
-                                Learn More
-                            </a>
+                        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-on-surface-variant text-sm font-inter mt-4 mb-8">
+                            <span class="inline-flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-base">calendar_month</span>
+                                April 11, 2026 &middot; 12:30 PM &ndash; 5:30 PM
+                            </span>
+                            <span class="inline-flex items-center gap-1.5">
+                                <span class="material-symbols-outlined text-base">location_on</span>
+                                LEAP Studios, Makati City
+                            </span>
                         </div>
                     </div>
-                </div>
-
-                <!-- Slider Navigation Arrows -->
-                <button id="slider-prev" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white text-2xl transition-all duration-300 opacity-0 backdrop-blur-sm" style="will-change: opacity;">&#10094;</button>
-                <button id="slider-next" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-black/30 hover:bg-black/60 text-white text-2xl transition-all duration-300 opacity-0 backdrop-blur-sm" style="will-change: opacity;">&#10095;</button>
-
-                <!-- Slider Navigation Dots -->
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2" id="slider-dots"></div>
-            </div>
-        </section>
-
-        <!-- Upcoming Event Section -->
-        <section id="event" class="py-20 px-6">
-            <div class="container mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold mb-4">
-                        <span class="gradient-text-ai">Next Event</span>
-                    </h2>
-                    <div class="inline-block px-4 py-2 glass rounded-full">
-                        <span class="text-cyan-400 pulse-animation inline-block">● LIVE SOON</span>
-                    </div>
-                </div>
-
-                <div class="glass rounded-2xl overflow-hidden max-w-5xl mx-auto">
-                    <div class="md:flex">
-                        <div class="md:w-1/2 p-6 sm:p-8 md:p-12">
-                            <h3 class="text-3xl font-bold gradient-text mb-4">AI & Tech Manila: Chill & Chat 2026!</h3>
-                            <div class="flex items-center space-x-2 text-cyan-400 mb-4">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12z"/>
-                                    <path d="M10 6a1 1 0 011 1v3h2a1 1 0 110 2h-3a1 1 0 01-1-1V7a1 1 0 011-1z"/>
-                                </svg>
-                                <span class="font-medium">April 11, 2026 | 12:30 PM - 5:30 PM</span>
-                            </div>
-                            <div class="flex items-center space-x-2 text-cyan-400 mb-6">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                                </svg>
-                                <span class="font-medium">LEAP Studios, Makati City</span>
-                            </div>
-
-                            <div class="space-y-4 text-gray-300">
-                                <p class="mb-4">Q1 2026: What just happened? And what's next? Join us for AI & Tech Manila's first Chill & Chat of 2026!</p>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2"></div>
-                                    <p>A focused keynote on the current AI landscape by Roger H&oslash;gli (CEO, NordByte)</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-purple-400 rounded-full mt-2"></div>
-                                    <p>Roundtable discussion and Q&A on practical applications, pitfalls, and next steps</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-pink-400 rounded-full mt-2"></div>
-                                    <p>Network with founders, AI engineers, product leaders, researchers, and enthusiasts</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <div class="w-2 h-2 bg-blue-400 rounded-full mt-2"></div>
-                                    <p>FREE food and venue, thanks to our sponsors!</p>
-                                </div>
-                            </div>
-
-                            <div class="mt-8 p-4 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30">
-                                <p class="text-sm text-cyan-300">
-                                    <span class="font-semibold">Chill & Chat:</span> 2-3 hours of deep but relaxed conversation in a casual setting. Newcomers welcome!
-                                </p>
-                            </div>
+                    <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 mb-8" data-date="2026-04-11T12:30:00+08:00">
+                        <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="days" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Days</div>
                         </div>
-                        
-                        <div class="md:w-1/2 bg-gradient-to-br from-cyan-500/20 to-purple-600/20 p-6 sm:p-8 md:p-12 flex flex-col items-center justify-center">
-                            <h4 class="text-2xl font-bold mb-6">Event Countdown</h4>
-                            <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4 text-center mb-8" data-date="2026-04-11T12:30:00+08:00">
-                                <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="days" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
-                                    <div class="text-xs uppercase tracking-wider text-gray-400">Days</div>
-                                </div>
-                                <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="hours" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
-                                    <div class="text-xs uppercase tracking-wider text-gray-400">Hours</div>
-                                </div>
-                                <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="minutes" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
-                                    <div class="text-xs uppercase tracking-wider text-gray-400">Mins</div>
-                                </div>
-                                <div class="glass rounded-lg p-2 md:p-3">
-                                    <div id="seconds" class="text-2xl sm:text-3xl font-bold gradient-text-ai">0</div>
-                                    <div class="text-xs uppercase tracking-wider text-gray-400">Secs</div>
-                                </div>
-                            </div>
-                            <a href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" class="holographic text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300">
-                                Register Today →
-                            </a>
+                        <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="hours" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Hours</div>
+                        </div>
+                        <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="minutes" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Mins</div>
+                        </div>
+                        <div class="bg-surface rounded-2xl p-4 sm:p-6 text-center border border-outline-variant/10 shadow-sm">
+                            <div id="seconds" class="font-manrope text-3xl md:text-5xl text-primary font-extrabold">0</div>
+                            <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Secs</div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-20 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <div class="text-center mb-12">
-                    <h2 class="text-4xl font-bold gradient-text mb-4">About Us</h2>
-                </div>
-
-                <!-- About Us -->
-                <div class="glass rounded-2xl p-6 sm:p-8 md:p-10 mb-10">
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        AI &amp; Tech Manila (AITM) is a community for people who want to understand AI trends, discuss new breakthroughs, study use cases, and meet other technology enthusiasts! We are software engineers, entrepreneurs, organizational leaders, AI enthusiasts, and students!
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        We recognize the monumental impact that AI will have on our society, and we bring together tech enthusiasts, futurists, and curious newcomers alike for thoughtful conversations on emerging AI capabilities and their impact on nearly every major aspect of our lives: from business, medicine, law, and engineering to how we interface with the internet/the cloud and with each other.
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        At the same time, we acknowledge the sobering consequences of AI misuse and rogue AI agents, as well as arguably some of the most challenging problems of our times: AI values alignment, causal reasoning, monitoring and regulation, and achieving AGI Emergence.
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed">
-                        If we are to build a flourishing post-AI society, we must give these challenges the spotlight they deserve in public discourse. AITM hosts in-person presentations, discussions, and workshops designed to help people understand and adapt to fast-moving technological change. Our goal is simple: build a strong, open community where people can learn, share ideas, sharpen their thinking, and use technology in ways that are ethical, practical, and pro-human flourishing.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Section -->
-        <section id="team" class="py-20 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <h1 class="text-5xl font-bold text-center mb-8 gradient-text-ai">Our Team</h1>
-                <div class="glass rounded-2xl p-6 sm:p-8 md:p-10 mb-16 max-w-4xl mx-auto">
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        We are a volunteer organization. AITM is built and run by people who care enough to give their time, energy, and ideas to grow a thriving tech community.
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        We hail from all over the globe: from New York to San Francisco, from Sydney to Manila. Our members come from just as many different backgrounds: engineering, startups, business, law, and finance. What unites us is a shared belief that the future of AI and technology will be transformational for our careers, the broader economy, and humanity&rsquo;s future. Through our events, our goals are to:
-                    </p>
-                    <ol class="text-gray-300 text-lg leading-relaxed list-decimal list-inside space-y-2 ml-4">
-                        <li>Instill a better understanding of AI news and trends</li>
-                        <li>Build skills to help our community thrive in the marketplace</li>
-                        <li>Learn to navigate technological trends and help shape positive change in an AI-dominant society</li>
-                        <li>Share &amp; provide technology for the common good, in Service of Humanity</li>
-                    </ol>
-                </div>
-
-                <!-- Founders Section (Highlighted) -->
-                <div class="team-category founders glass-dark">
-                    <h2 class="text-3xl font-bold gradient-text">Founders</h2>
-                    <div class="team-members">
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/jackdiao/" target="_blank">
-                                <img src="/assets/img/team/jack.jpeg" alt="Jack Diao">
-                                <h3 class="text-cyan-400">Jack Diao</h3>
-                                <p class="text-purple-400">Economic Consultant / Founder</p>
-                                <p>Driving community growth and operational excellence at AI & Tech Manila.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/rosselle-mabunga/" target="_blank">
-                                <img src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
-                                <h3 class="text-cyan-400">Rosselle Mabunga</h3>
-                                <p class="text-purple-400">Founder Emeritus</p>
-                                <p>Leading technical innovation and building solutions that shape the future of AI & Tech Manila.</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Marketing Team -->
-                <div class="team-category">
-                    <h2 class="text-3xl font-bold gradient-text">Marketing</h2>
-                    <div class="team-members">
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank">
-                                <img src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado">
-                                <h3 class="text-cyan-400">Ingrid Honrado</h3>
-                                <p class="text-purple-400">Tech Community Journalist & Storyteller</p>
-                                <p>Documenting our journey and sharing the stories that matter in tech.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/annalee-olermo-b94985246" target="_blank">
-                                <img src="/assets/img/team/annalee.png" alt="Annalee Olermo">
-                                <h3 class="text-cyan-400">Annalee Olermo</h3>
-                                <p class="text-purple-400">Community Weaver</p>
-                                <p>Building bridges and fostering meaningful connections within our tech ecosystem.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/sarah-jane-lee-940918361/" target="_blank">
-                                <img src="/assets/img/team/sarah.jpeg" alt="Sarah Jane Lee">
-                                <h3 class="text-cyan-400">Sarah Jane Lee</h3>
-                                <p class="text-purple-400">Marketing Team</p>
-                                <p>Driving brand awareness and community engagement initiatives.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/andykulkarni/" target="_blank">
-                                <img src="/assets/img/team/andy.png" alt="Andy Kulkarni">
-                                <h3 class="text-cyan-400">Andy Kulkarni</h3>
-                                <p class="text-purple-400">Web2/Web3 Digital Marketing Pro</p>
-                                <p>4x Top Voice helping brands acquire more customers through innovative digital marketing strategies.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/keithidalgo/" target="_blank">
-                                <img src="/assets/img/team/keith.jpeg" alt="Keith Hidalgo">
-                                <h3 class="text-cyan-400">Keith Hidalgo</h3>
-                                <p class="text-purple-400">Marketing Team</p>
-                                <p>Building digital presence and engaging with our growing tech community.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/margarette-dyanna-garcia-51594310b/" target="_blank">
-                                <img src="/assets/img/team/margarette.png" alt="Margarette Garcia">
-                                <h3 class="text-cyan-400">Margarette Garcia</h3>
-                                <p class="text-purple-400">Marketing Team</p>
-                                <p>Crafting stories that resonate with our audience and showcase our values.</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Audio, Visual, and Tech Team -->
-                <div class="team-category">
-                    <h2 class="text-3xl font-bold gradient-text">Audio, Visual, and Tech</h2>
-                    <div class="team-members">
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/heyitsistvan/" target="_blank">
-                                <img src="/assets/img/team/istvan.jpeg" alt="Istvan Szabo">
-                                <h3 class="text-cyan-400">Istvan Szabo</h3>
-                                <p class="text-purple-400">Software Engineer</p>
-                                <p>Building innovative solutions and contributing technical expertise to our projects.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/adrianarvizo" target="_blank">
-                                <img src="/assets/img/team/adrian.jpeg" alt="Adrian Arvizo">
-                                <h3 class="text-cyan-400">Adrian Arvizo</h3>
-                                <p class="text-purple-400">Audio, Visual, and Tech</p>
-                                <p>Overseeing strategic initiatives and driving organizational excellence.</p>
-                            </a>
-                        </div>
-                        <div class="member">
-                            <a href="https://www.linkedin.com/in/jmuscarella/" target="_blank">
-                                <img src="/assets/img/team/jerry.jpeg" alt="Jerry Muscarella">
-                                <h3 class="text-cyan-400">Jerry Muscarella</h3>
-                                <p class="text-purple-400">Photographer</p>
-                                <p>Capturing the moments and stories that define our community.</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Join Us Section -->
-        <section class="py-20 px-6">
-            <div class="container mx-auto max-w-4xl">
-                <div class="text-center glass rounded-2xl p-8">
-                    <h3 class="text-3xl font-bold gradient-text-ai mb-4">Join Us</h3>
-                    <p class="text-xl text-gray-300 mb-6">If you want better conversations about AI and technology, join us! Whatever your field or experience&mdash;early career or experienced executive&mdash;there is a place for you here, if you are willing to learn, share your knowledge, and contribute to the discussion!</p>
-                    <h3 class="text-2xl font-bold gradient-text mb-6">Join Our Community</h3>
-                    <div class="flex flex-wrap justify-center gap-4">
-                        <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf?mode=gi_t" target="_blank" class="px-6 py-3 bg-green-600 hover:bg-green-700 rounded-full font-semibold transition-all duration-300 flex items-center space-x-2">
-                            <span>💬</span><span>WhatsApp Group</span>
-                        </a>
-                        <a href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full font-semibold transition-all duration-300 flex items-center space-x-2">
-                            <span>💼</span><span>LinkedIn</span>
-                        </a>
-                        <a href="https://www.facebook.com/AIandTechManila/" target="_blank" class="px-6 py-3 bg-blue-800 hover:bg-blue-900 rounded-full font-semibold transition-all duration-300 flex items-center space-x-2">
-                            <span>📘</span><span>Facebook</span>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-outline-variant/20 pt-8 mt-auto">
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
+                                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-sm">check</span>
+                                </div>
+                                Keynote by Roger H&oslash;gli (CEO, NordByte)
+                            </li>
+                            <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
+                                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-sm">check</span>
+                                </div>
+                                Roundtable Q&amp;A and networking
+                            </li>
+                            <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
+                                <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                                    <span class="material-symbols-outlined text-sm">check</span>
+                                </div>
+                                FREE food &amp; venue, courtesy of our sponsors
+                            </li>
+                        </ul>
+                        <a href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" rel="noopener" class="w-full sm:w-auto bg-primary text-on-primary font-manrope font-semibold text-base md:text-lg px-8 md:px-10 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-primary/20 whitespace-nowrap text-center inline-flex items-center justify-center gap-2">
+                            Register Today
+                            <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
                     </div>
                 </div>
-            </div>
-        </section>
+
+                <!-- About Us Card (Small) -->
+                <div id="about" class="md:col-span-4 bg-primary text-surface-bright rounded-bento p-8 md:p-10 shadow-lg shadow-primary/10 flex flex-col relative overflow-hidden group">
+                    <div class="absolute -bottom-10 -right-10 p-6 opacity-10 group-hover:scale-110 transition-transform duration-500 pointer-events-none">
+                        <span class="material-symbols-outlined text-[200px]">psychology</span>
+                    </div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <h2 class="font-manrope font-bold text-3xl mb-6">About Us</h2>
+                        <p class="font-inter text-base text-white/80 mb-6 leading-relaxed">
+                            AI &amp; Tech Manila is a community for people who want to understand AI trends, discuss new breakthroughs, study use cases, and meet other technology enthusiasts &mdash; software engineers, entrepreneurs, leaders, and students.
+                        </p>
+                        <p class="font-inter text-sm text-white/70 mb-8 leading-relaxed flex-grow">
+                            We host in-person presentations, discussions, and workshops to help people understand and adapt to fast-moving technological change &mdash; ethically, practically, and pro-human.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mt-auto">
+                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#AI</span>
+                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#DataScience</span>
+                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#CyberSec</span>
+                            <span class="font-jetbrains text-xs bg-white/10 px-3 py-1.5 rounded-full border border-white/20 hover:bg-white/20 transition-colors cursor-default">#Manila</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Team Section -->
+            <section id="team">
+                <div class="mb-12 md:mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-outline-variant/20 pb-8">
+                    <div>
+                        <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-primary mb-4 tracking-tight">Our Team</h2>
+                        <p class="font-inter text-base md:text-lg text-on-surface-variant max-w-2xl">A volunteer organization spanning New York, San Francisco, Sydney, and Manila &mdash; united by a belief that AI will be transformational for our careers, the economy, and humanity's future.</p>
+                    </div>
+                    <a href="/join-team" class="text-primary font-manrope font-semibold hover:underline flex items-center gap-1 shrink-0">
+                        Join Our Team <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+
+                <!-- Founders -->
+                <div class="mb-16">
+                    <h3 class="font-jetbrains text-sm text-primary/60 mb-8 uppercase tracking-widest font-medium">Founders</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
+                        <a href="https://www.linkedin.com/in/jackdiao/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-8 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                            <div class="w-32 h-32 rounded-full bg-surface-container mb-6 overflow-hidden relative">
+                                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="/assets/img/team/jack.jpeg" alt="Jack Diao">
+                            </div>
+                            <h4 class="font-manrope font-bold text-2xl text-primary mb-1">Jack Diao</h4>
+                            <p class="font-inter text-base text-primary/60">Economic Consultant / Founder</p>
+                            <p class="font-inter text-sm text-on-surface-variant mt-3">Driving community growth and operational excellence at AI &amp; Tech Manila.</p>
+                        </a>
+                        <a href="https://www.linkedin.com/in/rosselle-mabunga/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-8 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                            <div class="w-32 h-32 rounded-full bg-surface-container mb-6 overflow-hidden relative">
+                                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
+                            </div>
+                            <h4 class="font-manrope font-bold text-2xl text-primary mb-1">Rosselle Mabunga</h4>
+                            <p class="font-inter text-base text-primary/60">Founder Emeritus</p>
+                            <p class="font-inter text-sm text-on-surface-variant mt-3">Leading technical innovation and building solutions that shape the future of AI &amp; Tech Manila.</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Marketing -->
+                <div class="mb-16">
+                    <h3 class="font-jetbrains text-sm text-primary/60 mb-8 uppercase tracking-widest font-medium">Marketing</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Ingrid Honrado</h4>
+                                <p class="font-inter text-sm text-primary/60">Tech Community Journalist &amp; Storyteller</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/annalee-olermo-b94985246" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/annalee.png" alt="Annalee Olermo">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Annalee Olermo</h4>
+                                <p class="font-inter text-sm text-primary/60">Community Weaver</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sarah-jane-lee-940918361/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/sarah.jpeg" alt="Sarah Jane Lee">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Sarah Jane Lee</h4>
+                                <p class="font-inter text-sm text-primary/60">Marketing Team</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/andykulkarni/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/andy.png" alt="Andy Kulkarni">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Andy Kulkarni</h4>
+                                <p class="font-inter text-sm text-primary/60">Web2/Web3 Digital Marketing</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/keithidalgo/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/keith.jpeg" alt="Keith Hidalgo">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Keith Hidalgo</h4>
+                                <p class="font-inter text-sm text-primary/60">Marketing Team</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/margarette-dyanna-garcia-51594310b/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/margarette.png" alt="Margarette Garcia">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Margarette Garcia</h4>
+                                <p class="font-inter text-sm text-primary/60">Marketing Team</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Audio, Visual, and Tech -->
+                <div>
+                    <h3 class="font-jetbrains text-sm text-primary/60 mb-8 uppercase tracking-widest font-medium">Audio, Visual, and Tech</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <a href="https://www.linkedin.com/in/heyitsistvan/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/istvan.jpeg" alt="Istvan Szabo">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Istvan Szabo</h4>
+                                <p class="font-inter text-sm text-primary/60">Software Engineer</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/adrianarvizo" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/adrian.jpeg" alt="Adrian Arvizo">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Adrian Arvizo</h4>
+                                <p class="font-inter text-sm text-primary/60">Audio, Visual, and Tech</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jmuscarella/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
+                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/jerry.jpeg" alt="Jerry Muscarella">
+                            </div>
+                            <div>
+                                <h4 class="font-manrope font-semibold text-lg text-primary mb-1">Jerry Muscarella</h4>
+                                <p class="font-inter text-sm text-primary/60">Photographer</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Join Us Online -->
+            <section class="bg-primary rounded-bento p-10 md:p-20 text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+                <div class="relative z-10">
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mb-6">Join Us Online</h2>
+                    <p class="font-inter text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-12 md:mb-16">If you want better conversations about AI and technology, join us. Whatever your field or experience, there's a place for you here &mdash; if you're willing to learn, share, and contribute.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+                        <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf?mode=gi_t" target="_blank" rel="noopener">
+                            <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                                <span class="material-symbols-outlined text-4xl">chat</span>
+                            </div>
+                            <div>
+                                <h3 class="font-manrope font-bold text-2xl text-white mb-2">WhatsApp</h3>
+                                <p class="font-inter text-sm text-white/70">Daily discussions</p>
+                            </div>
+                        </a>
+                        <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener">
+                            <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                                <span class="material-symbols-outlined text-4xl">work</span>
+                            </div>
+                            <div>
+                                <h3 class="font-manrope font-bold text-2xl text-white mb-2">LinkedIn</h3>
+                                <p class="font-inter text-sm text-white/70">Professional network</p>
+                            </div>
+                        </a>
+                        <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">
+                            <div class="w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+                                <span class="material-symbols-outlined text-4xl">groups</span>
+                            </div>
+                            <div>
+                                <h3 class="font-manrope font-bold text-2xl text-white mb-2">Facebook</h3>
+                                <p class="font-inter text-sm text-white/70">Community updates</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="glass-dark border-t border-cyan-500/20 py-12 px-6">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg overflow-hidden">
-                            <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
-                        </div>
-                        <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+    <footer id="contact" class="bg-surface border-t border-outline-variant/20 mt-12">
+        <div class="flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto py-12 px-margin-mobile md:px-margin-desktop gap-8">
+            <div class="flex flex-col items-center md:items-start gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg overflow-hidden">
+                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover">
                     </div>
-                    <p class="text-sm text-gray-400 max-w-xs">Shaping the future of Artificial Intelligence for the benefit of all mankind.</p>
+                    <span class="font-manrope text-xl font-bold text-primary tracking-tight">AI &amp; Tech Manila</span>
                 </div>
-                
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/AIandTechManila/" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/>
-                        </svg>
-                    </a>
-                    <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm11.892-21.891c-5.448 0-9.881 4.433-9.881 9.881s4.433 9.881 9.881 9.881 9.881-4.433 9.881-9.881-4.433-9.881-9.881-9.881z"/>
-                        </svg>
-                    </a>
-                </div>
+                <p class="font-inter text-sm text-on-surface-variant text-center md:text-left max-w-xs">
+                    &copy; <span id="copyright-year"></span> AI &amp; Tech Manila. Shaping the future for the benefit of all mankind.
+                </p>
             </div>
-            
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p class="text-sm text-gray-500">&copy; <span id="copyright-year"></span> AI & Tech Manila. Powered by Intelligence.</p>
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">Facebook</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="/partner">Partner With Us</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-inter text-sm" href="/speaker">Become a Speaker</a>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.9/plugin/relativeTime.js"></script>
     <script>
@@ -511,7 +601,9 @@
 
         // Countdown timer
         function updateCountdown() {
-            const eventDate = new Date(document.getElementById('countdown').dataset.date).getTime();
+            const el = document.getElementById('countdown');
+            if (!el) return;
+            const eventDate = new Date(el.dataset.date).getTime();
             const now = new Date().getTime();
             const distance = eventDate - now;
 
@@ -521,35 +613,36 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById('days').textContent = days;
-                document.getElementById('hours').textContent = hours;
-                document.getElementById('minutes').textContent = minutes;
-                document.getElementById('seconds').textContent = seconds;
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
             }
         }
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
-    <script src="/assets/js/base.js?v=1"></script>
+    <script src="/assets/js/base.js?v=2"></script>
     <!-- Hero Slider -->
     <script>
     (function() {
-        const slides = document.querySelectorAll('.hero-slide');
+        const slides = document.querySelectorAll('#hero-slider .hero-slide');
         const dotsContainer = document.getElementById('slider-dots');
+        if (!slides.length || !dotsContainer) return;
         let current = 0;
         let interval;
 
         // Create dots
         slides.forEach((_, i) => {
             const dot = document.createElement('button');
-            dot.className = 'w-2.5 h-2.5 rounded-full bg-white/40 transition-all duration-300';
+            dot.className = 'w-2 h-2 rounded-full bg-white/40 transition-all duration-300';
+            dot.setAttribute('aria-label', 'Slide ' + (i + 1));
             dot.addEventListener('click', () => goTo(i));
             dotsContainer.appendChild(dot);
         });
         const dots = dotsContainer.querySelectorAll('button');
 
-        // Lazy load: swap data-src to src for a slide and its neighbor
         function lazyLoad(index) {
             [index, (index + 1) % slides.length].forEach(i => {
                 const img = slides[i].querySelector('img[data-src]');
@@ -574,13 +667,13 @@
             if (currentVideo) currentVideo.pause();
 
             slides[current].style.opacity = '0';
-            dots[current].className = 'w-2.5 h-2.5 rounded-full bg-white/40 transition-all duration-300';
+            dots[current].className = 'w-2 h-2 rounded-full bg-white/40 transition-all duration-300';
 
             current = index;
             lazyLoad(current);
 
             slides[current].style.opacity = '1';
-            dots[current].className = 'w-3 h-3 rounded-full bg-cyan-400 transition-all duration-300 shadow-lg shadow-cyan-400/50';
+            dots[current].className = 'w-6 h-2 rounded-full bg-white transition-all duration-300';
 
             const video = slides[current].querySelector('video');
             if (video) video.play();
@@ -596,51 +689,18 @@
             goTo((current - 1 + slides.length) % slides.length);
         }
 
-        document.getElementById('slider-prev').addEventListener('click', prev);
-        document.getElementById('slider-next').addEventListener('click', next);
+        const prevBtn = document.getElementById('slider-prev');
+        const nextBtn = document.getElementById('slider-next');
+        if (prevBtn) prevBtn.addEventListener('click', prev);
+        if (nextBtn) nextBtn.addEventListener('click', next);
 
         function resetInterval() {
             clearInterval(interval);
             const isVideo = slides[current].dataset.type === 'video';
-            interval = setInterval(next, isVideo ? 8000 : 4000);
+            interval = setInterval(next, isVideo ? 8000 : 4500);
         }
 
         goTo(0);
-    })();
-    </script>
-    <!-- Hero Scroll Parallax -->
-    <script>
-    (function() {
-        const content = document.getElementById('hero-content');
-        const overlay = document.getElementById('hero-overlay');
-        const prevBtn = document.getElementById('slider-prev');
-        const nextBtn = document.getElementById('slider-next');
-        const isMobile = window.innerWidth < 768;
-        let ticking = false;
-
-        // On mobile, start with full dark overlay
-        if (isMobile) overlay.style.opacity = 1;
-
-        window.addEventListener('scroll', function() {
-            if (!ticking) {
-                requestAnimationFrame(function() {
-                    const scrollY = window.scrollY;
-                    const viewH = window.innerHeight;
-                    const progress = Math.min(Math.max(scrollY / viewH, 0), 1);
-
-                    content.style.opacity = 1 - progress;
-                    content.style.transform = 'translateY(-' + (progress * 150) + 'px) scale(' + (1 - progress * 0.05) + ')';
-                    overlay.style.opacity = (isMobile ? 1 : 0.5) * (1 - progress);
-
-                    // Fade in arrows as text fades out
-                    prevBtn.style.opacity = progress;
-                    nextBtn.style.opacity = progress;
-
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
     })();
     </script>
 </body>
