@@ -140,15 +140,18 @@
         }
 
         /* Sponsor marquee */
-        .sponsor-marquee { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); cursor: grab; touch-action: pan-y; }
+        .sponsor-marquee { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); cursor: grab; touch-action: pan-y; padding: 24px 0; }
         .sponsor-marquee.is-dragging { cursor: grabbing; }
         .sponsor-marquee-track { display: flex; width: max-content; will-change: transform; user-select: none; align-items: center; }
         .sponsor-slot { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 140px; height: 64px; }
         @media (min-width: 768px) { .sponsor-slot { width: 180px; height: 80px; } }
-        .sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(100%) opacity(0.7); mix-blend-mode: multiply; transition: filter 0.3s ease, opacity 0.3s ease; -webkit-user-drag: none; user-select: none; }
+        .sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(100%) opacity(0.7); mix-blend-mode: multiply; transform: scale(1); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.8, 0.5, 1); -webkit-user-drag: none; user-select: none; transform-origin: center; }
         .sponsor-slot.is-dark-bg img { mix-blend-mode: lighten; filter: grayscale(100%) invert(1) opacity(0.75); }
-        .sponsor-slot:hover img { filter: grayscale(0%) opacity(1); }
+        .sponsor-slot:hover img { filter: grayscale(0%) opacity(1); transform: scale(1.18); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.7s cubic-bezier(0.25, 1.9, 0.4, 1); }
         .sponsor-slot.is-dark-bg:hover img { filter: grayscale(0%) invert(1) opacity(1); }
+        @media (prefers-reduced-motion: reduce) {
+            .sponsor-slot img, .sponsor-slot:hover img { transform: none; transition: filter 0.3s ease, opacity 0.3s ease; }
+        }
     </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
@@ -343,26 +346,26 @@
 
         <!-- Sponsor Marquee -->
         <section aria-label="Our sponsors" class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-24">
-            <p class="text-center font-inter text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-8">Trusted by</p>
-            <div class="sponsor-marquee overflow-hidden">
+            <p class="text-center font-inter text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-2">Our Sponsors</p>
+            <div class="sponsor-marquee">
                 <div class="sponsor-marquee-track gap-8 md:gap-12">
-                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" draggable="false"></div>
-                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" draggable="false"></div>
+                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" title="Alveo Land" draggable="false"></div>
+                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" title="De Guzman Mayuga" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" title="LEAP Studios" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" title="Globe Telecom" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" title="NuKind Digital Marketing" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" title="Thermomix" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" title="PDAX" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" title="AI Labs CX" draggable="false"></div>
                     <!-- Duplicate set for seamless loop -->
-                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/alveo.png" alt="" draggable="false"></div>
-                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/leap-studios.png" alt="" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/globe.png" alt="" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/nukind.png" alt="" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/thermomix.png" alt="" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/pdax.png" alt="" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/alveo.png" alt="" title="Alveo Land" draggable="false"></div>
+                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" title="De Guzman Mayuga" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/leap-studios.png" alt="" title="LEAP Studios" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/globe.png" alt="" title="Globe Telecom" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/nukind.png" alt="" title="NuKind Digital Marketing" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/thermomix.png" alt="" title="Thermomix" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/pdax.png" alt="" title="PDAX" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></div>
                 </div>
             </div>
         </section>
@@ -535,10 +538,10 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-center gap-5 hover:border-primary/30 hover:shadow-md transition-all">
                             <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado">
+                                <img class="w-full h-full object-cover" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado-Nelson">
                             </div>
                             <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Ingrid Honrado</h4>
+                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Ingrid Honrado-Nelson</h4>
                                 <p class="font-inter text-sm text-primary/60">Tech Community Journalist &amp; Storyteller</p>
                             </div>
                         </a>
