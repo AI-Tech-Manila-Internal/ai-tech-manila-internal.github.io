@@ -191,18 +191,29 @@
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/chill-chat">Chill &amp; Chat</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20" aria-label="Toggle menu">
+            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden pointer-events-auto md:hidden mx-margin-mobile rounded-3xl border border-white/15 bg-brand-blue/90 px-5 py-4 shadow-xl shadow-black/25 backdrop-blur-xl">
-            <a href="/" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Home</a>
-            <a href="/events" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Events</a>
-            <a href="/join-team" class="block rounded-full px-4 py-2 text-white bg-brand-red font-inter">Join Our Team</a>
-            <a href="/partner" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Partner</a>
-            <a href="/speaker" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Speaker</a>
-            <a href="/chill-chat" class="block mt-2 text-center bg-white text-primary font-manrope font-semibold py-3 rounded-full">Chill &amp; Chat</a>
+        <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
+            <div class="mobile-menu__bg"></div>
+            <div class="mobile-menu__inner">
+                <nav class="mobile-menu__nav">
+                    <a href="/" class="mobile-menu__link">Home<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/events" class="mobile-menu__link">Events<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/join-team" class="mobile-menu__link is-active">Join Our Team<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/partner" class="mobile-menu__link">Become a Partner<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/speaker" class="mobile-menu__link">Become a Speaker<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                </nav>
+                <div class="mobile-menu__footer">
+                    <a href="/chill-chat" class="mobile-menu__cta">
+                        <span class="material-symbols-outlined">chat_bubble</span>
+                        Chill &amp; Chat
+                    </a>
+                    <p class="mobile-menu__tagline">Where Innovation Meets Intelligence</p>
+                </div>
+            </div>
         </div>
     </nav>
 

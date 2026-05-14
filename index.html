@@ -127,6 +127,16 @@
         /* Hero slider — first slide visible while JS boots */
         #hero-slider .hero-slide:first-child { opacity: 1; }
 
+        /* Hero stage shape — mobile uses a clip without the bottom-left tag notch */
+        .hero-stage-shape { -webkit-clip-path: url(#hero-stage-clip-mobile); clip-path: url(#hero-stage-clip-mobile); }
+        @media (min-width: 768px) {
+            .hero-stage-shape { -webkit-clip-path: url(#hero-stage-clip); clip-path: url(#hero-stage-clip); }
+        }
+
+        /* Hero headline vertical anchor — pushed below the top pocket on mobile */
+        .hero-headline { top: 18%; }
+        @media (min-width: 768px) { .hero-headline { top: 20%; } }
+
         /* Anchor link offset so sticky nav doesn't cover the section heading */
         section[id] { scroll-margin-top: 96px; }
 
@@ -172,18 +182,29 @@
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/chill-chat">Chill &amp; Chat</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20" aria-label="Toggle menu">
+            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
                 <span class="material-symbols-outlined">menu</span>
             </button>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden pointer-events-auto md:hidden mx-margin-mobile rounded-3xl border border-white/15 bg-brand-blue/90 px-5 py-4 shadow-xl shadow-black/25 backdrop-blur-xl">
-            <a href="/" class="block rounded-full px-4 py-2 text-white bg-brand-red font-inter">Home</a>
-            <a href="/events" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Events</a>
-            <a href="/join-team" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Join Our Team</a>
-            <a href="/partner" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Partner</a>
-            <a href="/speaker" class="block rounded-full px-4 py-2 text-white/80 hover:text-white hover:bg-white/10 font-inter transition-colors">Become a Speaker</a>
-            <a href="/chill-chat" class="block mt-2 text-center bg-white text-primary font-manrope font-semibold py-3 rounded-full">Chill &amp; Chat</a>
+        <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
+            <div class="mobile-menu__bg"></div>
+            <div class="mobile-menu__inner">
+                <nav class="mobile-menu__nav">
+                    <a href="/" class="mobile-menu__link is-active">Home<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/events" class="mobile-menu__link">Events<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/join-team" class="mobile-menu__link">Join Our Team<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/partner" class="mobile-menu__link">Become a Partner<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/speaker" class="mobile-menu__link">Become a Speaker<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                </nav>
+                <div class="mobile-menu__footer">
+                    <a href="/chill-chat" class="mobile-menu__cta">
+                        <span class="material-symbols-outlined">chat_bubble</span>
+                        Chill &amp; Chat
+                    </a>
+                    <p class="mobile-menu__tagline">Where Innovation Meets Intelligence</p>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -195,12 +216,15 @@
                 <svg class="absolute w-0 h-0" aria-hidden="true" focusable="false">
                     <defs>
                         <clipPath id="hero-stage-clip" clipPathUnits="objectBoundingBox">
-                            <path d="M .03 0 L .97 0 Q 1 0 1 .06 L 1 .31 Q 1 .37 .97 .37 Q .94 .37 .94 .43 L .94 .57 Q .94 .63 .97 .63 Q 1 .63 1 .69 L 1 .94 Q 1 1 .97 1 L .31 1 Q .27 1 .27 .94 L .27 .90 Q .27 .84 .23 .84 L .04 .84 Q 0 .84 0 .78 L 0 .06 Q 0 0 .03 0 Z"/>
+                            <path d="M .03 0 L .97 0 Q 1 0 1 .06 L 1 .31 Q 1 .37 .97 .37 Q .94 .37 .94 .43 L .94 .57 Q .94 .63 .97 .63 Q 1 .63 1 .69 L 1 .94 Q 1 1 .97 1 L .30 1 Q .27 1 .27 .94 L .27 .90 Q .27 .84 .24 .84 L .03 .84 Q 0 .84 0 .78 L 0 .06 Q 0 0 .03 0 Z"/>
+                        </clipPath>
+                        <clipPath id="hero-stage-clip-mobile" clipPathUnits="objectBoundingBox">
+                            <path d="M .07 0 L .22 0 Q .28 0 .28 .037 L .28 .063 Q .28 .10 .34 .10 L .66 .10 Q .72 .10 .72 .063 L .72 .037 Q .72 0 .78 0 L .93 0 Q 1 0 1 .044 L 1 .956 Q 1 1 .93 1 L .07 1 Q 0 1 0 .956 L 0 .044 Q 0 0 .07 0 Z"/>
                         </clipPath>
                     </defs>
                 </svg>
 
-                <div class="absolute inset-0 drop-shadow-xl" style="-webkit-clip-path: url(#hero-stage-clip); clip-path: url(#hero-stage-clip);">
+                <div class="hero-stage-shape absolute inset-0 drop-shadow-xl">
                     <!-- Slider (background layer) -->
                     <div id="hero-slider" class="absolute inset-0 bg-surface-container">
                         <!-- Slide 1 - Video (eager) -->
@@ -256,16 +280,16 @@
                 </div>
 
                 <!-- Slider Navigation Arrows -->
-                <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-30 flex items-center gap-3">
-                    <button id="gallery-open" class="h-10 px-4 rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg inline-flex items-center justify-center gap-2 font-manrope font-semibold text-sm" type="button">
+                <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-30 flex items-center gap-2 md:gap-3">
+                    <button data-gallery-open class="h-9 md:h-10 px-3 md:px-4 rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg inline-flex items-center justify-center gap-1.5 md:gap-2 font-manrope font-semibold text-xs md:text-sm" type="button">
                         View gallery
-                        <span class="material-symbols-outlined text-base">photo_library</span>
+                        <span class="material-symbols-outlined text-sm md:text-base">photo_library</span>
                     </button>
-                    <button id="slider-prev" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Previous slide">
-                        <span class="material-symbols-outlined text-lg">chevron_left</span>
+                    <button data-slider-prev class="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Previous slide">
+                        <span class="material-symbols-outlined text-base md:text-lg">chevron_left</span>
                     </button>
-                    <button id="slider-next" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Next slide">
-                        <span class="material-symbols-outlined text-lg">chevron_right</span>
+                    <button data-slider-next class="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Next slide">
+                        <span class="material-symbols-outlined text-base md:text-lg">chevron_right</span>
                     </button>
                 </div>
 
@@ -273,7 +297,7 @@
                 <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 hidden md:flex gap-1.5" id="slider-dots"></div>
 
                 <!-- Social links -->
-                <div class="absolute right-3 top-1/2 -translate-y-1/2 z-30 flex flex-col items-center gap-1.5 md:gap-2">
+                <div class="absolute top-3 left-1/2 -translate-x-1/2 md:left-auto md:right-3 md:top-1/2 md:translate-x-0 md:-translate-y-1/2 z-30 flex flex-row md:flex-col items-center gap-1.5 md:gap-2">
                     <a href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on LinkedIn" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-brand-blue/25 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low hover:border-brand-blue/45 transition-colors">
                         <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.98h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.3ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/>
@@ -294,7 +318,7 @@
                 <!-- Content placed over the tinted slider shape. -->
                 <div class="absolute inset-0 z-20 pointer-events-none">
                     <!-- Top-left members badge -->
-                    <div class="absolute top-6 left-6 md:top-10 md:left-10">
+                    <div class="absolute top-16 left-6 md:top-10 md:left-10">
                         <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-full pl-1 pr-4 py-1 inline-flex items-center gap-3 pointer-events-auto">
                             <div class="flex -space-x-2">
                                 <img class="w-8 h-8 rounded-full border-2 border-primary object-cover" src="/assets/img/team/jack.jpeg" alt="">
@@ -307,26 +331,26 @@
                     </div>
 
                     <!-- Headline -->
-                    <div class="absolute left-6 right-16 md:left-12 md:right-24 lg:left-20 lg:right-auto lg:max-w-4xl text-left" style="top: 20%;">
-                        <h1 class="hero-copy-shadow font-manrope text-white text-3xl sm:text-4xl md:text-6xl lg:text-[64px] lg:leading-[72px] font-extrabold mb-6 tracking-tighter">
+                    <div class="hero-headline absolute left-6 right-6 md:right-24 md:left-12 lg:left-20 lg:right-auto lg:max-w-4xl text-left">
+                        <h1 class="hero-copy-shadow font-manrope text-white text-[26px] leading-[30px] sm:text-4xl md:text-6xl lg:text-[64px] lg:leading-[72px] font-extrabold mb-4 md:mb-6 tracking-tighter">
                             Shaping the future of Artificial Intelligence for the benefit of all mankind.
                         </h1>
-                        <p class="hero-copy-shadow font-inter text-base md:text-lg text-white/90 max-w-2xl mb-8">
+                        <p class="hero-copy-shadow font-inter text-sm md:text-lg text-white/90 max-w-2xl mb-5 md:mb-8">
                             Manila's premier community where entrepreneurs, developers, professionals, and tech enthusiasts converge to learn, grow, and thrive in the age of AI.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4 justify-start">
-                            <a href="#event" class="bg-brand-red text-white font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 inline-flex items-center justify-center gap-2 pointer-events-auto">
+                        <div class="flex flex-col sm:flex-row gap-4 justify-start items-start sm:items-center">
+                            <a href="#event" class="bg-brand-red text-white font-manrope font-semibold text-sm md:text-lg px-6 md:px-8 py-3 md:py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 inline-flex items-center justify-center gap-2 pointer-events-auto">
                                 Join Our Next Event
-                                <span class="material-symbols-outlined">arrow_forward</span>
+                                <span class="material-symbols-outlined text-base md:text-xl">arrow_forward</span>
                             </a>
-                            <a href="#about" class="border border-white/70 text-white font-manrope font-semibold text-base md:text-lg px-8 py-4 rounded-full hover:bg-white hover:text-primary transition-all inline-flex items-center justify-center pointer-events-auto">
+                            <a href="#about" class="border border-white/70 text-white font-manrope font-semibold text-sm md:text-lg px-6 md:px-8 py-3 md:py-4 rounded-full hover:bg-white hover:text-primary transition-all inline-flex items-center justify-center pointer-events-auto">
                                 Learn More
                             </a>
                         </div>
                     </div>
 
                     <!-- Bottom-left tag -->
-                    <div class="absolute bottom-0 left-0">
+                    <div class="absolute bottom-0 left-0 hidden md:block">
                         <a href="#event" class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm rounded-[28px] px-6 py-4 inline-flex flex-col gap-2 pointer-events-auto hover:bg-surface-container-low transition-colors group">
                             <span class="inline-flex items-center gap-2.5">
                                 <span class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
@@ -341,6 +365,22 @@
                         </a>
                     </div>
                 </div>
+            </div>
+
+            <!-- Bottom-left tag (mobile placement: below slider) -->
+            <div class="md:hidden mt-6">
+                <a href="#event" class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm rounded-[28px] px-6 py-4 flex flex-col gap-2 hover:bg-surface-container-low transition-colors group">
+                    <span class="inline-flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
+                        <span class="text-primary font-jetbrains text-sm uppercase tracking-wider">Next event &middot; Apr 11, 2026</span>
+                    </span>
+                    <span class="grid grid-cols-4 gap-3 font-jetbrains text-[11px] uppercase tracking-wider text-on-surface-variant" aria-label="Countdown to next event">
+                        <span><strong id="hero-days-mobile" class="text-brand-blue font-bold">00</strong>d</span>
+                        <span><strong id="hero-hours-mobile" class="text-brand-blue font-bold">00</strong>h</span>
+                        <span><strong id="hero-minutes-mobile" class="text-brand-blue font-bold">00</strong>m</span>
+                        <span><strong id="hero-seconds-mobile" class="text-brand-blue font-bold">00</strong>s</span>
+                    </span>
+                </a>
             </div>
         </section>
 
@@ -368,6 +408,7 @@
                     <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></div>
                 </div>
             </div>
+
         </section>
 
         <!-- Main Content Area -->
@@ -489,22 +530,22 @@
                         </a>
                     </div>
 
-                    <div class="mt-8 pt-8 border-t border-outline-variant/10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">newspaper</span>
-                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Instill a better understanding of AI news and trends.</p>
+                    <div class="mt-8 pt-8 border-t border-outline-variant/10 flex flex-col divide-y divide-outline-variant/15 md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4">
+                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
+                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">newspaper</span>
+                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Instill a better understanding of AI news and trends.</p>
                         </div>
-                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">school</span>
-                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Build skills to help our community thrive in the marketplace.</p>
+                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
+                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">school</span>
+                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Build skills to help our community thrive in the marketplace.</p>
                         </div>
-                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">explore</span>
-                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Learn to navigate technological trends and help shape positive change in an AI-dominant society.</p>
+                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
+                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">explore</span>
+                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Learn to navigate technological trends and help shape positive change in an AI-dominant society.</p>
                         </div>
-                        <div class="bg-surface-container-low rounded-xl p-5 min-h-36 relative overflow-hidden">
-                            <span class="material-symbols-outlined absolute -right-3 -bottom-3 text-[92px] text-brand-blue/[0.035] pointer-events-none">volunteer_activism</span>
-                            <p class="relative z-10 font-inter text-sm leading-relaxed text-on-surface-variant">Share and provide technology for the common good, in service of humanity.</p>
+                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
+                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">volunteer_activism</span>
+                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Share and provide technology for the common good, in service of humanity.</p>
                         </div>
                     </div>
                 </div>
@@ -629,44 +670,44 @@
             </section>
 
             <!-- Join Us Online -->
-            <section class="bg-[#001B47] rounded-bento p-10 md:p-20 text-center relative overflow-hidden">
+            <section class="bg-[#001B47] rounded-bento p-6 md:p-20 text-center relative overflow-hidden">
                 <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
                 <div class="relative z-10">
-                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mb-3">Join Us Online</h2>
-                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-6"></div>
-                    <p class="font-inter text-base md:text-lg text-white/80 max-w-2xl mx-auto mb-12 md:mb-16">If you want better conversations about AI and technology, join us. Whatever your field or experience, there's a place for you here &mdash; if you're willing to learn, share, and contribute.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
-                        <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf?mode=gi_t" target="_blank" rel="noopener">
-                            <div class="social-icon-accent w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[48px] text-white mb-3">Join Us Online</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-4 md:mb-6"></div>
+                    <p class="font-inter text-sm md:text-lg text-white/80 max-w-2xl mx-auto mb-8 md:mb-16">If you want better conversations about AI and technology, join us. Whatever your field or experience, there's a place for you here &mdash; if you're willing to learn, share, and contribute.</p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8 max-w-5xl mx-auto">
+                        <a class="group glass-card p-4 md:p-10 rounded-2xl md:rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-row md:flex-col items-center gap-4 md:gap-6 text-left md:text-center" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf?mode=gi_t" target="_blank" rel="noopener">
+                            <div class="social-icon-accent w-12 h-12 md:w-20 md:h-20 rounded-full bg-white text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 md:w-9 md:h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M12.04 2.5a9.45 9.45 0 0 0-8.12 14.3L2.75 21.5l4.82-1.12a9.44 9.44 0 1 0 4.47-17.88Zm0 17.2a7.67 7.67 0 0 1-3.9-1.06l-.33-.2-2.86.67.69-2.78-.22-.35a7.65 7.65 0 1 1 6.62 3.72Zm4.25-5.73c-.23-.12-1.37-.68-1.58-.75-.21-.08-.37-.12-.52.12-.15.23-.6.75-.73.9-.13.16-.27.18-.5.06-.23-.11-.98-.36-1.87-1.15-.69-.62-1.16-1.38-1.29-1.61-.14-.23-.01-.36.1-.47.1-.1.23-.27.35-.4.12-.14.15-.23.23-.39.08-.15.04-.29-.02-.4-.06-.12-.52-1.25-.71-1.72-.19-.45-.38-.39-.52-.4h-.44c-.15 0-.4.06-.6.29-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.16 1.62 2.47 3.93 3.46.55.24.98.38 1.31.49.55.17 1.05.15 1.45.09.44-.07 1.37-.56 1.56-1.1.19-.55.19-1.02.13-1.11-.06-.1-.21-.16-.44-.27Z"/>
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-manrope font-bold text-2xl text-white mb-2">WhatsApp</h3>
-                                <p class="font-inter text-sm text-white/70">Daily discussions</p>
+                                <h3 class="font-manrope font-bold text-base md:text-2xl text-white mb-0.5 md:mb-2">WhatsApp</h3>
+                                <p class="font-inter text-xs md:text-sm text-white/70">Daily discussions</p>
                             </div>
                         </a>
-                        <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener">
-                            <div class="social-icon-accent w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <a class="group glass-card p-4 md:p-10 rounded-2xl md:rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-row md:flex-col items-center gap-4 md:gap-6 text-left md:text-center" href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener">
+                            <div class="social-icon-accent w-12 h-12 md:w-20 md:h-20 rounded-full bg-white text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 md:w-9 md:h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.98h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.3ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/>
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-manrope font-bold text-2xl text-white mb-2">LinkedIn</h3>
-                                <p class="font-inter text-sm text-white/70">Professional network</p>
+                                <h3 class="font-manrope font-bold text-base md:text-2xl text-white mb-0.5 md:mb-2">LinkedIn</h3>
+                                <p class="font-inter text-xs md:text-sm text-white/70">Professional network</p>
                             </div>
                         </a>
-                        <a class="group glass-card p-8 md:p-10 rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center gap-6" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">
-                            <div class="social-icon-accent w-20 h-20 rounded-full bg-white text-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <svg class="w-9 h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <a class="group glass-card p-4 md:p-10 rounded-2xl md:rounded-3xl hover:-translate-y-2 transition-all duration-300 flex flex-row md:flex-col items-center gap-4 md:gap-6 text-left md:text-center" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">
+                            <div class="social-icon-accent w-12 h-12 md:w-20 md:h-20 rounded-full bg-white text-primary flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <svg class="w-6 h-6 md:w-9 md:h-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                     <path d="M14.2 8.1V6.6c0-.72.48-.89.82-.89h2.08V2.5l-2.86-.01c-3.18 0-3.9 2.38-3.9 3.9v1.71H8.5v3.31h1.84v10.1h3.86v-10.1h2.6l.35-3.31H14.2Z"/>
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-manrope font-bold text-2xl text-white mb-2">Facebook</h3>
-                                <p class="font-inter text-sm text-white/70">Community updates</p>
+                                <h3 class="font-manrope font-bold text-base md:text-2xl text-white mb-0.5 md:mb-2">Facebook</h3>
+                                <p class="font-inter text-xs md:text-sm text-white/70">Community updates</p>
                             </div>
                         </a>
                     </div>
@@ -754,6 +795,10 @@
                 document.getElementById('hero-hours').textContent = values.hours;
                 document.getElementById('hero-minutes').textContent = values.minutes;
                 document.getElementById('hero-seconds').textContent = values.seconds;
+                document.getElementById('hero-days-mobile').textContent = values.days;
+                document.getElementById('hero-hours-mobile').textContent = values.hours;
+                document.getElementById('hero-minutes-mobile').textContent = values.minutes;
+                document.getElementById('hero-seconds-mobile').textContent = values.seconds;
             }
         }
 
@@ -826,13 +871,11 @@
             goTo((current - 1 + slides.length) % slides.length);
         }
 
-        const prevBtn = document.getElementById('slider-prev');
-        const nextBtn = document.getElementById('slider-next');
-        if (prevBtn) prevBtn.addEventListener('click', prev);
-        if (nextBtn) nextBtn.addEventListener('click', next);
+        document.querySelectorAll('[data-slider-prev]').forEach(btn => btn.addEventListener('click', prev));
+        document.querySelectorAll('[data-slider-next]').forEach(btn => btn.addEventListener('click', next));
 
         const galleryModal = document.getElementById('gallery-modal');
-        const galleryOpen = document.getElementById('gallery-open');
+        const galleryOpenButtons = document.querySelectorAll('[data-gallery-open]');
         const galleryClose = document.getElementById('gallery-close');
         const galleryPrev = document.getElementById('gallery-prev');
         const galleryNext = document.getElementById('gallery-next');
@@ -905,7 +948,7 @@
             resetInterval();
         }
 
-        if (galleryOpen) galleryOpen.addEventListener('click', openGallery);
+        galleryOpenButtons.forEach(btn => btn.addEventListener('click', openGallery));
         if (galleryClose) galleryClose.addEventListener('click', closeGallery);
         if (galleryPrev) galleryPrev.addEventListener('click', () => showGallery(galleryIndex - 1));
         if (galleryNext) galleryNext.addEventListener('click', () => showGallery(galleryIndex + 1));
@@ -933,78 +976,78 @@
     <!-- Sponsor Marquee (drag + auto-scroll) -->
     <script>
     (function() {
-        const marquee = document.querySelector('.sponsor-marquee');
-        const track = marquee && marquee.querySelector('.sponsor-marquee-track');
-        if (!marquee || !track) return;
-
+        const marquees = document.querySelectorAll('.sponsor-marquee');
+        if (!marquees.length) return;
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const speed = 50; // px/sec
-        let halfWidth = 0;
-        let position = 0;
-        let lastTime = 0;
-        let isHovered = false;
-        let isDragging = false;
-        let dragStartX = 0;
-        let dragStartPos = 0;
-        let activePointerId = null;
 
-        function measure() { halfWidth = track.scrollWidth / 2; }
-        function wrap() {
-            if (!halfWidth) return;
-            if (position <= -halfWidth) position += halfWidth;
-            else if (position > 0) position -= halfWidth;
-        }
+        function setupMarquee(marquee) {
+            const track = marquee.querySelector('.sponsor-marquee-track');
+            if (!track) return null;
+            const direction = marquee.dataset.direction === 'reverse' ? 1 : -1;
+            let halfWidth = 0;
+            let position = direction === 1 ? -1 : 0; // start reverse track slightly offset so it scrolls into view
+            let lastTime = 0;
+            let isHovered = false;
+            let isDragging = false;
+            let dragStartX = 0;
+            let dragStartPos = 0;
+            let activePointerId = null;
 
-        function tick(time) {
-            if (!lastTime) lastTime = time;
-            const dt = (time - lastTime) / 1000;
-            lastTime = time;
-            if (!isDragging && !isHovered && !reduceMotion) {
-                position -= speed * dt;
+            function measure() { halfWidth = track.scrollWidth / 2; if (direction === 1 && position === 0) position = -halfWidth; }
+            function wrap() {
+                if (!halfWidth) return;
+                if (position <= -halfWidth) position += halfWidth;
+                else if (position > 0) position -= halfWidth;
             }
-            wrap();
-            track.style.transform = 'translateX(' + position + 'px)';
-            requestAnimationFrame(tick);
+            function tick(time) {
+                if (!lastTime) lastTime = time;
+                const dt = (time - lastTime) / 1000;
+                lastTime = time;
+                if (!isDragging && !isHovered && !reduceMotion) {
+                    position += direction * speed * dt;
+                }
+                wrap();
+                track.style.transform = 'translateX(' + position + 'px)';
+                requestAnimationFrame(tick);
+            }
+            marquee.addEventListener('pointerenter', () => { isHovered = true; });
+            marquee.addEventListener('pointerleave', () => { isHovered = false; });
+            marquee.addEventListener('pointerdown', (e) => {
+                if (e.button !== undefined && e.button !== 0) return;
+                isDragging = true;
+                dragStartX = e.clientX;
+                dragStartPos = position;
+                activePointerId = e.pointerId;
+                try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
+                marquee.classList.add('is-dragging');
+            });
+            marquee.addEventListener('pointermove', (e) => {
+                if (!isDragging || e.pointerId !== activePointerId) return;
+                position = dragStartPos + (e.clientX - dragStartX);
+                wrap();
+            });
+            function endDrag(e) {
+                if (!isDragging || (e && e.pointerId !== activePointerId)) return;
+                isDragging = false;
+                activePointerId = null;
+                marquee.classList.remove('is-dragging');
+            }
+            marquee.addEventListener('pointerup', endDrag);
+            marquee.addEventListener('pointercancel', endDrag);
+            marquee.addEventListener('dragstart', (e) => e.preventDefault());
+
+            return { measure, start: () => requestAnimationFrame(tick) };
         }
 
-        marquee.addEventListener('pointerenter', () => { isHovered = true; });
-        marquee.addEventListener('pointerleave', () => { isHovered = false; });
-
-        marquee.addEventListener('pointerdown', (e) => {
-            if (e.button !== undefined && e.button !== 0) return;
-            isDragging = true;
-            dragStartX = e.clientX;
-            dragStartPos = position;
-            activePointerId = e.pointerId;
-            try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
-            marquee.classList.add('is-dragging');
-        });
-
-        marquee.addEventListener('pointermove', (e) => {
-            if (!isDragging || e.pointerId !== activePointerId) return;
-            position = dragStartPos + (e.clientX - dragStartX);
-            wrap();
-        });
-
-        function endDrag(e) {
-            if (!isDragging || (e && e.pointerId !== activePointerId)) return;
-            isDragging = false;
-            activePointerId = null;
-            marquee.classList.remove('is-dragging');
-        }
-        marquee.addEventListener('pointerup', endDrag);
-        marquee.addEventListener('pointercancel', endDrag);
-
-        // Block native drag-start (covers Firefox where draggable=false isn't always enough)
-        marquee.addEventListener('dragstart', (e) => e.preventDefault());
-
+        const instances = Array.from(marquees).map(setupMarquee).filter(Boolean);
         function init() {
-            measure();
-            requestAnimationFrame(tick);
+            instances.forEach(i => i.measure());
+            instances.forEach(i => i.start());
         }
         if (document.readyState === 'complete') init();
         else window.addEventListener('load', init);
-        window.addEventListener('resize', measure);
+        window.addEventListener('resize', () => instances.forEach(i => i.measure()));
     })();
     </script>
 </body>

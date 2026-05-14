@@ -15,32 +15,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Mobile menu toggle
+// Mobile menu toggle (full-screen overlay)
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    if (!mobileMenuButton || !mobileMenu) return;
 
-    console.log('Menu button:', mobileMenuButton);
-    console.log('Mobile menu:', mobileMenu);
+    const buttonIcon = mobileMenuButton.querySelector('.material-symbols-outlined');
 
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Button clicked!');
-            mobileMenu.classList.toggle('hidden');
-            console.log('Menu classes after toggle:', mobileMenu.className);
-        });
+    const setOpen = (open) => {
+        mobileMenu.classList.toggle('is-open', open);
+        mobileMenuButton.setAttribute('aria-expanded', String(open));
+        mobileMenu.setAttribute('aria-hidden', String(!open));
+        document.body.classList.toggle('menu-open', open);
+        if (buttonIcon) buttonIcon.textContent = open ? 'close' : 'menu';
+    };
 
-        // Close menu when clicking on a link
-        const menuLinks = mobileMenu.querySelectorAll('a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    } else {
-        console.error('Menu elements not found!');
-    }
+    mobileMenuButton.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+
+    mobileMenuButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        setOpen(!mobileMenu.classList.contains('is-open'));
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+            setOpen(false);
+        }
+    });
 });
 
 // Initialize 3D Globe
