@@ -82,7 +82,7 @@
               "unit": "8px",
               "margin-desktop": "48px",
               "margin-mobile": "16px",
-              "container-max": "1280px"
+              "container-max": "1440px"
             },
             fontFamily: {
               "manrope": ["Manrope", "sans-serif"],
@@ -90,7 +90,7 @@
               "jetbrains": ["JetBrains Mono", "monospace"]
             },
             maxWidth: {
-              "container-max": "1280px"
+              "container-max": "1440px"
             }
           }
         }
@@ -138,6 +138,17 @@
         .social-icon-accent {
             box-shadow: 0 3px 0 rgba(191, 10, 48, 0.55), 0 12px 22px rgba(0, 0, 0, 0.18);
         }
+
+        /* Sponsor marquee */
+        .sponsor-marquee { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); cursor: grab; touch-action: pan-y; }
+        .sponsor-marquee.is-dragging { cursor: grabbing; }
+        .sponsor-marquee-track { display: flex; width: max-content; will-change: transform; user-select: none; align-items: center; }
+        .sponsor-slot { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 140px; height: 64px; }
+        @media (min-width: 768px) { .sponsor-slot { width: 180px; height: 80px; } }
+        .sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(100%) opacity(0.7); mix-blend-mode: multiply; transition: filter 0.3s ease, opacity 0.3s ease; -webkit-user-drag: none; user-select: none; }
+        .sponsor-slot.is-dark-bg img { mix-blend-mode: lighten; filter: grayscale(100%) invert(1) opacity(0.75); }
+        .sponsor-slot:hover img { filter: grayscale(0%) opacity(1); }
+        .sponsor-slot.is-dark-bg:hover img { filter: grayscale(0%) invert(1) opacity(1); }
     </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
@@ -326,6 +337,32 @@
                             </span>
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsor Marquee -->
+        <section aria-label="Our sponsors" class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-24">
+            <p class="text-center font-inter text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-8">Trusted by</p>
+            <div class="sponsor-marquee overflow-hidden">
+                <div class="sponsor-marquee-track gap-8 md:gap-12">
+                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" draggable="false"></div>
+                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" draggable="false"></div>
+                    <div class="sponsor-slot"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" draggable="false"></div>
+                    <!-- Duplicate set for seamless loop -->
+                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/alveo.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/leap-studios.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/globe.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/nukind.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/thermomix.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/pdax.png" alt="" draggable="false"></div>
+                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" draggable="false"></div>
                 </div>
             </div>
         </section>
@@ -888,6 +925,83 @@
         }
 
         goTo(0);
+    })();
+    </script>
+    <!-- Sponsor Marquee (drag + auto-scroll) -->
+    <script>
+    (function() {
+        const marquee = document.querySelector('.sponsor-marquee');
+        const track = marquee && marquee.querySelector('.sponsor-marquee-track');
+        if (!marquee || !track) return;
+
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const speed = 50; // px/sec
+        let halfWidth = 0;
+        let position = 0;
+        let lastTime = 0;
+        let isHovered = false;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartPos = 0;
+        let activePointerId = null;
+
+        function measure() { halfWidth = track.scrollWidth / 2; }
+        function wrap() {
+            if (!halfWidth) return;
+            if (position <= -halfWidth) position += halfWidth;
+            else if (position > 0) position -= halfWidth;
+        }
+
+        function tick(time) {
+            if (!lastTime) lastTime = time;
+            const dt = (time - lastTime) / 1000;
+            lastTime = time;
+            if (!isDragging && !isHovered && !reduceMotion) {
+                position -= speed * dt;
+            }
+            wrap();
+            track.style.transform = 'translateX(' + position + 'px)';
+            requestAnimationFrame(tick);
+        }
+
+        marquee.addEventListener('pointerenter', () => { isHovered = true; });
+        marquee.addEventListener('pointerleave', () => { isHovered = false; });
+
+        marquee.addEventListener('pointerdown', (e) => {
+            if (e.button !== undefined && e.button !== 0) return;
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragStartPos = position;
+            activePointerId = e.pointerId;
+            try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
+            marquee.classList.add('is-dragging');
+        });
+
+        marquee.addEventListener('pointermove', (e) => {
+            if (!isDragging || e.pointerId !== activePointerId) return;
+            position = dragStartPos + (e.clientX - dragStartX);
+            wrap();
+        });
+
+        function endDrag(e) {
+            if (!isDragging || (e && e.pointerId !== activePointerId)) return;
+            isDragging = false;
+            activePointerId = null;
+            marquee.classList.remove('is-dragging');
+        }
+        marquee.addEventListener('pointerup', endDrag);
+        marquee.addEventListener('pointercancel', endDrag);
+
+        // Block native drag-start (covers Firefox where draggable=false isn't always enough)
+        marquee.addEventListener('dragstart', (e) => e.preventDefault());
+
+        function init() {
+            measure();
+            requestAnimationFrame(tick);
+        }
+        if (document.readyState === 'complete') init();
+        else window.addEventListener('load', init);
+        window.addEventListener('resize', measure);
     })();
     </script>
 </body>
