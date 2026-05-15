@@ -27,6 +27,17 @@
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": { "href_matches": "/*" },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
+
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -127,7 +138,7 @@
         }
 
         /* Category card accent stripe */
-        .cat-card { position: relative; isolation: isolate; }
+        .cat-card { position: relative; isolation: isolate; overflow: hidden; }
         .cat-card::before {
             content: '';
             position: absolute;
@@ -209,13 +220,13 @@
 
     <main class="flex-grow">
         <!-- Hero -->
-        <section class="max-w-container-max mx-auto pt-28 md:pt-32 pb-12 md:pb-16 px-margin-mobile md:px-margin-desktop">
-            <div class="relative w-full h-[560px] md:h-[600px] rounded-bento overflow-hidden shadow-xl">
+        <section class="max-w-container-max mx-auto pt-32 md:pt-32 pb-16 md:pb-20 px-margin-mobile md:px-margin-desktop">
+            <div class="relative w-full min-h-[560px] md:min-h-[600px] rounded-bento overflow-hidden shadow-xl">
                 <img src="/assets/img/slider/20250830_163219.webp" alt="Roundtable conversation" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/15"></div>
 
-                <div class="relative h-full flex flex-col justify-between p-6 md:p-12 lg:p-16">
+                <div class="relative min-h-[560px] md:min-h-[600px] flex flex-col justify-between gap-10 md:gap-14 p-6 md:p-12 lg:p-16">
                     <div class="flex items-center justify-between gap-3 flex-wrap">
                         <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
                             <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>

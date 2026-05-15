@@ -27,6 +27,17 @@
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": { "href_matches": "/*" },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
+
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -257,13 +268,13 @@
 
     <main class="flex-grow">
         <!-- Hero -->
-        <section class="max-w-container-max mx-auto pt-28 md:pt-32 pb-12 md:pb-16 px-margin-mobile md:px-margin-desktop">
-            <div class="relative w-full h-[420px] md:h-[460px] rounded-bento overflow-hidden shadow-xl">
+        <section class="max-w-container-max mx-auto pt-32 md:pt-32 pb-16 md:pb-20 px-margin-mobile md:px-margin-desktop">
+            <div class="relative w-full min-h-[480px] md:min-h-[560px] rounded-bento overflow-hidden shadow-xl">
                 <img src="/assets/img/slider/20250830_163219.webp" alt="Speaker on stage at AI & Tech Manila" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/90 via-brand-blue/70 to-brand-blue/30"></div>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15"></div>
 
-                <div class="relative h-full flex flex-col justify-between p-8 md:p-12 lg:p-16">
+                <div class="relative min-h-[480px] md:min-h-[560px] flex flex-col justify-between gap-10 md:gap-14 p-8 md:p-12 lg:p-16">
                     <div class="inline-flex items-center gap-2 self-start bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
                         <span class="material-symbols-outlined text-white text-base">mic</span>
                         <span class="font-jetbrains text-[11px] uppercase tracking-widest text-white">Tech Spotlight · Speakers</span>
@@ -490,7 +501,7 @@
                     <p class="font-inter text-base md:text-lg text-on-surface-variant">What happens after you hit submit — no mystery, no ghosting.</p>
                 </div>
 
-                <div class="journey-grid flex flex-col gap-12 lg:gap-0">
+                <div class="flex flex-col gap-12 lg:grid lg:grid-cols-5 lg:gap-6">
                     <div class="journey-step">
                         <div class="num">01</div>
                         <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">You apply</h4>
@@ -653,7 +664,7 @@
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-white/55">Your turn</span>
                     <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mt-3 mb-3 tracking-tight">Inspire what comes next.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-6"></div>
-                    <p class="font-inter text-base md:text-lg text-white/72 mb-10">Your voice could shape the next generation of innovators. Step into the spotlight — we can't wait to hear what you have to say.</p>
+                    <p class="font-inter text-base md:text-lg text-white/70 mb-10">Your voice could shape the next generation of innovators. Step into the spotlight — we can't wait to hear what you have to say.</p>
                     <div class="flex flex-wrap justify-center gap-3">
                         <a href="#speaker-form" class="bg-brand-red text-white font-manrope font-semibold text-base px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/30 inline-flex items-center gap-2">
                             Apply now

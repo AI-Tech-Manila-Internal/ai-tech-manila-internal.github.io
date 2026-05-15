@@ -27,6 +27,17 @@
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": { "href_matches": "/*" },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
+
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -564,7 +575,7 @@
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-white/55">Get plugged in</span>
                     <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mt-3 mb-3 tracking-tight">The room is already warm.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-6"></div>
-                    <p class="font-inter text-base md:text-lg text-white/72 mb-10">Walk in, say hi, share what you're working on. That's pretty much it — the rest unfolds from there.</p>
+                    <p class="font-inter text-base md:text-lg text-white/70 mb-10">Walk in, say hi, share what you're working on. That's pretty much it — the rest unfolds from there.</p>
                     <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener" class="bg-brand-red text-white font-manrope font-semibold text-base px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/30 inline-flex items-center gap-2">
                         <span class="material-symbols-outlined text-lg">chat</span>
                         Join WhatsApp Group

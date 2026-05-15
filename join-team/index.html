@@ -27,6 +27,17 @@
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
 
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": { "href_matches": "/*" },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
+
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
@@ -309,60 +320,56 @@
                         <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                         <p class="font-inter text-base md:text-lg text-on-surface-variant">A look at some of the volunteers already running events, building partnerships, and shaping the community alongside us.</p>
                     </div>
-                    <a href="/#team" class="bg-surface-container-lowest border border-outline-variant/30 text-brand-blue font-manrope font-semibold px-5 py-3 rounded-full hover:bg-surface-container-low transition-all inline-flex items-center gap-2 shrink-0 shadow-sm">
-                        See the full team
-                        <span class="material-symbols-outlined text-base">arrow_forward</span>
-                    </a>
                 </div>
 
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
                     <div class="teammate">
-                        <img src="/assets/img/team/jack.jpeg" alt="Jack" loading="lazy">
+                        <img src="/assets/img/team/jack.jpeg" alt="Jack Diao" loading="lazy">
                         <div class="label"><div class="name">Jack</div><div class="role">Founder</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/rosselle.jpeg" alt="Rosselle" loading="lazy">
-                        <div class="label"><div class="name">Rosselle</div><div class="role">Co-organizer</div></div>
+                        <img src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga" loading="lazy">
+                        <div class="label"><div class="name">Rosselle</div><div class="role">Founder Emeritus</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado-Nelson" loading="lazy">
-                        <div class="label"><div class="name">Ingrid Honrado-Nelson</div><div class="role">Operations</div></div>
+                        <div class="label"><div class="name">Ingrid Honrado-Nelson</div><div class="role">Journalist &amp; Storyteller</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/annalee.png" alt="Annalee" loading="lazy">
-                        <div class="label"><div class="name">Annalee</div><div class="role">Community</div></div>
+                        <img src="/assets/img/team/annalee.png" alt="Annalee Olermo" loading="lazy">
+                        <div class="label"><div class="name">Annalee</div><div class="role">Community Weaver</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/sarah.jpeg" alt="Sarah" loading="lazy">
-                        <div class="label"><div class="name">Sarah</div><div class="role">Events</div></div>
+                        <img src="/assets/img/team/sarah.jpeg" alt="Sarah Jane Lee" loading="lazy">
+                        <div class="label"><div class="name">Sarah</div><div class="role">Marketing</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/andy.png" alt="Andy" loading="lazy">
-                        <div class="label"><div class="name">Andy</div><div class="role">Partnerships</div></div>
+                        <img src="/assets/img/team/andy.png" alt="Andy Kulkarni" loading="lazy">
+                        <div class="label"><div class="name">Andy</div><div class="role">Digital Marketing</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/keith.jpeg" alt="Keith" loading="lazy">
-                        <div class="label"><div class="name">Keith</div><div class="role">Programs</div></div>
+                        <img src="/assets/img/team/keith.jpeg" alt="Keith Hidalgo" loading="lazy">
+                        <div class="label"><div class="name">Keith</div><div class="role">Marketing</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/margarette.png" alt="Margarette" loading="lazy">
+                        <img src="/assets/img/team/margarette.png" alt="Margarette Garcia" loading="lazy">
                         <div class="label"><div class="name">Margarette</div><div class="role">Marketing</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/istvan.jpeg" alt="Istvan" loading="lazy">
-                        <div class="label"><div class="name">Istvan</div><div class="role">Tech &amp; Web</div></div>
+                        <img src="/assets/img/team/istvan.jpeg" alt="Istvan Szabo" loading="lazy">
+                        <div class="label"><div class="name">Istvan</div><div class="role">Software Engineer</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/adrian.jpeg" alt="Adrian" loading="lazy">
-                        <div class="label"><div class="name">Adrian</div><div class="role">Content</div></div>
+                        <img src="/assets/img/team/adrian.jpeg" alt="Adrian Arvizo" loading="lazy">
+                        <div class="label"><div class="name">Adrian</div><div class="role">Audio, Visual &amp; Tech</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/jerry.jpeg" alt="Jerry" loading="lazy">
-                        <div class="label"><div class="name">Jerry</div><div class="role">Outreach</div></div>
+                        <img src="/assets/img/team/jerry.jpeg" alt="Jerry Muscarella" loading="lazy">
+                        <div class="label"><div class="name">Jerry</div><div class="role">Photographer</div></div>
                     </div>
                     <div class="teammate">
-                        <img src="/assets/img/team/nicah.jpeg" alt="Nicah" loading="lazy">
-                        <div class="label"><div class="name">Nicah</div><div class="role">Community</div></div>
+                        <img src="/assets/img/team/nicah.jpeg" alt="Nicah Tuazon" loading="lazy">
+                        <div class="label"><div class="name">Nicah</div><div class="role">Marketing</div></div>
                     </div>
                 </div>
             </section>
@@ -588,7 +595,7 @@
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-white/55">Build something with us</span>
                     <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-white mt-3 mb-3 tracking-tight">One event, one connection, one project at a time.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-6"></div>
-                    <p class="font-inter text-base md:text-lg text-white/72 mb-10">Together, we can shape the future of AI and technology in Manila — and have a really good time doing it.</p>
+                    <p class="font-inter text-base md:text-lg text-white/70 mb-10">Together, we can shape the future of AI and technology in Manila — and have a really good time doing it.</p>
                     <a href="#volunteer-form" class="bg-brand-red text-white font-manrope font-semibold text-base px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/30 inline-flex items-center gap-2">
                         Apply now
                         <span class="material-symbols-outlined text-lg">arrow_forward</span>
