@@ -185,13 +185,13 @@
                     <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
                 </div>
             </a>
-            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
-                <a class="text-white bg-brand-red rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors" href="/">Home</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/events">Events</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/join-team">Team</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/partner">Partners</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/chill-chat">Chill &amp; Chat</a>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1 lg:gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-2 py-2 lg:px-3 lg:py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl whitespace-nowrap">
+                <a class="text-white bg-brand-red rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors whitespace-nowrap" href="/">Home</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/events">Events</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/join-team">Team</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/partner">Partners</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/speaker">Speakers</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/chill-chat">Chill &amp; Chat</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
                 <span class="material-symbols-outlined">menu</span>
@@ -226,11 +226,11 @@
             <div id="gallery" class="relative w-full h-[640px] sm:h-[620px] md:h-[600px] lg:h-[640px]">
                 <svg class="absolute w-0 h-0" aria-hidden="true" focusable="false">
                     <defs>
-                        <clipPath id="hero-stage-clip" clipPathUnits="objectBoundingBox">
-                            <path d="M .03 0 L .97 0 Q 1 0 1 .06 L 1 .31 Q 1 .37 .97 .37 Q .94 .37 .94 .43 L .94 .57 Q .94 .63 .97 .63 Q 1 .63 1 .69 L 1 .94 Q 1 1 .97 1 L .30 1 Q .27 1 .27 .94 L .27 .90 Q .27 .84 .24 .84 L .03 .84 Q 0 .84 0 .78 L 0 .06 Q 0 0 .03 0 Z"/>
+                        <clipPath id="hero-stage-clip" clipPathUnits="userSpaceOnUse">
+                            <path id="hero-stage-clip-path" d=""/>
                         </clipPath>
-                        <clipPath id="hero-stage-clip-mobile" clipPathUnits="objectBoundingBox">
-                            <path d="M .07 0 L .22 0 Q .28 0 .28 .037 L .28 .063 Q .28 .10 .34 .10 L .66 .10 Q .72 .10 .72 .063 L .72 .037 Q .72 0 .78 0 L .93 0 Q 1 0 1 .044 L 1 .956 Q 1 1 .93 1 L .07 1 Q 0 1 0 .956 L 0 .044 Q 0 0 .07 0 Z"/>
+                        <clipPath id="hero-stage-clip-mobile" clipPathUnits="userSpaceOnUse">
+                            <path id="hero-stage-clip-mobile-path" d=""/>
                         </clipPath>
                     </defs>
                 </svg>
@@ -345,7 +345,7 @@
 
                     <!-- Headline -->
                     <div class="hero-headline absolute left-6 right-6 md:right-24 md:left-10 lg:right-auto lg:max-w-4xl text-left">
-                        <h1 class="hero-copy-shadow font-manrope text-white text-[26px] leading-[30px] sm:text-4xl md:text-6xl lg:text-[64px] lg:leading-[72px] font-extrabold mb-4 md:mb-6 tracking-tighter">
+                        <h1 class="hero-copy-shadow font-manrope text-white text-[26px] leading-[30px] sm:text-4xl md:text-5xl md:leading-[56px] lg:text-[64px] lg:leading-[72px] font-extrabold mb-4 md:mb-6 tracking-tighter">
                             Shaping the future of Artificial Intelligence for the benefit of all mankind.
                         </h1>
                         <p class="hero-copy-shadow font-inter text-sm md:text-lg text-white/90 max-w-2xl mb-5 md:mb-8">
@@ -817,6 +817,96 @@
 
         setInterval(updateCountdown, 1000);
         updateCountdown();
+    </script>
+    <script>
+        // Hero stage clip-path: pockets are FIXED pixel sizes so they always
+        // match the card/icon elements that sit inside them, regardless of
+        // the hero's responsive width/height.
+        (function() {
+            const stage = document.getElementById('gallery');
+            const desktopPath = document.getElementById('hero-stage-clip-path');
+            const mobilePath = document.getElementById('hero-stage-clip-mobile-path');
+            if (!stage || !desktopPath || !mobilePath) return;
+
+            const OUTER_R = 32;        // outer corner radius
+
+            // Desktop: bottom-left card pocket + right-side social-icons notch
+            const BL_W = 320, BL_H = 96, BL_R = 28;
+            const RP_W = 72, RP_H = 168, RP_R = 28;
+
+            // Mobile: top notch for social icons
+            const M_OUTER_R = 28;
+            const TP_W = 168, TP_H = 60, TP_R = 24;
+
+            function buildDesktop(w, h) {
+                const rpTop = (h - RP_H) / 2;
+                const rpBot = rpTop + RP_H;
+                return [
+                    `M ${OUTER_R} 0`,
+                    `L ${w - OUTER_R} 0`,
+                    `Q ${w} 0 ${w} ${OUTER_R}`,
+                    `L ${w} ${rpTop - RP_R}`,
+                    `Q ${w} ${rpTop} ${w - RP_R} ${rpTop}`,
+                    `L ${w - RP_W + RP_R} ${rpTop}`,
+                    `Q ${w - RP_W} ${rpTop} ${w - RP_W} ${rpTop + RP_R}`,
+                    `L ${w - RP_W} ${rpBot - RP_R}`,
+                    `Q ${w - RP_W} ${rpBot} ${w - RP_W + RP_R} ${rpBot}`,
+                    `L ${w - RP_R} ${rpBot}`,
+                    `Q ${w} ${rpBot} ${w} ${rpBot + RP_R}`,
+                    `L ${w} ${h - OUTER_R}`,
+                    `Q ${w} ${h} ${w - OUTER_R} ${h}`,
+                    `L ${BL_W + BL_R} ${h}`,
+                    `Q ${BL_W} ${h} ${BL_W} ${h - BL_R}`,
+                    `L ${BL_W} ${h - BL_H + BL_R}`,
+                    `Q ${BL_W} ${h - BL_H} ${BL_W - BL_R} ${h - BL_H}`,
+                    `L ${BL_R} ${h - BL_H}`,
+                    `Q 0 ${h - BL_H} 0 ${h - BL_H - BL_R}`,
+                    `L 0 ${OUTER_R}`,
+                    `Q 0 0 ${OUTER_R} 0`,
+                    'Z'
+                ].join(' ');
+            }
+
+            function buildMobile(w, h) {
+                const tpLeft = (w - TP_W) / 2;
+                const tpRight = tpLeft + TP_W;
+                return [
+                    `M ${M_OUTER_R} 0`,
+                    `L ${tpLeft - TP_R} 0`,
+                    `Q ${tpLeft} 0 ${tpLeft} ${TP_R}`,
+                    `L ${tpLeft} ${TP_H - TP_R}`,
+                    `Q ${tpLeft} ${TP_H} ${tpLeft + TP_R} ${TP_H}`,
+                    `L ${tpRight - TP_R} ${TP_H}`,
+                    `Q ${tpRight} ${TP_H} ${tpRight} ${TP_H - TP_R}`,
+                    `L ${tpRight} ${TP_R}`,
+                    `Q ${tpRight} 0 ${tpRight + TP_R} 0`,
+                    `L ${w - M_OUTER_R} 0`,
+                    `Q ${w} 0 ${w} ${M_OUTER_R}`,
+                    `L ${w} ${h - M_OUTER_R}`,
+                    `Q ${w} ${h} ${w - M_OUTER_R} ${h}`,
+                    `L ${M_OUTER_R} ${h}`,
+                    `Q 0 ${h} 0 ${h - M_OUTER_R}`,
+                    `L 0 ${M_OUTER_R}`,
+                    `Q 0 0 ${M_OUTER_R} 0`,
+                    'Z'
+                ].join(' ');
+            }
+
+            function update() {
+                const w = stage.clientWidth;
+                const h = stage.clientHeight;
+                if (!w || !h) return;
+                desktopPath.setAttribute('d', buildDesktop(w, h));
+                mobilePath.setAttribute('d', buildMobile(w, h));
+            }
+
+            update();
+            if (typeof ResizeObserver !== 'undefined') {
+                new ResizeObserver(update).observe(stage);
+            } else {
+                window.addEventListener('resize', update);
+            }
+        })();
     </script>
     <script src="/assets/js/base.js?v=2"></script>
     <!-- Hero Slider -->
