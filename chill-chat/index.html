@@ -26,6 +26,9 @@
 
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
+    <link rel="preload" href="/assets/fonts/google/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/google/xn7gYHE41ni1AdIRggexSg.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="/assets/css/fonts.css" rel="stylesheet">
 
     <script type="speculationrules">
     {
@@ -39,8 +42,6 @@
     </script>
 
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
 
     <script id="tailwind-config">
@@ -177,24 +178,32 @@
 <body class="bg-background text-on-background min-h-screen flex flex-col">
 
     <!-- TopNavBar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <nav id="topnav" class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
         <div class="relative flex items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-24">
-            <a href="/" class="pointer-events-auto w-16 h-16 rounded-full bg-white shadow-lg shadow-black/20 flex items-center justify-center overflow-hidden hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
-                <div class="w-11 h-11 rounded-full overflow-hidden">
-                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
-                </div>
-            </a>
-            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/">Home</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/events">Events</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/join-team">Team</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/partner">Partners</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/speaker">Speakers</a>
-                <a class="text-white bg-brand-red rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors" href="/chill-chat">Chill &amp; Chat</a>
+            <!-- Mobile: brand + hamburger share one full-width white pill; on desktop the wrapper dissolves (md:contents) so the logo is a standalone circle again -->
+            <div id="nav-shell" class="md:contents flex items-center justify-between w-full pointer-events-auto bg-white rounded-full shadow-lg shadow-black/20 pr-3">
+                <a id="nav-brand" href="/" class="pointer-events-auto inline-flex items-center rounded-full md:bg-white md:shadow-lg md:shadow-black/20 hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
+                    <span class="w-16 h-16 rounded-full flex items-center justify-center shrink-0">
+                        <span class="w-11 h-11 rounded-full overflow-hidden">
+                            <img src="/assets/img/logo.avif" alt="AI &amp; Tech Manila Logo" class="w-full h-full object-cover scale-125">
+                        </span>
+                    </span>
+                    <span id="nav-wordmark" class="md:hidden ml-2 font-manrope font-extrabold text-lg tracking-tight text-brand-blue whitespace-nowrap">
+                        AI <span class="text-brand-red">&amp;</span> Tech <span class="text-brand-red">Manila</span>
+                    </span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden pointer-events-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1 lg:gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-2 py-2 lg:px-3 lg:py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl whitespace-nowrap">
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/">Home</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/events">Events</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/join-team">Team</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/partner">Partners</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/speaker">Speakers</a>
+                <a class="text-white bg-brand-red rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors whitespace-nowrap" href="/chill-chat">Chill &amp; Chat</a>
+            </div>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
@@ -286,10 +295,10 @@
                 <!-- Countdown -->
                 <div class="lg:col-span-7 bg-surface-container-lowest rounded-bento p-6 md:p-10 shadow-sm border border-outline-variant/15">
                     <div class="flex items-center gap-2 mb-5">
-                        <span class="material-symbols-outlined text-brand-red animate-pulse">radio_button_checked</span>
-                        <span class="font-jetbrains text-xs font-medium uppercase text-brand-red tracking-wider">Live countdown</span>
+                        <span id="countdown-status-icon" class="material-symbols-outlined text-brand-red animate-pulse">radio_button_checked</span>
+                        <span id="countdown-status-label" class="font-jetbrains text-xs font-medium uppercase text-brand-red tracking-wider">Live countdown</span>
                     </div>
-                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mb-2 tracking-tight">Until we sit down together.</h2>
+                    <h2 id="countdown-heading" class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mb-2 tracking-tight">Until we sit down together.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mb-6"></div>
 
                     <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-4" data-date="2026-04-11T12:30:00+08:00">
@@ -309,6 +318,13 @@
                             <div id="seconds" class="font-manrope text-3xl md:text-5xl text-brand-blue font-extrabold">0</div>
                             <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Secs</div>
                         </div>
+                    </div>
+                    <div id="event-ended" class="hidden rounded-2xl border border-outline-variant/10 bg-surface p-6 sm:p-8 text-center shadow-sm">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue">
+                            <span class="material-symbols-outlined">celebration</span>
+                        </div>
+                        <p class="font-manrope text-xl md:text-2xl font-bold text-brand-blue mb-2">This event has wrapped</p>
+                        <p class="font-inter text-sm md:text-base text-on-surface-variant max-w-md mx-auto">Thank you to everyone who joined us &mdash; it was a great session. Our next gathering is coming soon, so stay tuned.</p>
                     </div>
                 </div>
 
@@ -669,29 +685,45 @@
         </div>
     </footer>
 
-    <script src="/assets/js/base.js?v=2"></script>
+    <script src="/assets/js/base.js?v=3"></script>
     <script>
-        // Countdown timer
+        // Countdown timer — switches to a post-event recap state once the date passes
+        let countdownTimer = null;
+
         function updateCountdown() {
             const el = document.getElementById('countdown');
             if (!el) return;
-            const eventDate = new Date(el.dataset.date).getTime();
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+            const target = new Date(el.dataset.date);
+            const distance = target.getTime() - Date.now();
 
             if (distance > 0) {
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                const set = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
+                set('days', String(days).padStart(2, '0'));
+                set('hours', String(hours).padStart(2, '0'));
+                set('minutes', String(minutes).padStart(2, '0'));
+                set('seconds', String(seconds).padStart(2, '0'));
+                return;
             }
+
+            // Event is over — swap the countdown for the recap / thank-you state.
+            const countdown = document.getElementById('countdown');
+            if (countdown) countdown.classList.add('hidden');
+            const ended = document.getElementById('event-ended');
+            if (ended) ended.classList.remove('hidden');
+            const icon = document.getElementById('countdown-status-icon');
+            if (icon) { icon.textContent = 'event_available'; icon.classList.remove('animate-pulse'); }
+            const label = document.getElementById('countdown-status-label');
+            if (label) label.textContent = 'Event Recap';
+            const heading = document.getElementById('countdown-heading');
+            if (heading) heading.textContent = 'Thanks for sitting down with us.';
+            if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
         }
-        setInterval(updateCountdown, 1000);
+
+        countdownTimer = setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
 </body>

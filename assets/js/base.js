@@ -170,3 +170,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Mobile top nav: collapse the brand pill to just the logo circle on scroll,
+// expand back when scrolled to the very top.
+document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.getElementById('topnav');
+    if (!nav) return;
+    const THRESHOLD = 24;
+    let ticking = false;
+    function apply() {
+        nav.classList.toggle('is-scrolled', window.scrollY > THRESHOLD);
+        ticking = false;
+    }
+    window.addEventListener('scroll', function() {
+        if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+    apply();
+});

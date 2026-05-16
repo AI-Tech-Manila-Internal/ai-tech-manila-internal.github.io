@@ -481,3 +481,25 @@ body.menu-open {
     line-height: 1.5;
     color: #9ca3af;
 }
+
+/* Mobile top nav: full white pill at the top, collapses to the logo circle on scroll */
+@media (max-width: 767px) {
+    #nav-shell { transition: background-color .35s ease, box-shadow .35s ease; }
+    #nav-brand {
+        background-color: transparent; box-shadow: none;
+        transition: background-color .35s ease, box-shadow .35s ease, transform .2s ease;
+    }
+    #nav-wordmark {
+        max-width: 60vw; opacity: 1; overflow: hidden;
+        transition: max-width .35s ease, opacity .25s ease, margin-left .35s ease;
+    }
+    #topnav.is-scrolled #nav-shell { background-color: transparent; box-shadow: none; }
+    #topnav.is-scrolled #nav-brand {
+        background-color: #ffffff;
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,.2), 0 4px 6px -4px rgba(0,0,0,.2);
+    }
+    #topnav.is-scrolled #nav-wordmark { max-width: 0; opacity: 0; margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    #nav-shell, #nav-brand, #nav-wordmark { transition: none; }
+}

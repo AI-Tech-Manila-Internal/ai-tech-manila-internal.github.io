@@ -26,6 +26,9 @@
 
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
+    <link rel="preload" href="/assets/fonts/google/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/google/xn7gYHE41ni1AdIRggexSg.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="/assets/css/fonts.css" rel="stylesheet">
 
     <script type="speculationrules">
     {
@@ -39,8 +42,6 @@
     </script>
 
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
 
     <script id="tailwind-config">
@@ -225,24 +226,32 @@
 <body class="bg-background text-on-background min-h-screen flex flex-col">
 
     <!-- TopNavBar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <nav id="topnav" class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
         <div class="relative flex items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-24">
-            <a href="/" class="pointer-events-auto w-16 h-16 rounded-full bg-white shadow-lg shadow-black/20 flex items-center justify-center overflow-hidden hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
-                <div class="w-11 h-11 rounded-full overflow-hidden">
-                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
-                </div>
-            </a>
-            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-3 py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl">
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/">Home</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/events">Events</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/join-team">Team</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/partner">Partners</a>
-                <a class="text-white bg-brand-red rounded-full px-5 py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors" href="/speaker">Speakers</a>
-                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-5 py-2.5 transition-colors font-inter text-sm font-medium" href="/chill-chat">Chill &amp; Chat</a>
+            <!-- Mobile: brand + hamburger share one full-width white pill; on desktop the wrapper dissolves (md:contents) so the logo is a standalone circle again -->
+            <div id="nav-shell" class="md:contents flex items-center justify-between w-full pointer-events-auto bg-white rounded-full shadow-lg shadow-black/20 pr-3">
+                <a id="nav-brand" href="/" class="pointer-events-auto inline-flex items-center rounded-full md:bg-white md:shadow-lg md:shadow-black/20 hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
+                    <span class="w-16 h-16 rounded-full flex items-center justify-center shrink-0">
+                        <span class="w-11 h-11 rounded-full overflow-hidden">
+                            <img src="/assets/img/logo.avif" alt="AI &amp; Tech Manila Logo" class="w-full h-full object-cover scale-125">
+                        </span>
+                    </span>
+                    <span id="nav-wordmark" class="md:hidden ml-2 font-manrope font-extrabold text-lg tracking-tight text-brand-blue whitespace-nowrap">
+                        AI <span class="text-brand-red">&amp;</span> Tech <span class="text-brand-red">Manila</span>
+                    </span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden pointer-events-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
             </div>
-            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1 lg:gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-2 py-2 lg:px-3 lg:py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl whitespace-nowrap">
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/">Home</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/events">Events</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/join-team">Team</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/partner">Partners</a>
+                <a class="text-white bg-brand-red rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors whitespace-nowrap" href="/speaker">Speakers</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/chill-chat">Chill &amp; Chat</a>
+            </div>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
@@ -705,6 +714,6 @@
         </div>
     </footer>
 
-    <script src="/assets/js/base.js?v=2"></script>
+    <script src="/assets/js/base.js?v=3"></script>
 </body>
 </html>

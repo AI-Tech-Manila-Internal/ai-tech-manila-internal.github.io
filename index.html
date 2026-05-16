@@ -26,6 +26,9 @@
 
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
+    <link rel="preload" href="/assets/fonts/google/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/google/xn7gYHE41ni1AdIRggexSg.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="/assets/css/fonts.css" rel="stylesheet">
 
     <script type="speculationrules">
     {
@@ -39,8 +42,6 @@
     </script>
 
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
 
     <script id="tailwind-config">
@@ -144,7 +145,7 @@
             .hero-stage-shape { -webkit-clip-path: url(#hero-stage-clip); clip-path: url(#hero-stage-clip); }
         }
 
-        /* Hero headline vertical anchor — pushed below the top pocket on mobile */
+        /* Hero headline vertical anchor */
         .hero-headline { top: 20%; }
         @media (min-width: 768px) { .hero-headline { top: 20%; } }
 
@@ -178,13 +179,24 @@
 <body class="bg-background text-on-background min-h-screen flex flex-col">
 
     <!-- TopNavBar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+    <nav id="topnav" class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
         <div class="relative flex items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-24">
-            <a href="/" class="pointer-events-auto w-16 h-16 rounded-full bg-white shadow-lg shadow-black/20 flex items-center justify-center overflow-hidden hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
-                <div class="w-11 h-11 rounded-full overflow-hidden">
-                    <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover scale-125">
-                </div>
-            </a>
+            <!-- Mobile: brand + hamburger share one full-width white pill; on desktop the wrapper dissolves (md:contents) so the logo is a standalone circle again -->
+            <div id="nav-shell" class="md:contents flex items-center justify-between w-full pointer-events-auto bg-white rounded-full shadow-lg shadow-black/20 pr-3">
+                <a id="nav-brand" href="/" class="pointer-events-auto inline-flex items-center rounded-full md:bg-white md:shadow-lg md:shadow-black/20 hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
+                    <span class="w-16 h-16 rounded-full flex items-center justify-center shrink-0">
+                        <span class="w-11 h-11 rounded-full overflow-hidden">
+                            <img src="/assets/img/logo.avif" alt="AI &amp; Tech Manila Logo" class="w-full h-full object-cover scale-125">
+                        </span>
+                    </span>
+                    <span id="nav-wordmark" class="md:hidden ml-2 font-manrope font-extrabold text-lg tracking-tight text-brand-blue whitespace-nowrap">
+                        AI <span class="text-brand-red">&amp;</span> Tech <span class="text-brand-red">Manila</span>
+                    </span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden pointer-events-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
             <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1 lg:gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-2 py-2 lg:px-3 lg:py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl whitespace-nowrap">
                 <a class="text-white bg-brand-red rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors whitespace-nowrap" href="/">Home</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/events">Events</a>
@@ -193,9 +205,6 @@
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/speaker">Speakers</a>
                 <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/chill-chat">Chill &amp; Chat</a>
             </div>
-            <button id="mobile-menu-button" class="md:hidden pointer-events-auto ml-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="material-symbols-outlined">menu</span>
-            </button>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
@@ -291,10 +300,10 @@
                 </div>
 
                 <!-- Slider Navigation Arrows -->
-                <div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-30 flex items-center gap-2 md:gap-3">
-                    <button data-gallery-open class="h-9 md:h-10 px-3 md:px-4 rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg inline-flex items-center justify-center gap-1.5 md:gap-2 font-manrope font-semibold text-xs md:text-sm" type="button">
-                        View gallery
-                        <span class="material-symbols-outlined text-sm md:text-base">photo_library</span>
+                <div class="absolute bottom-6 left-6 md:bottom-10 md:left-auto md:right-10 z-30 flex items-center gap-2 md:gap-3">
+                    <button data-gallery-open aria-label="View gallery" class="w-9 h-9 md:w-auto md:h-10 px-0 md:px-4 rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg inline-flex items-center justify-center gap-1.5 md:gap-2 font-manrope font-semibold text-xs md:text-sm" type="button">
+                        <span class="hidden md:inline">View gallery</span>
+                        <span class="material-symbols-outlined text-base md:text-base">photo_library</span>
                     </button>
                     <button data-slider-prev class="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-white text-primary transition-all backdrop-blur-sm shadow-lg" aria-label="Previous slide">
                         <span class="material-symbols-outlined text-base md:text-lg">chevron_left</span>
@@ -308,7 +317,7 @@
                 <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-30 hidden md:flex gap-1.5" id="slider-dots"></div>
 
                 <!-- Social links -->
-                <div class="absolute top-3 left-1/2 -translate-x-1/2 md:left-auto md:right-3 md:top-1/2 md:translate-x-0 md:-translate-y-1/2 z-30 flex flex-row md:flex-col items-center gap-1.5 md:gap-2">
+                <div class="absolute right-4 bottom-[26px] md:left-auto md:right-3 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-30 flex flex-row md:flex-col items-center gap-1.5 md:gap-2">
                     <a href="https://www.linkedin.com/company/ai-tech-manila/" target="_blank" rel="noopener" aria-label="AI &amp; Tech Manila on LinkedIn" class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-lowest border border-brand-blue/25 shadow-sm flex items-center justify-center text-primary hover:bg-surface-container-low hover:border-brand-blue/45 transition-colors">
                         <svg class="w-4 h-4 md:w-5 md:h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                             <path d="M20.45 20.45h-3.56v-5.58c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.68H9.34V8.98h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.3ZM5.32 7.41a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12Zm1.78 13.04H3.54V8.98H7.1v11.47Z"/>
@@ -366,10 +375,10 @@
                     <div class="absolute bottom-0 left-0 hidden md:block">
                         <a href="#event" class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm rounded-[28px] px-6 py-4 inline-flex flex-col gap-2 pointer-events-auto hover:bg-surface-container-low transition-colors group">
                             <span class="inline-flex items-center gap-2.5">
-                                <span class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
-                                <span class="text-primary font-jetbrains text-sm uppercase tracking-wider">Next event &middot; Apr 11, 2026</span>
+                                <span id="hero-dot" class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
+                                <span id="hero-label" class="text-primary font-jetbrains text-sm uppercase tracking-wider">Next event &middot; Apr 11, 2026</span>
                             </span>
-                            <span class="grid grid-cols-4 gap-3 font-jetbrains text-[11px] uppercase tracking-wider text-on-surface-variant" aria-label="Countdown to next event">
+                            <span id="hero-countdown" class="grid grid-cols-4 gap-3 font-jetbrains text-[11px] uppercase tracking-wider text-on-surface-variant" aria-label="Countdown to next event">
                                 <span><strong id="hero-days" class="text-brand-blue font-bold">00</strong>d</span>
                                 <span><strong id="hero-hours" class="text-brand-blue font-bold">00</strong>h</span>
                                 <span><strong id="hero-minutes" class="text-brand-blue font-bold">00</strong>m</span>
@@ -384,10 +393,10 @@
             <div class="md:hidden mt-6">
                 <a href="#event" class="bg-surface-container-lowest border border-outline-variant/40 shadow-sm rounded-[28px] px-6 py-4 flex flex-col gap-2 hover:bg-surface-container-low transition-colors group">
                     <span class="inline-flex items-center gap-2.5">
-                        <span class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
-                        <span class="text-primary font-jetbrains text-sm uppercase tracking-wider">Next event &middot; Apr 11, 2026</span>
+                        <span id="hero-dot-mobile" class="w-2.5 h-2.5 rounded-full bg-brand-red animate-pulse"></span>
+                        <span id="hero-label-mobile" class="text-primary font-jetbrains text-sm uppercase tracking-wider">Next event &middot; Apr 11, 2026</span>
                     </span>
-                    <span class="grid grid-cols-4 gap-3 font-jetbrains text-[11px] uppercase tracking-wider text-on-surface-variant" aria-label="Countdown to next event">
+                    <span id="hero-countdown-mobile" class="grid grid-cols-4 gap-3 font-jetbrains text-[11px] uppercase tracking-wider text-on-surface-variant" aria-label="Countdown to next event">
                         <span><strong id="hero-days-mobile" class="text-brand-blue font-bold">00</strong>d</span>
                         <span><strong id="hero-hours-mobile" class="text-brand-blue font-bold">00</strong>h</span>
                         <span><strong id="hero-minutes-mobile" class="text-brand-blue font-bold">00</strong>m</span>
@@ -433,8 +442,8 @@
                 <div class="md:col-span-12 bg-surface-container-lowest rounded-bento p-6 sm:p-8 md:p-12 shadow-sm border border-outline-variant/20 flex flex-col justify-between hover:shadow-md transition-shadow">
                     <div>
                         <div class="flex items-center gap-2 mb-6">
-                            <span class="material-symbols-outlined text-brand-red animate-pulse">radio_button_checked</span>
-                            <span class="font-jetbrains text-xs font-medium uppercase text-brand-red tracking-wider">Live Countdown</span>
+                            <span id="countdown-status-icon" class="material-symbols-outlined text-brand-red animate-pulse">radio_button_checked</span>
+                            <span id="countdown-status-label" class="font-jetbrains text-xs font-medium uppercase text-brand-red tracking-wider">Live Countdown</span>
                         </div>
                         <h2 class="font-manrope text-3xl md:text-[40px] md:leading-[48px] font-bold text-brand-blue mb-3">AI &amp; Tech Manila: Chill &amp; Chat 2026</h2>
                         <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
@@ -470,6 +479,13 @@
                             <div class="font-jetbrains text-[10px] sm:text-xs text-on-surface-variant mt-2 uppercase tracking-widest">Secs</div>
                         </div>
                     </div>
+                    <div id="event-ended" class="hidden mb-8 rounded-2xl border border-outline-variant/10 bg-surface p-6 sm:p-10 text-center shadow-sm">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue">
+                            <span class="material-symbols-outlined">celebration</span>
+                        </div>
+                        <p class="font-manrope text-xl md:text-2xl font-bold text-brand-blue mb-2">This event has wrapped</p>
+                        <p class="font-inter text-sm md:text-base text-on-surface-variant max-w-md mx-auto">Thank you to everyone who joined us &mdash; it was a great session. Our next gathering is coming soon, so stay tuned.</p>
+                    </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-outline-variant/20 pt-8 mt-auto">
                         <ul class="space-y-3">
                             <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
@@ -491,8 +507,8 @@
                                 FREE food &amp; venue, courtesy of our sponsors
                             </li>
                         </ul>
-                        <a href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" rel="noopener" class="w-full sm:w-auto bg-brand-red text-white font-manrope font-semibold text-base md:text-lg px-8 md:px-10 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-brand-red/20 whitespace-nowrap text-center inline-flex items-center justify-center gap-2">
-                            Register Today
+                        <a id="event-cta" href="https://www.eventbrite.com/e/ai-tech-manila-chill-chat-2026-tickets-1985909618127" target="_blank" rel="noopener" class="w-full sm:w-auto bg-brand-red text-white font-manrope font-semibold text-base md:text-lg px-8 md:px-10 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-brand-red/20 whitespace-nowrap text-center inline-flex items-center justify-center gap-2">
+                            <span id="event-cta-label">Register Today</span>
                             <span class="material-symbols-outlined">arrow_forward</span>
                         </a>
                     </div>
@@ -780,13 +796,15 @@
     <script>
         dayjs.extend(dayjs_plugin_relativeTime);
 
-        // Countdown timer
+        // Countdown timer — switches to a post-event recap state once the date passes
+        let countdownTimer = null;
+
         function updateCountdown() {
             const el = document.getElementById('countdown');
             if (!el) return;
-            const eventDate = new Date(el.dataset.date).getTime();
-            const now = new Date().getTime();
-            const distance = eventDate - now;
+            const target = new Date(el.dataset.date);
+            const distance = target.getTime() - Date.now();
+            const set = (id, v) => { const n = document.getElementById(id); if (n) n.textContent = v; };
 
             if (distance > 0) {
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -800,22 +818,54 @@
                     seconds: String(seconds).padStart(2, '0')
                 };
 
-                document.getElementById('days').textContent = values.days;
-                document.getElementById('hours').textContent = values.hours;
-                document.getElementById('minutes').textContent = values.minutes;
-                document.getElementById('seconds').textContent = values.seconds;
-                document.getElementById('hero-days').textContent = values.days;
-                document.getElementById('hero-hours').textContent = values.hours;
-                document.getElementById('hero-minutes').textContent = values.minutes;
-                document.getElementById('hero-seconds').textContent = values.seconds;
-                document.getElementById('hero-days-mobile').textContent = values.days;
-                document.getElementById('hero-hours-mobile').textContent = values.hours;
-                document.getElementById('hero-minutes-mobile').textContent = values.minutes;
-                document.getElementById('hero-seconds-mobile').textContent = values.seconds;
+                set('days', values.days);
+                set('hours', values.hours);
+                set('minutes', values.minutes);
+                set('seconds', values.seconds);
+                ['', '-mobile'].forEach(s => {
+                    set('hero-days' + s, values.days);
+                    set('hero-hours' + s, values.hours);
+                    set('hero-minutes' + s, values.minutes);
+                    set('hero-seconds' + s, values.seconds);
+                });
+                return;
             }
+
+            // Event is over — swap the countdown for the recap / thank-you state.
+            const dateStr = target.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            showEventEnded(dateStr);
+            if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
         }
 
-        setInterval(updateCountdown, 1000);
+        function showEventEnded(dateStr) {
+            const hide = id => { const n = document.getElementById(id); if (n) n.classList.add('hidden'); };
+            const show = id => { const n = document.getElementById(id); if (n) n.classList.remove('hidden'); };
+
+            hide('countdown');
+            show('event-ended');
+
+            const icon = document.getElementById('countdown-status-icon');
+            if (icon) { icon.textContent = 'event_available'; icon.classList.remove('animate-pulse'); }
+            const label = document.getElementById('countdown-status-label');
+            if (label) label.textContent = 'Event Recap';
+            const cta = document.getElementById('event-cta-label');
+            if (cta) cta.textContent = 'See upcoming events';
+
+            ['', '-mobile'].forEach(s => {
+                const hl = document.getElementById('hero-label' + s);
+                if (hl) hl.textContent = dateStr;
+                const hc = document.getElementById('hero-countdown' + s);
+                if (hc) {
+                    // Keep the original pill height: fill the number row with a single line
+                    hc.innerHTML = '<span class="col-span-4">Event ended</span>';
+                    hc.setAttribute('aria-label', 'Event ended');
+                }
+                const dot = document.getElementById('hero-dot' + s);
+                if (dot) dot.classList.remove('animate-pulse');
+            });
+        }
+
+        countdownTimer = setInterval(updateCountdown, 1000);
         updateCountdown();
     </script>
     <script>
@@ -834,9 +884,9 @@
             const BL_W = 320, BL_H = 96, BL_R = 28;
             const RP_W = 72, RP_H = 168, RP_R = 28;
 
-            // Mobile: top notch for social icons
+            // Mobile: bottom-right corner pocket for social icons
             const M_OUTER_R = 28;
-            const TP_W = 168, TP_H = 60, TP_R = 24;
+            const BRP_W = 140, BRP_H = 84, BRP_R = 24;
 
             function buildDesktop(w, h) {
                 const rpTop = (h - RP_H) / 2;
@@ -868,22 +918,18 @@
             }
 
             function buildMobile(w, h) {
-                const tpLeft = (w - TP_W) / 2;
-                const tpRight = tpLeft + TP_W;
+                const pLeft = w - BRP_W;   // pocket inner-left wall x
+                const pTop = h - BRP_H;    // pocket top edge y
                 return [
                     `M ${M_OUTER_R} 0`,
-                    `L ${tpLeft - TP_R} 0`,
-                    `Q ${tpLeft} 0 ${tpLeft} ${TP_R}`,
-                    `L ${tpLeft} ${TP_H - TP_R}`,
-                    `Q ${tpLeft} ${TP_H} ${tpLeft + TP_R} ${TP_H}`,
-                    `L ${tpRight - TP_R} ${TP_H}`,
-                    `Q ${tpRight} ${TP_H} ${tpRight} ${TP_H - TP_R}`,
-                    `L ${tpRight} ${TP_R}`,
-                    `Q ${tpRight} 0 ${tpRight + TP_R} 0`,
                     `L ${w - M_OUTER_R} 0`,
                     `Q ${w} 0 ${w} ${M_OUTER_R}`,
-                    `L ${w} ${h - M_OUTER_R}`,
-                    `Q ${w} ${h} ${w - M_OUTER_R} ${h}`,
+                    `L ${w} ${pTop - BRP_R}`,
+                    `Q ${w} ${pTop} ${w - BRP_R} ${pTop}`,
+                    `L ${pLeft + BRP_R} ${pTop}`,
+                    `Q ${pLeft} ${pTop} ${pLeft} ${pTop + BRP_R}`,
+                    `L ${pLeft} ${h - BRP_R}`,
+                    `Q ${pLeft} ${h} ${pLeft - BRP_R} ${h}`,
                     `L ${M_OUTER_R} ${h}`,
                     `Q 0 ${h} 0 ${h - M_OUTER_R}`,
                     `L 0 ${M_OUTER_R}`,
@@ -908,7 +954,7 @@
             }
         })();
     </script>
-    <script src="/assets/js/base.js?v=2"></script>
+    <script src="/assets/js/base.js?v=3"></script>
     <!-- Hero Slider -->
     <script>
     (function() {
