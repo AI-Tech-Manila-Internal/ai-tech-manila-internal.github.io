@@ -187,3 +187,79 @@ document.addEventListener('DOMContentLoaded', function() {
     }, { passive: true });
     apply();
 });
+
+// Sponsor marquee (drag + auto-scroll). No-ops on pages without .sponsor-marquee.
+(function() {
+    const marquees = document.querySelectorAll('.sponsor-marquee');
+    if (!marquees.length) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const speed = 50; // px/sec
+
+    function setupMarquee(marquee) {
+        const track = marquee.querySelector('.sponsor-marquee-track');
+        if (!track) return null;
+        const direction = marquee.dataset.direction === 'reverse' ? 1 : -1;
+        let halfWidth = 0;
+        let position = direction === 1 ? -1 : 0; // start reverse track slightly offset so it scrolls into view
+        let lastTime = 0;
+        let isHovered = false;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartPos = 0;
+        let activePointerId = null;
+
+        function measure() { halfWidth = track.scrollWidth / 2; if (direction === 1 && position === 0) position = -halfWidth; }
+        function wrap() {
+            if (!halfWidth) return;
+            if (position <= -halfWidth) position += halfWidth;
+            else if (position > 0) position -= halfWidth;
+        }
+        function tick(time) {
+            if (!lastTime) lastTime = time;
+            const dt = (time - lastTime) / 1000;
+            lastTime = time;
+            if (!isDragging && !isHovered && !reduceMotion) {
+                position += direction * speed * dt;
+            }
+            wrap();
+            track.style.transform = 'translateX(' + position + 'px)';
+            requestAnimationFrame(tick);
+        }
+        marquee.addEventListener('pointerenter', () => { isHovered = true; });
+        marquee.addEventListener('pointerleave', () => { isHovered = false; });
+        marquee.addEventListener('pointerdown', (e) => {
+            if (e.button !== undefined && e.button !== 0) return;
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragStartPos = position;
+            activePointerId = e.pointerId;
+            try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
+            marquee.classList.add('is-dragging');
+        });
+        marquee.addEventListener('pointermove', (e) => {
+            if (!isDragging || e.pointerId !== activePointerId) return;
+            position = dragStartPos + (e.clientX - dragStartX);
+            wrap();
+        });
+        function endDrag(e) {
+            if (!isDragging || (e && e.pointerId !== activePointerId)) return;
+            isDragging = false;
+            activePointerId = null;
+            marquee.classList.remove('is-dragging');
+        }
+        marquee.addEventListener('pointerup', endDrag);
+        marquee.addEventListener('pointercancel', endDrag);
+        marquee.addEventListener('dragstart', (e) => e.preventDefault());
+
+        return { measure, start: () => requestAnimationFrame(tick) };
+    }
+
+    const instances = Array.from(marquees).map(setupMarquee).filter(Boolean);
+    function init() {
+        instances.forEach(i => i.measure());
+        instances.forEach(i => i.start());
+    }
+    if (document.readyState === 'complete') init();
+    else window.addEventListener('load', init);
+    window.addEventListener('resize', () => instances.forEach(i => i.measure()));
+})();

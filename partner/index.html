@@ -191,6 +191,20 @@
             background: linear-gradient(90deg, #002868, #BF0A30);
             border-radius: 999px;
         }
+
+        /* Sponsor marquee */
+        .sponsor-marquee { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); cursor: grab; touch-action: pan-y; padding: 24px 0; }
+        .sponsor-marquee.is-dragging { cursor: grabbing; }
+        .sponsor-marquee-track { display: flex; width: max-content; will-change: transform; user-select: none; align-items: center; }
+        .sponsor-slot { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 140px; height: 64px; }
+        @media (min-width: 768px) { .sponsor-slot { width: 180px; height: 80px; } }
+        .sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(100%) opacity(0.7); mix-blend-mode: multiply; transform: scale(1); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.8, 0.5, 1); -webkit-user-drag: none; user-select: none; transform-origin: center; }
+        .sponsor-slot.is-dark-bg img { mix-blend-mode: lighten; filter: grayscale(100%) invert(1) opacity(0.75); }
+        .sponsor-slot:hover img { filter: grayscale(0%) opacity(1); transform: scale(1.18); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.7s cubic-bezier(0.25, 1.9, 0.4, 1); }
+        .sponsor-slot.is-dark-bg:hover img { filter: grayscale(0%) invert(1) opacity(1); }
+        @media (prefers-reduced-motion: reduce) {
+            .sponsor-slot img, .sponsor-slot:hover img { transform: none; transition: filter 0.3s ease, opacity 0.3s ease; }
+        }
     </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
@@ -288,7 +302,7 @@
             <!-- At-a-glance stats -->
             <section class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mt-6 md:-mt-10 relative z-10">
                 <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
-                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">800+</div>
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">1,400+</div>
                     <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Wider network</div>
                 </div>
                 <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
@@ -302,6 +316,32 @@
                 <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
                     <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">5+</div>
                     <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Channels we own</div>
+                </div>
+            </section>
+
+            <!-- Sponsor Marquee -->
+            <section aria-label="Our sponsors">
+                <p class="text-center font-inter text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-2">Brands Already On Board</p>
+                <div class="sponsor-marquee">
+                    <div class="sponsor-marquee-track gap-8 md:gap-12">
+                        <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" title="Alveo Land" draggable="false"></div>
+                        <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" title="De Guzman Mayuga" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" title="LEAP Studios" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" title="Globe Telecom" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" title="NuKind Digital Marketing" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" title="Thermomix" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" title="PDAX" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" title="AI Labs CX" draggable="false"></div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/alveo.png" alt="" title="Alveo Land" draggable="false"></div>
+                        <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" title="De Guzman Mayuga" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/leap-studios.png" alt="" title="LEAP Studios" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/globe.png" alt="" title="Globe Telecom" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/nukind.png" alt="" title="NuKind Digital Marketing" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/thermomix.png" alt="" title="Thermomix" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/pdax.png" alt="" title="PDAX" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></div>
+                    </div>
                 </div>
             </section>
 
@@ -399,7 +439,7 @@
                                     </div>
                                     <span class="font-manrope font-bold text-brand-blue">Manila Social Community network</span>
                                 </div>
-                                <span class="font-jetbrains text-sm text-on-surface-variant">800+</span>
+                                <span class="font-jetbrains text-sm text-on-surface-variant">1,400+</span>
                             </div>
                             <div class="reach-bar"><span style="width:100%"></span></div>
                         </div>
@@ -423,7 +463,7 @@
                                     </div>
                                     <span class="font-manrope font-bold text-brand-blue">Per event attendance</span>
                                 </div>
-                                <span class="font-jetbrains text-sm text-on-surface-variant">15 – 100</span>
+                                <span class="font-jetbrains text-sm text-on-surface-variant">15 – 120+</span>
                             </div>
                             <div class="reach-bar"><span style="width:55%"></span></div>
                         </div>
@@ -449,65 +489,52 @@
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Partnership Tiers</span>
                     <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Pick the level that fits.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
-                    <p class="font-inter text-base md:text-lg text-on-surface-variant">Four ways to back the community — from one-off support to long-term partnership. Each can be tailored. Talk to us and we'll shape it around your goals.</p>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">Three tiers — from one-off support to a long-term, headline partnership. Each can be tailored. Talk to us and we'll shape it around your goals and budget.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-                    <!-- Tier 1: Friend -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                    <!-- Tier 1: Supporter -->
                     <div class="tier">
                         <span class="tier-badge">Tier · 01</span>
-                        <h3 class="tier-name font-manrope font-extrabold text-2xl text-brand-blue mt-4 mb-1">Friend</h3>
-                        <p class="tier-feature font-inter text-sm text-on-surface-variant mb-4">A nod of thanks for one-off support.</p>
-                        <div class="tier-divider"></div>
-                        <ul class="space-y-3 font-inter text-sm text-on-surface-variant flex-grow">
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Logo on event slides</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Mention in event recap</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Listing on partner page</li>
-                        </ul>
-                    </div>
-
-                    <!-- Tier 2: Supporter -->
-                    <div class="tier">
-                        <span class="tier-badge">Tier · 02</span>
                         <h3 class="tier-name font-manrope font-extrabold text-2xl text-brand-blue mt-4 mb-1">Supporter</h3>
-                        <p class="tier-feature font-inter text-sm text-on-surface-variant mb-4">Sponsor a single meetup or workshop.</p>
+                        <p class="tier-feature font-inter text-sm text-on-surface-variant mb-4">Back a single event or workshop.</p>
                         <div class="tier-divider"></div>
                         <ul class="space-y-3 font-inter text-sm text-on-surface-variant flex-grow">
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Logo &amp; mention at sponsored event</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Logo &amp; mention at the sponsored event</li>
                             <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Branded social shoutouts</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Booth or demo space on the night</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Speaking slot (5 min)</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Mention in the event recap</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Listing on the partner page</li>
                         </ul>
                     </div>
 
-                    <!-- Tier 3: Partner FEATURED -->
+                    <!-- Tier 2: Premium FEATURED -->
                     <div class="tier featured">
                         <span class="ribbon">Most popular</span>
-                        <span class="tier-badge">Tier · 03</span>
-                        <h3 class="tier-name font-manrope font-extrabold text-2xl mt-4 mb-1">Partner</h3>
-                        <p class="tier-feature font-inter text-sm mb-4">Recurring relationship across the year.</p>
+                        <span class="tier-badge">Tier · 02</span>
+                        <h3 class="tier-name font-manrope font-extrabold text-2xl mt-4 mb-1">Premium</h3>
+                        <p class="tier-feature font-inter text-sm mb-4">A bigger presence across an event or a season.</p>
                         <div class="tier-divider"></div>
                         <ul class="space-y-3 font-inter text-sm tier-feature flex-grow">
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Multi-event sponsorship package</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Permanent partner page placement</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Everything in Supporter</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Booth or demo space on the night</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Short speaking slot</li>
                             <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Co-branded content &amp; case study</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Featured keynote on a Spotlight night</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Quarterly engagement report</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Permanent partner page placement</li>
                         </ul>
                     </div>
 
-                    <!-- Tier 4: Title -->
+                    <!-- Tier 3: Signature -->
                     <div class="tier">
-                        <span class="tier-badge">Tier · 04</span>
-                        <h3 class="tier-name font-manrope font-extrabold text-2xl text-brand-blue mt-4 mb-1">Title</h3>
-                        <p class="tier-feature font-inter text-sm text-on-surface-variant mb-4">Headline sponsor of a flagship initiative.</p>
+                        <span class="tier-badge">Tier · 03</span>
+                        <h3 class="tier-name font-manrope font-extrabold text-2xl text-brand-blue mt-4 mb-1">Signature</h3>
+                        <p class="tier-feature font-inter text-sm text-on-surface-variant mb-4">Headline partner of a flagship initiative.</p>
                         <div class="tier-divider"></div>
                         <ul class="space-y-3 font-inter text-sm text-on-surface-variant flex-grow">
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Named series or major event</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Everything in Premium</li>
                             <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Top billing across all assets</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Co-developed programs &amp; tracks</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Dedicated community initiative</li>
-                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Full custom partnership scope</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Featured keynote on a Spotlight night</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Co-developed programs &amp; community initiative</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Full custom partnership scope &amp; reporting</li>
                         </ul>
                     </div>
                 </div>
@@ -533,7 +560,7 @@
                                 <span class="material-symbols-outlined">mic</span>
                             </div>
                             <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Event sponsorships</h3>
-                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Support community meetups, workshops, and networking nights. Brand presence in front of 15–100 attendees per event.</p>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Support community meetups, workshops, and networking nights. Brand presence in front of 15–120+ attendees per event, depending on the format.</p>
                         </div>
                     </div>
                     <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
@@ -693,6 +720,6 @@
         </div>
     </footer>
 
-    <script src="/assets/js/base.js?v=3"></script>
+    <script src="/assets/js/base.js?v=4"></script>
 </body>
 </html>
