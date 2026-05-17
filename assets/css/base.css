@@ -359,6 +359,19 @@ body.menu-open {
     overflow: hidden;
 }
 
+/* The third-party chat widget (aichatbotjs) injects its launcher and panel
+   with z-index: 2147483647 !important inline, so it can't be out-stacked.
+   Hide it entirely while the mobile menu is open so the menu sits above
+   everything. The rule drops as soon as .menu-open is removed, restoring
+   the widget in whatever state it was in. */
+body.menu-open #chat-button-element,
+body.menu-open #chat-element,
+body.menu-open .ai-chat-widget {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
 /* Keep the toggle button visible above the fullscreen menu */
 #mobile-menu-button {
     position: relative;
