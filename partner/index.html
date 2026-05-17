@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,410 +26,700 @@
 
     <link rel="icon" type="image/png" href="/assets/img/favicon.png">
     <link rel="apple-touch-icon" href="/assets/img/favicon.png">
+    <link rel="preload" href="/assets/fonts/google/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/google/xn7gYHE41ni1AdIRggexSg.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="/assets/css/fonts.css" rel="stylesheet">
+
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "where": { "href_matches": "/*" },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
 
     <script src="/assets/vendor/tailwind/tailwind.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" defer>
     <script defer id="chatbot-script" src="https://cdn.aichatbotjs.com/chatbot.js" data-chatbot-id="bot-gyqwb00wei"></script>
 
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#000000",
+              "on-primary": "#ffffff",
+              "primary-container": "#131b2e",
+              "on-primary-container": "#7c839b",
+              "primary-fixed": "#dae2fd",
+              "primary-fixed-dim": "#bec6e0",
+              "secondary": "#5f5e5b",
+              "on-secondary": "#ffffff",
+              "secondary-container": "#e5e2dd",
+              "on-secondary-container": "#656461",
+              "tertiary": "#000000",
+              "on-tertiary": "#ffffff",
+              "error": "#ba1a1a",
+              "background": "#faf9f6",
+              "on-background": "#1a1c1a",
+              "surface": "#ffffff",
+              "on-surface": "#1a1c1a",
+              "surface-dim": "#dbdad7",
+              "surface-bright": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f4f3f1",
+              "surface-container": "#efeeeb",
+              "surface-container-high": "#e9e8e5",
+              "surface-container-highest": "#e3e2e0",
+              "surface-variant": "#e3e2e0",
+              "on-surface-variant": "#45464d",
+              "outline": "#76777d",
+              "outline-variant": "#c6c6cd",
+              "brand-red": "#BF0A30",
+              "brand-blue": "#002868"
+            },
+            borderRadius: {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px",
+              "card": "24px",
+              "bento": "32px"
+            },
+            spacing: {
+              "gutter": "24px",
+              "unit": "8px",
+              "margin-desktop": "48px",
+              "margin-mobile": "16px",
+              "container-max": "1440px"
+            },
+            fontFamily: {
+              "manrope": ["Manrope", "sans-serif"],
+              "inter": ["Inter", "sans-serif"],
+              "jetbrains": ["JetBrains Mono", "monospace"]
+            },
+            maxWidth: {
+              "container-max": "1440px"
+            }
+          }
+        }
+      }
+    </script>
+
     <link href="/assets/css/base.css" rel="stylesheet">
+    <style>
+        body { padding-top: 0 !important; font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        section.bg-\[\#001B47\] .glass-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #efeeeb; }
+        ::-webkit-scrollbar-thumb { background: #c6c6cd; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #76777d; }
+
+        section[id] { scroll-margin-top: 96px; }
+
+        .hero-copy-shadow {
+            text-shadow: 0 3px 18px rgba(0, 0, 0, 0.75), 0 1px 2px rgba(0, 0, 0, 0.8);
+            -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Sponsorship tier ladder */
+        .tier {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 28px 24px;
+            border-radius: 24px;
+            background: #ffffff;
+            border: 1px solid rgba(0, 40, 104, 0.08);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .tier:hover { transform: translateY(-4px); box-shadow: 0 16px 40px -20px rgba(0, 40, 104, 0.3); }
+        .tier .tier-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 6px 10px; border-radius: 999px;
+            background: rgba(0,40,104,0.06); color: #002868;
+            align-self: flex-start;
+        }
+        .tier.featured {
+            background: #001B47;
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 20px 50px -20px rgba(0,40,104,0.5);
+        }
+        .tier.featured .tier-badge { background: #BF0A30; color: #fff; }
+        .tier.featured .tier-name { color: #fff; }
+        .tier.featured .tier-feature { color: rgba(255,255,255,0.82); }
+        .tier.featured .tier-divider { background: rgba(255,255,255,0.15); }
+        .tier .ribbon {
+            position: absolute; top: -10px; right: 18px;
+            background: #BF0A30; color: white;
+            font-family: 'JetBrains Mono', monospace; font-size: 9px;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            padding: 4px 10px; border-radius: 999px;
+            box-shadow: 0 4px 12px rgba(191,10,48,0.35);
+        }
+        .tier-divider { height: 1px; background: rgba(0,40,104,0.08); margin: 20px 0; }
+
+        /* Reach donut visual */
+        .reach-bar {
+            height: 10px; border-radius: 999px;
+            background: rgba(0, 40, 104, 0.08);
+            overflow: hidden;
+            position: relative;
+        }
+        .reach-bar > span {
+            position: absolute; left: 0; top: 0; bottom: 0;
+            background: linear-gradient(90deg, #002868, #BF0A30);
+            border-radius: 999px;
+        }
+
+        /* Sponsor marquee */
+        .sponsor-marquee { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); cursor: grab; touch-action: pan-y; padding: 24px 0; }
+        .sponsor-marquee.is-dragging { cursor: grabbing; }
+        .sponsor-marquee-track { display: flex; width: max-content; will-change: transform; user-select: none; align-items: center; }
+        .sponsor-slot { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 140px; height: 64px; }
+        @media (min-width: 768px) { .sponsor-slot { width: 180px; height: 80px; } }
+        .sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(100%) opacity(0.7); mix-blend-mode: multiply; transform: scale(1); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.8, 0.5, 1); -webkit-user-drag: none; user-select: none; transform-origin: center; }
+        .sponsor-slot.is-dark-bg img { mix-blend-mode: lighten; filter: grayscale(100%) invert(1) opacity(0.75); }
+        .sponsor-slot:hover img { filter: grayscale(0%) opacity(1); transform: scale(1.18); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.7s cubic-bezier(0.25, 1.9, 0.4, 1); }
+        .sponsor-slot.is-dark-bg:hover img { filter: grayscale(0%) invert(1) opacity(1); }
+        @media (prefers-reduced-motion: reduce) {
+            .sponsor-slot img, .sponsor-slot:hover img { transform: none; transition: filter 0.3s ease, opacity 0.3s ease; }
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white">
-    <!-- Neural Background -->
-    <div class="neural-bg"></div>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
 
-    <!-- 3D Globe Container -->
-    <div id="globe-container"></div>
-
-    <!-- Cyber lines effect -->
-    <div class="cyber-lines" id="cyber-lines"></div>
-
-    <!-- Header -->
-    <header class="glass-dark fixed top-0 w-full z-50 border-b border-cyan-500/20">
-        <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-lg overflow-hidden neon-glow">
-                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
-                    </div>
-                    <a href="/" class="text-xl font-bold gradient-text-ai">AI & Tech Manila</a>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="/" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Home</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/events" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Events</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/join-team" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Join Our Team</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/partner" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Partner</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/speaker" class="text-gray-300 hover:text-cyan-400 transition-colors duration-300 relative group">
-                        <span>Become a Speaker</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
-                    </a>
-                    <a href="/chill-chat" class="relative group">
-                        <span class="glow-button holographic text-white font-semibold py-2 px-4 rounded-full hover:scale-105 transition-transform duration-300 inline-block neon-glow">
-                            Chill & Chat
+    <!-- TopNavBar -->
+    <nav id="topnav" class="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+        <div class="relative flex items-center max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop h-24">
+            <!-- Mobile: brand + hamburger share one full-width white pill; on desktop the wrapper dissolves (md:contents) so the logo is a standalone circle again -->
+            <div id="nav-shell" class="md:contents flex items-center justify-between w-full pointer-events-auto bg-white rounded-full shadow-lg shadow-black/20 pr-3">
+                <a id="nav-brand" href="/" class="pointer-events-auto inline-flex items-center rounded-full md:bg-white md:shadow-lg md:shadow-black/20 hover:scale-105 transition-transform" aria-label="AI &amp; Tech Manila home">
+                    <span class="w-16 h-16 rounded-full flex items-center justify-center shrink-0">
+                        <span class="w-11 h-11 rounded-full overflow-hidden">
+                            <img src="/assets/img/logo.avif" alt="AI &amp; Tech Manila Logo" class="w-full h-full object-cover scale-125">
                         </span>
-                    </a>
-                </div>
-
-                <button id="mobile-menu-button" class="md:hidden text-cyan-400">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>
+                    </span>
+                    <span id="nav-wordmark" class="md:hidden ml-2 font-manrope font-extrabold text-lg tracking-tight text-brand-blue whitespace-nowrap">
+                        AI <span class="text-brand-red">&amp;</span> Tech <span class="text-brand-red">Manila</span>
+                    </span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden pointer-events-auto w-12 h-12 rounded-full bg-brand-blue/80 border border-white/15 text-white backdrop-blur-xl flex items-center justify-center shadow-lg shadow-black/20 transition-colors" aria-label="Toggle menu" aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="material-symbols-outlined">menu</span>
                 </button>
             </div>
-
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden mt-4 glass rounded-lg p-4 md:hidden">
-                <a href="/" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Home</a>
-
-                <a href="/events" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Events</a>
-                <a href="/join-team" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Join Our Team</a>
-                <a href="/partner" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Partner</a>
-                <a href="/speaker" class="block py-2 px-4 text-gray-300 hover:text-cyan-400 hover:bg-white/5 rounded transition">Become a Speaker</a>
-                <a href="/chill-chat" class="block py-3 px-4 mt-2 holographic text-white font-bold text-center rounded-full neon-glow">Chill & Chat ✨</a>
+            <div class="hidden md:flex pointer-events-auto absolute left-1/2 -translate-x-1/2 items-center gap-1 lg:gap-1.5 rounded-full bg-brand-blue/80 border border-white/15 px-2 py-2 lg:px-3 lg:py-2.5 shadow-lg shadow-black/20 backdrop-blur-xl whitespace-nowrap">
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/">Home</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/events">Events</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/join-team">Team</a>
+                <a class="text-white bg-brand-red rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 font-inter text-sm font-medium hover:bg-brand-red/90 transition-colors whitespace-nowrap" href="/partner">Partners</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/speaker">Speakers</a>
+                <a class="text-white/80 hover:text-white hover:bg-white/10 rounded-full px-3.5 py-2 lg:px-5 lg:py-2.5 transition-colors font-inter text-sm font-medium whitespace-nowrap" href="/chill-chat">Chill &amp; Chat</a>
             </div>
-        </nav>
-    </header>
-
-    <main class="relative z-10 pt-24">
-        <!-- Hero Section -->
-        <section class="min-h-[40vh] flex items-center justify-center px-4 sm:px-6">
-            <div class="container mx-auto text-center">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 float-animation">
-                    <span class="gradient-text-ai">Partner With Us</span>
-                </h1>
-                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                    Empower the Future of AI & Technology in Manila
-                </p>
-            </div>
-        </section>
-
-        <!-- Introduction -->
-        <section class="py-20 px-6">
-            <div class="container mx-auto max-w-4xl">
-                <div class="glass rounded-2xl p-8 md:p-12">
-                    <p class="text-gray-300 text-lg leading-relaxed mb-6">
-                        At AI & Tech Manila, we're building a thriving community of innovators, entrepreneurs, and professionals who are shaping the future of AI, technology, and digital transformation in the Philippines.
-                    </p>
-                    <p class="text-gray-300 text-lg leading-relaxed">
-                        By becoming a sponsor or partner, your organization can play a direct role in supporting knowledge-sharing, collaboration, and the growth of a vibrant local tech ecosystem.
-                    </p>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
+            <div class="mobile-menu__bg"></div>
+            <div class="mobile-menu__inner">
+                <nav class="mobile-menu__nav">
+                    <a href="/" class="mobile-menu__link">Home<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/events" class="mobile-menu__link">Events<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/join-team" class="mobile-menu__link">Join Our Team<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/partner" class="mobile-menu__link is-active">Become a Partner<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                    <a href="/speaker" class="mobile-menu__link">Become a Speaker<span class="arrow material-symbols-outlined">arrow_forward</span></a>
+                </nav>
+                <div class="mobile-menu__footer">
+                    <a href="/chill-chat" class="mobile-menu__cta">
+                        <span class="material-symbols-outlined">chat_bubble</span>
+                        Chill &amp; Chat
+                    </a>
+                    <p class="mobile-menu__tagline">Where Innovation Meets Intelligence</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <!-- Why Partner With Us -->
-        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-4xl font-bold gradient-text mb-12 text-center">Why Partner With Us</h2>
+    <main class="flex-grow">
+        <!-- Hero -->
+        <section class="max-w-container-max mx-auto pt-32 md:pt-32 pb-16 md:pb-20 px-margin-mobile md:px-margin-desktop">
+            <div class="relative w-full min-h-[480px] md:min-h-[560px] rounded-bento overflow-hidden shadow-xl">
+                <img src="/assets/img/slider/20250830_155049.webp" alt="AI & Tech Manila partner event" class="absolute inset-0 w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/90 via-brand-blue/70 to-brand-blue/30"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/15"></div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Targeted Exposure -->
-                    <div class="glass rounded-2xl p-8">
-                        <div class="text-5xl mb-6 text-center">🎯</div>
-                        <h3 class="text-2xl font-bold text-cyan-400 mb-4 text-center">1. Targeted Exposure</h3>
-                        <p class="text-gray-300 mb-4">Reach a highly engaged audience of:</p>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Tech professionals, software engineers, and data experts</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Startup founders, business leaders, and decision-makers</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Students and enthusiasts passionate about innovation and technology</span>
-                            </li>
-                        </ul>
+                <div class="relative min-h-[480px] md:min-h-[560px] flex flex-col justify-between gap-10 md:gap-14 p-8 md:p-12 lg:p-16">
+                    <div class="inline-flex items-center gap-2 self-start bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
+                        <span class="material-symbols-outlined text-white text-base">handshake</span>
+                        <span class="font-jetbrains text-[11px] uppercase tracking-widest text-white">For brands &amp; sponsors</span>
                     </div>
 
-                    <!-- Community Credibility -->
-                    <div class="glass rounded-2xl p-8">
-                        <div class="text-5xl mb-6 text-center">✨</div>
-                        <h3 class="text-2xl font-bold text-purple-400 mb-4 text-center">2. Community Credibility</h3>
-                        <p class="text-gray-300">
-                            Align your brand with one of Manila's most active AI and tech networks — a trusted hub where ideas, opportunities, and innovation meet.
+                    <div class="max-w-5xl">
+                        <h1 class="hero-copy-shadow font-manrope text-white text-4xl md:text-6xl lg:text-[64px] lg:leading-[68px] font-extrabold mb-5 tracking-tighter">
+                            Back the people building<br>Manila's tech future.
+                        </h1>
+                        <p class="hero-copy-shadow font-inter text-base md:text-lg text-white/90 max-w-xl">
+                            Reach hundreds of engaged founders, engineers, and decision-makers — and back the community shaping where AI lands in the Philippines.
                         </p>
                     </div>
 
-                    <!-- Meaningful Engagement -->
-                    <div class="glass rounded-2xl p-8">
-                        <div class="text-5xl mb-6 text-center">🤝</div>
-                        <h3 class="text-2xl font-bold text-pink-400 mb-4 text-center">3. Meaningful Engagement</h3>
-                        <p class="text-gray-300 mb-4">Showcase your products, services, or thought leadership through:</p>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Sponsored events, meetups, and panel discussions</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Collaborative content (articles, webinars, or case studies)</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Community initiatives and learning sessions</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Our Reach -->
-        <section class="py-20 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-4xl font-bold gradient-text-ai mb-12 text-center">Our Reach</h2>
-
-                <div class="glass rounded-2xl p-8 md:p-12">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="flex items-start space-x-4">
-                            <div class="text-3xl flex-shrink-0">👥</div>
-                            <div>
-                                <div class="text-3xl font-bold gradient-text-ai mb-2">800+</div>
-                                <p class="text-gray-300">Members across the Manila Social Community network</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="text-3xl flex-shrink-0">💬</div>
-                            <div>
-                                <div class="text-3xl font-bold gradient-text-ai mb-2">150+</div>
-                                <p class="text-gray-300">Active professionals in the AI & Tech Manila WhatsApp group</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="text-3xl flex-shrink-0">📱</div>
-                            <div>
-                                <div class="text-3xl font-bold gradient-text-ai mb-2">Growing</div>
-                                <p class="text-gray-300">Expanding visibility through Facebook and LinkedIn pages</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="text-3xl flex-shrink-0">🌐</div>
-                            <div>
-                                <div class="text-3xl font-bold gradient-text-ai mb-2">Diverse</div>
-                                <p class="text-gray-300">Engaged audience across tech, business, and creative industries</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sponsorship Opportunities -->
-        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-4xl font-bold gradient-text mb-12 text-center">Sponsorship Opportunities</h2>
-
-                <p class="text-gray-300 text-lg text-center mb-12 max-w-3xl mx-auto">
-                    We offer flexible partnership options to suit your goals and budget, including:
-                </p>
-
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Event Sponsorships -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="text-5xl">🎤</div>
-                            <h3 class="text-2xl font-bold gradient-text">Event Sponsorships</h3>
-                        </div>
-                        <p class="text-gray-300">
-                            Support community meetups, workshops, and networking sessions. Get your brand in front of 15-100 attendees per event.
-                        </p>
-                    </div>
-
-                    <!-- In-Kind Contributions -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="text-5xl">🎁</div>
-                            <h3 class="text-2xl font-bold gradient-text">In-Kind Contributions</h3>
-                        </div>
-                        <p class="text-gray-300">
-                            Provide venue hosting, refreshments, or tech tools and subscriptions to support our community activities.
-                        </p>
-                    </div>
-
-                    <!-- Brand Collaborations -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="text-5xl">🤝</div>
-                            <h3 class="text-2xl font-bold gradient-text">Brand Collaborations</h3>
-                        </div>
-                        <p class="text-gray-300">
-                            Partner on content partnerships and co-branded campaigns to amplify your message across our channels.
-                        </p>
-                    </div>
-
-                    <!-- Community Development -->
-                    <div class="glass rounded-2xl p-8 hover:scale-105 transition-transform duration-300">
-                        <div class="flex items-center space-x-4 mb-6">
-                            <div class="text-5xl">🚀</div>
-                            <h3 class="text-2xl font-bold gradient-text">Community Development</h3>
-                        </div>
-                        <p class="text-gray-300">
-                            Support long-term initiatives that empower members through learning and innovation programs.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Benefits Highlight -->
-        <section class="py-20 px-6">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-4xl font-bold gradient-text-ai mb-12 text-center">Partnership Benefits</h2>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="glass rounded-lg p-6 text-center">
-                        <div class="text-4xl mb-4">🎯</div>
-                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Brand Visibility</h3>
-                        <p class="text-gray-300">Logo placement at events, on our website, and across social media channels</p>
-                    </div>
-
-                    <div class="glass rounded-lg p-6 text-center">
-                        <div class="text-4xl mb-4">🎤</div>
-                        <h3 class="text-xl font-bold text-purple-400 mb-3">Speaking Opportunities</h3>
-                        <p class="text-gray-300">Showcase your expertise through presentations and panel discussions</p>
-                    </div>
-
-                    <div class="glass rounded-lg p-6 text-center">
-                        <div class="text-4xl mb-4">🤝</div>
-                        <h3 class="text-xl font-bold text-pink-400 mb-3">Direct Access</h3>
-                        <p class="text-gray-300">Connect with top talent, potential customers, and industry leaders</p>
-                    </div>
-
-                    <div class="glass rounded-lg p-6 text-center">
-                        <div class="text-4xl mb-4">📢</div>
-                        <h3 class="text-xl font-bold text-blue-400 mb-3">Thought Leadership</h3>
-                        <p class="text-gray-300">Position your organization as an innovation leader in the tech space</p>
-                    </div>
-
-                    <div class="glass rounded-lg p-6 text-center">
-                        <div class="text-4xl mb-4">🌟</div>
-                        <h3 class="text-xl font-bold text-cyan-400 mb-3">Community Impact</h3>
-                        <p class="text-gray-300">Make a meaningful difference in Manila's tech ecosystem</p>
-                    </div>
-
-                    <div class="glass rounded-lg p-6 text-center">
-                        <div class="text-4xl mb-4">📊</div>
-                        <h3 class="text-xl font-bold text-purple-400 mb-3">Engagement Metrics</h3>
-                        <p class="text-gray-300">Receive reports on reach, engagement, and partnership impact</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA Section -->
-        <section class="py-20 px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
-            <div class="container mx-auto max-w-4xl">
-                <div class="glass rounded-2xl p-8 md:p-12 text-center">
-                    <h2 class="text-4xl font-bold gradient-text-ai mb-6">Let's Collaborate</h2>
-
-                    <p class="text-xl text-gray-300 mb-8">
-                        If your organization shares our passion for innovation and community growth, we'd love to explore how we can work together.
-                    </p>
-
-                    <div class="mb-8">
-                        <a href="mailto:aiandtechmanila@gmail.com" class="text-3xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors">
-                            aiandtechmanila<wbr>@gmail.com
+                    <div class="flex flex-wrap items-center gap-3">
+                        <a href="#tiers" class="bg-brand-red text-white font-manrope font-semibold text-base px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/20 inline-flex items-center gap-2">
+                            See partnership tiers
+                            <span class="material-symbols-outlined text-lg">arrow_downward</span>
+                        </a>
+                        <a href="#contact-form" class="bg-white/10 border border-white/30 text-white font-manrope font-semibold text-base px-6 py-3 rounded-full hover:bg-white/20 transition-all backdrop-blur-md inline-flex items-center gap-2">
+                            Start a conversation
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <div class="p-6 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 rounded-lg border border-cyan-500/30 text-left mb-8">
-                        <p class="text-gray-300 mb-4">
-                            <span class="font-semibold text-cyan-400">Please include in your email:</span>
-                        </p>
-                        <ul class="space-y-2 text-gray-300">
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-cyan-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>A brief introduction about your organization</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>Your interests and goals for partnership</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <div class="w-2 h-2 bg-pink-400 rounded-full mt-2 flex-shrink-0"></div>
-                                <span>How you'd like to collaborate with AI & Tech Manila</span>
-                            </li>
+        <!-- Main content -->
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-24 flex flex-col gap-24 md:gap-32">
+
+            <!-- At-a-glance stats -->
+            <section class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 -mt-6 md:-mt-10 relative z-10">
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">1,400+</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Wider network</div>
+                </div>
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">350+</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Active core members</div>
+                </div>
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">10+</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Events per year</div>
+                </div>
+                <div class="bg-surface-container-lowest rounded-card p-5 md:p-6 shadow-sm border border-outline-variant/10">
+                    <div class="font-manrope font-extrabold text-3xl md:text-4xl text-brand-blue">5+</div>
+                    <div class="font-jetbrains text-[10px] md:text-xs uppercase tracking-widest text-on-surface-variant mt-2">Channels we own</div>
+                </div>
+            </section>
+
+            <!-- Sponsor Marquee -->
+            <section aria-label="Our sponsors">
+                <p class="text-center font-inter text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-2">Brands Already On Board</p>
+                <div class="sponsor-marquee">
+                    <div class="sponsor-marquee-track gap-8 md:gap-12">
+                        <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" title="Alveo Land" draggable="false"></div>
+                        <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" title="De Guzman Mayuga" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" title="LEAP Studios" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" title="Globe Telecom" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" title="NuKind Digital Marketing" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" title="Thermomix" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" title="PDAX" draggable="false"></div>
+                        <div class="sponsor-slot"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" title="AI Labs CX" draggable="false"></div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/alveo.png" alt="" title="Alveo Land" draggable="false"></div>
+                        <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" title="De Guzman Mayuga" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/leap-studios.png" alt="" title="LEAP Studios" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/globe.png" alt="" title="Globe Telecom" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/nukind.png" alt="" title="NuKind Digital Marketing" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/thermomix.png" alt="" title="Thermomix" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/pdax.png" alt="" title="PDAX" draggable="false"></div>
+                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Intro -->
+            <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div class="lg:col-span-7">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Why this matters</span>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">A community sponsorship that earns its keep.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant mb-4">
+                        AI &amp; Tech Manila is a hub for innovators, engineers, founders, and curious minds shaping how AI and technology land in the Philippines.
+                    </p>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">
+                        When you partner with us, you're not buying logo placement — you're backing the events, conversations, and community work that make Manila's tech scene more connected. The kind of brand goodwill that compounds.
+                    </p>
+                </div>
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    <div class="rounded-card overflow-hidden aspect-square">
+                        <img src="/assets/img/slider/3.webp" alt="Sponsor showcase" class="w-full h-full object-cover">
+                    </div>
+                    <div class="rounded-card overflow-hidden aspect-square mt-8">
+                        <img src="/assets/img/slider/2.webp" alt="Event audience" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Partner With Us -->
+            <section>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Why Partner</span>
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Three reasons this works.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">The honest pitch: you get a focused audience, the kind of credibility you can't buy, and ways to engage that go beyond a banner ad.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">target</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-5">
+                                <span class="material-symbols-outlined">target</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Targeted exposure</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant mb-4">A focused audience, not a broadcast.</p>
+                            <ul class="space-y-2 font-inter text-sm text-on-surface-variant">
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-sm mt-0.5">check_circle</span>Engineers, data &amp; AI practitioners</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-sm mt-0.5">check_circle</span>Founders &amp; decision-makers</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-sm mt-0.5">check_circle</span>Students &amp; rising tech talent</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">verified</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-5">
+                                <span class="material-symbols-outlined">verified</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Community credibility</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Align with one of Manila's most active AI and tech networks — a trusted hub where ideas, opportunities, and innovation actually meet, not just trend.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">forum</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue/10 text-brand-blue flex items-center justify-center mb-5">
+                                <span class="material-symbols-outlined">forum</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Meaningful engagement</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant mb-4">Show up in ways people remember:</p>
+                            <ul class="space-y-2 font-inter text-sm text-on-surface-variant">
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-sm mt-0.5">check_circle</span>Sponsored events &amp; panels</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-sm mt-0.5">check_circle</span>Co-created content &amp; case studies</li>
+                                <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-sm mt-0.5">check_circle</span>Workshops &amp; learning sessions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reach bento with bars -->
+            <section class="bg-surface-container-lowest border border-outline-variant/10 rounded-bento p-6 md:p-12 shadow-sm">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
+                    <div class="lg:col-span-5">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Our Reach</span>
+                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">Where your brand lands.</h2>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                        <p class="font-inter text-base md:text-lg text-on-surface-variant">A snapshot of the rooms your sponsorship walks into — and the channels that carry it onward.</p>
+                    </div>
+                    <div class="lg:col-span-7 space-y-6">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-lg">groups</span>
+                                    </div>
+                                    <span class="font-manrope font-bold text-brand-blue">Manila Social Community network</span>
+                                </div>
+                                <span class="font-jetbrains text-sm text-on-surface-variant">1,400+</span>
+                            </div>
+                            <div class="reach-bar"><span style="width:100%"></span></div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-lg">forum</span>
+                                    </div>
+                                    <span class="font-manrope font-bold text-brand-blue">WhatsApp core group</span>
+                                </div>
+                                <span class="font-jetbrains text-sm text-on-surface-variant">350+</span>
+                            </div>
+                            <div class="reach-bar"><span style="width:44%"></span></div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-lg">event_seat</span>
+                                    </div>
+                                    <span class="font-manrope font-bold text-brand-blue">Per event attendance</span>
+                                </div>
+                                <span class="font-jetbrains text-sm text-on-surface-variant">15 – 120+</span>
+                            </div>
+                            <div class="reach-bar"><span style="width:55%"></span></div>
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-9 h-9 rounded-xl bg-brand-blue/10 text-brand-blue flex items-center justify-center">
+                                        <span class="material-symbols-outlined text-lg">share</span>
+                                    </div>
+                                    <span class="font-manrope font-bold text-brand-blue">Social channels (LinkedIn, FB)</span>
+                                </div>
+                                <span class="font-jetbrains text-sm text-on-surface-variant">Growing</span>
+                            </div>
+                            <div class="reach-bar"><span style="width:45%"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sponsorship Tiers -->
+            <section id="tiers">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Partnership Tiers</span>
+                    <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Pick the level that fits.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
+                    <p class="font-inter text-base md:text-lg text-on-surface-variant">Three tiers — from one-off support to a long-term, headline partnership. Each can be tailored. Talk to us and we'll shape it around your goals and budget.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                    <!-- Tier 1: Supporter -->
+                    <div class="tier">
+                        <span class="tier-badge">Tier · 01</span>
+                        <h3 class="tier-name font-manrope font-extrabold text-2xl text-brand-blue mt-4 mb-1">Supporter</h3>
+                        <p class="tier-feature font-inter text-sm text-on-surface-variant mb-4">Back a single event or workshop.</p>
+                        <div class="tier-divider"></div>
+                        <ul class="space-y-3 font-inter text-sm text-on-surface-variant flex-grow">
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Logo &amp; mention at the sponsored event</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Branded social shoutouts</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Mention in the event recap</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Listing on the partner page</li>
                         </ul>
                     </div>
 
-                    <a href="mailto:aiandtechmanila@gmail.com?subject=Partnership Inquiry - AI & Tech Manila" class="glow-button bg-gradient-to-r from-cyan-500 to-purple-600 text-white font-bold py-4 px-8 rounded-full hover:scale-105 transition-transform duration-300 inline-block neon-glow">
-                        Start the Conversation
-                    </a>
-                </div>
-            </div>
-        </section>
+                    <!-- Tier 2: Premium FEATURED -->
+                    <div class="tier featured">
+                        <span class="ribbon">Most popular</span>
+                        <span class="tier-badge">Tier · 02</span>
+                        <h3 class="tier-name font-manrope font-extrabold text-2xl mt-4 mb-1">Premium</h3>
+                        <p class="tier-feature font-inter text-sm mb-4">A bigger presence across an event or a season.</p>
+                        <div class="tier-divider"></div>
+                        <ul class="space-y-3 font-inter text-sm tier-feature flex-grow">
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Everything in Supporter</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Booth or demo space on the night</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Short speaking slot</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Co-branded content &amp; case study</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Permanent partner page placement</li>
+                        </ul>
+                    </div>
 
-        <!-- Closing Message -->
-        <section class="py-20 px-6">
-            <div class="container mx-auto max-w-4xl">
-                <div class="glass rounded-2xl p-8 text-center">
-                    <h3 class="text-3xl font-bold gradient-text-ai mb-4">Together, We Build the Future</h3>
-                    <p class="text-xl text-gray-300">
-                        Join us in empowering Manila's tech community and shaping the future of AI and innovation in the Philippines.
-                    </p>
+                    <!-- Tier 3: Signature -->
+                    <div class="tier">
+                        <span class="tier-badge">Tier · 03</span>
+                        <h3 class="tier-name font-manrope font-extrabold text-2xl text-brand-blue mt-4 mb-1">Signature</h3>
+                        <p class="tier-feature font-inter text-sm text-on-surface-variant mb-4">Headline partner of a flagship initiative.</p>
+                        <div class="tier-divider"></div>
+                        <ul class="space-y-3 font-inter text-sm text-on-surface-variant flex-grow">
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Everything in Premium</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Top billing across all assets</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Featured keynote on a Spotlight night</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Co-developed programs &amp; community initiative</li>
+                            <li class="flex items-start gap-2"><span class="material-symbols-outlined text-brand-red text-base mt-0.5">check_circle</span>Full custom partnership scope &amp; reporting</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </section>
+
+                <p class="text-center font-inter text-sm text-on-surface-variant mt-8">
+                    Don't see your fit? <a href="#contact-form" class="text-brand-red font-semibold hover:underline">Tell us what you have in mind</a> — every partnership we run is custom.
+                </p>
+            </section>
+
+            <!-- Sponsorship Opportunities (formats) -->
+            <section>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Ways to Partner</span>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">Four formats — pick one or mix them.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">mic</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center mb-5 shadow-lg shadow-brand-blue/25">
+                                <span class="material-symbols-outlined">mic</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Event sponsorships</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Support community meetups, workshops, and networking nights. Brand presence in front of 15–120+ attendees per event, depending on the format.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">card_giftcard</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center mb-5 shadow-lg shadow-brand-blue/25">
+                                <span class="material-symbols-outlined">card_giftcard</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">In-kind contributions</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Venue, refreshments, tech tools, or platform credits — non-cash support that makes events possible.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">campaign</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center mb-5 shadow-lg shadow-brand-blue/25">
+                                <span class="material-symbols-outlined">campaign</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Brand collaborations</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Content partnerships and co-branded campaigns that amplify your message across our channels — and ours into your audience.</p>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-bento p-8 shadow-sm border border-outline-variant/10 relative overflow-hidden">
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[140px] text-brand-blue/[0.04] pointer-events-none">rocket_launch</span>
+                        <div class="relative">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-blue text-white flex items-center justify-center mb-5 shadow-lg shadow-brand-blue/25">
+                                <span class="material-symbols-outlined">rocket_launch</span>
+                            </div>
+                            <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Community development</h3>
+                            <p class="font-inter text-sm md:text-base text-on-surface-variant">Long-term programs — learning tracks, scholarships, mentorship — that empower members and build deeper goodwill.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partnership Benefits -->
+            <section>
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">What You Get</span>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">Six concrete benefits.</h2>
+                    <div class="w-16 h-1 rounded-full bg-brand-red mx-auto mb-5"></div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                    <div class="bg-surface-container-lowest rounded-card p-6 border border-outline-variant/15 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">visibility</span>
+                        </div>
+                        <h3 class="font-manrope font-bold text-base text-brand-blue mb-1">Brand visibility</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">Logo placement at events, on the site, and across social channels.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 border border-outline-variant/15 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">record_voice_over</span>
+                        </div>
+                        <h3 class="font-manrope font-bold text-base text-brand-blue mb-1">Speaking opportunities</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">Showcase your expertise through talks and panel slots.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 border border-outline-variant/15 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">connect_without_contact</span>
+                        </div>
+                        <h3 class="font-manrope font-bold text-base text-brand-blue mb-1">Direct access</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">Connect with top talent, potential customers, and industry leaders.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 border border-outline-variant/15 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">lightbulb</span>
+                        </div>
+                        <h3 class="font-manrope font-bold text-base text-brand-blue mb-1">Thought leadership</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">Position your organization as an innovation leader in the space.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 border border-outline-variant/15 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">volunteer_activism</span>
+                        </div>
+                        <h3 class="font-manrope font-bold text-base text-brand-blue mb-1">Community impact</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">Make a real difference in Manila's tech ecosystem — not just optics.</p>
+                    </div>
+                    <div class="bg-surface-container-lowest rounded-card p-6 border border-outline-variant/15 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined">analytics</span>
+                        </div>
+                        <h3 class="font-manrope font-bold text-base text-brand-blue mb-1">Engagement metrics</h3>
+                        <p class="font-inter text-sm text-on-surface-variant">Reports on reach, engagement, and your partnership's impact.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact CTA -->
+            <section id="contact-form" class="bg-[#001B47] rounded-bento p-10 md:p-16 relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                    <div class="lg:col-span-6">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-white/55">Let's Collaborate</span>
+                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-white mt-3 mb-3 tracking-tight">Send us a short email.</h2>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                        <p class="font-inter text-base md:text-lg text-white/75 mb-8">If your organization shares our passion for innovation and community growth, we'd love to explore how we can work together.</p>
+
+                        <a href="mailto:aiandtechmanila@gmail.com?subject=Partnership Inquiry - AI %26 Tech Manila" class="bg-brand-red text-white font-manrope font-semibold text-base px-7 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-black/30 inline-flex items-center gap-2">
+                            Start the conversation
+                            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        </a>
+
+                        <p class="font-inter text-sm text-white/55 mt-5">Or write directly to <a href="mailto:aiandtechmanila@gmail.com" class="text-white hover:text-brand-red transition-colors font-medium underline decoration-brand-red decoration-2 underline-offset-4">aiandtechmanila@gmail.com</a></p>
+                    </div>
+                    <div class="lg:col-span-6">
+                        <div class="glass-card rounded-bento p-7 md:p-8">
+                            <p class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red mb-4">Please include</p>
+                            <ul class="space-y-4 font-inter text-base text-white/85">
+                                <li class="flex items-start gap-3">
+                                    <span class="flex-shrink-0 w-7 h-7 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center font-jetbrains font-bold text-xs">01</span>
+                                    A short introduction about your organization
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="flex-shrink-0 w-7 h-7 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center font-jetbrains font-bold text-xs">02</span>
+                                    Your interests and goals for the partnership
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="flex-shrink-0 w-7 h-7 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center font-jetbrains font-bold text-xs">03</span>
+                                    How you'd like to collaborate with us
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="flex-shrink-0 w-7 h-7 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center font-jetbrains font-bold text-xs">04</span>
+                                    Any preferred tier or format from this page
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="glass-dark border-t border-cyan-500/20 py-12 px-6">
-        <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <div class="flex items-center space-x-3 mb-4">
-                        <div class="w-10 h-10 rounded-lg overflow-hidden">
-                            <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover logo">
-                        </div>
-                        <span class="text-xl font-bold gradient-text-ai">AI & Tech Manila</span>
+    <footer id="contact" class="bg-[#001B47] text-white mt-12 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-50 pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto py-12 px-margin-mobile md:px-margin-desktop gap-8">
+            <div class="flex flex-col items-center md:items-start gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-lg overflow-hidden">
+                        <img src="/assets/img/logo.avif" alt="AI & Tech Manila Logo" class="w-full h-full object-cover">
                     </div>
-                    <p class="text-sm text-gray-400 max-w-xs">Shaping the future of Artificial Intelligence for the benefit of all mankind.</p>
+                    <span class="font-manrope text-xl font-bold text-white tracking-tight">AI &amp; Tech Manila</span>
                 </div>
-
-                <div class="flex space-x-6">
-                    <a href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61578227953203" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.323-1.325z"/>
-                        </svg>
-                    </a>
-                    <a href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.459l-6.354 1.654zm11.892-21.891c-5.448 0-9.881 4.433-9.881 9.881s4.433 9.881 9.881 9.881 9.881-4.433 9.881-9.881-4.433-9.881-9.881-9.881z"/>
-                        </svg>
-                    </a>
-                </div>
+                <p class="font-inter text-sm text-white/65 text-center md:text-left max-w-xs">
+                    &copy; <span id="copyright-year"></span> AI &amp; Tech Manila. Shaping the future for the benefit of all mankind.
+                </p>
             </div>
-
-            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
-                <p class="text-sm text-gray-500">&copy; <span id="copyright-year"></span> AI & Tech Manila. Powered by Intelligence.</p>
+            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://chat.whatsapp.com/G06kuHiKMbD4FaewuS5wkf" target="_blank" rel="noopener">WhatsApp</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.linkedin.com/company/ai-tech-manila" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="https://www.facebook.com/AIandTechManila/" target="_blank" rel="noopener">Facebook</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/join-team">Join Our Team</a>
+                <a class="text-white/70 hover:text-white hover:underline decoration-brand-red decoration-2 underline-offset-4 transition-colors font-inter text-sm" href="/speaker">Become a Speaker</a>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="/assets/js/base.js?v=3"></script>
+    <script src="/assets/js/base.js?v=4"></script>
 </body>
 </html>

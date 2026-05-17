@@ -15,32 +15,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Mobile menu toggle
+// Mobile menu toggle (full-screen overlay)
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    if (!mobileMenuButton || !mobileMenu) return;
 
-    console.log('Menu button:', mobileMenuButton);
-    console.log('Mobile menu:', mobileMenu);
+    const buttonIcon = mobileMenuButton.querySelector('.material-symbols-outlined');
 
-    if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Button clicked!');
-            mobileMenu.classList.toggle('hidden');
-            console.log('Menu classes after toggle:', mobileMenu.className);
-        });
+    const setOpen = (open) => {
+        mobileMenu.classList.toggle('is-open', open);
+        mobileMenuButton.setAttribute('aria-expanded', String(open));
+        mobileMenu.setAttribute('aria-hidden', String(!open));
+        document.body.classList.toggle('menu-open', open);
+        if (buttonIcon) buttonIcon.textContent = open ? 'close' : 'menu';
+    };
 
-        // Close menu when clicking on a link
-        const menuLinks = mobileMenu.querySelectorAll('a');
-        menuLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    } else {
-        console.error('Menu elements not found!');
-    }
+    mobileMenuButton.setAttribute('aria-expanded', 'false');
+    mobileMenu.setAttribute('aria-hidden', 'true');
+
+    mobileMenuButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        setOpen(!mobileMenu.classList.contains('is-open'));
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+            setOpen(false);
+        }
+    });
 });
 
 // Initialize 3D Globe
@@ -49,7 +56,8 @@ let mouseX = 0, mouseY = 0;
 
 function initGlobe() {
     const container = document.getElementById('globe-container');
-    
+    if (!container || typeof THREE === 'undefined') return;
+
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 30;
@@ -93,6 +101,7 @@ function initGlobe() {
 }
 
 function animate() {
+    if (!globe || !particles) return;
     requestAnimationFrame(animate);
 
     globe.rotation.y += 0.005;
@@ -114,6 +123,7 @@ document.addEventListener('mousemove', function(event) {
 
 // Window resize
 window.addEventListener('resize', function() {
+    if (!camera || !renderer) return;
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -124,18 +134,22 @@ initGlobe();
 
 // Cyber lines animation
 function createCyberLine() {
+    const container = document.getElementById('cyber-lines');
+    if (!container) return;
     const line = document.createElement('div');
     line.className = 'cyber-line';
     line.style.left = Math.random() * 100 + '%';
     line.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    document.getElementById('cyber-lines').appendChild(line);
+    container.appendChild(line);
 
     setTimeout(() => {
         line.remove();
     }, 5000);
 }
 
-setInterval(createCyberLine, 200);
+if (document.getElementById('cyber-lines')) {
+    setInterval(createCyberLine, 200);
+}
 
 // Copyright year
 const copyrightYear = document.getElementById('copyright-year');
@@ -156,3 +170,96 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+// Mobile top nav: collapse the brand pill to just the logo circle on scroll,
+// expand back when scrolled to the very top.
+document.addEventListener('DOMContentLoaded', function() {
+    const nav = document.getElementById('topnav');
+    if (!nav) return;
+    const THRESHOLD = 24;
+    let ticking = false;
+    function apply() {
+        nav.classList.toggle('is-scrolled', window.scrollY > THRESHOLD);
+        ticking = false;
+    }
+    window.addEventListener('scroll', function() {
+        if (!ticking) { ticking = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+    apply();
+});
+
+// Sponsor marquee (drag + auto-scroll). No-ops on pages without .sponsor-marquee.
+(function() {
+    const marquees = document.querySelectorAll('.sponsor-marquee');
+    if (!marquees.length) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const speed = 50; // px/sec
+
+    function setupMarquee(marquee) {
+        const track = marquee.querySelector('.sponsor-marquee-track');
+        if (!track) return null;
+        const direction = marquee.dataset.direction === 'reverse' ? 1 : -1;
+        let halfWidth = 0;
+        let position = direction === 1 ? -1 : 0; // start reverse track slightly offset so it scrolls into view
+        let lastTime = 0;
+        let isHovered = false;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartPos = 0;
+        let activePointerId = null;
+
+        function measure() { halfWidth = track.scrollWidth / 2; if (direction === 1 && position === 0) position = -halfWidth; }
+        function wrap() {
+            if (!halfWidth) return;
+            if (position <= -halfWidth) position += halfWidth;
+            else if (position > 0) position -= halfWidth;
+        }
+        function tick(time) {
+            if (!lastTime) lastTime = time;
+            const dt = (time - lastTime) / 1000;
+            lastTime = time;
+            if (!isDragging && !isHovered && !reduceMotion) {
+                position += direction * speed * dt;
+            }
+            wrap();
+            track.style.transform = 'translateX(' + position + 'px)';
+            requestAnimationFrame(tick);
+        }
+        marquee.addEventListener('pointerenter', () => { isHovered = true; });
+        marquee.addEventListener('pointerleave', () => { isHovered = false; });
+        marquee.addEventListener('pointerdown', (e) => {
+            if (e.button !== undefined && e.button !== 0) return;
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragStartPos = position;
+            activePointerId = e.pointerId;
+            try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
+            marquee.classList.add('is-dragging');
+        });
+        marquee.addEventListener('pointermove', (e) => {
+            if (!isDragging || e.pointerId !== activePointerId) return;
+            position = dragStartPos + (e.clientX - dragStartX);
+            wrap();
+        });
+        function endDrag(e) {
+            if (!isDragging || (e && e.pointerId !== activePointerId)) return;
+            isDragging = false;
+            activePointerId = null;
+            marquee.classList.remove('is-dragging');
+        }
+        marquee.addEventListener('pointerup', endDrag);
+        marquee.addEventListener('pointercancel', endDrag);
+        marquee.addEventListener('dragstart', (e) => e.preventDefault());
+
+        return { measure, start: () => requestAnimationFrame(tick) };
+    }
+
+    const instances = Array.from(marquees).map(setupMarquee).filter(Boolean);
+    function init() {
+        instances.forEach(i => i.measure());
+        instances.forEach(i => i.start());
+    }
+    if (document.readyState === 'complete') init();
+    else window.addEventListener('load', init);
+    window.addEventListener('resize', () => instances.forEach(i => i.measure()));
+})();
