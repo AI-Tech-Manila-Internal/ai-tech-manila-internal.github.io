@@ -193,7 +193,7 @@
         }
 
         /* Sponsor marquee */
-        .sponsor-marquee { mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); cursor: grab; touch-action: pan-y; padding: 24px 0; }
+        .sponsor-marquee { overflow: hidden; mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent); cursor: grab; touch-action: pan-y; padding: 24px 0; }
         .sponsor-marquee.is-dragging { cursor: grabbing; }
         .sponsor-marquee-track { display: flex; width: max-content; will-change: transform; user-select: none; align-items: center; }
         .sponsor-slot { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 140px; height: 64px; }
