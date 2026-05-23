@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+/* Global typography bump: md:text-base → 20px on tablet/desktop across all pages */
+@media (min-width: 768px) {
+    .md\:text-base {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+}
+
 body {
     font-family: 'Space Grotesk', sans-serif;
     overflow-x: hidden;

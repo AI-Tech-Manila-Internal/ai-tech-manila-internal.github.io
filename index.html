@@ -174,6 +174,7 @@
         @media (prefers-reduced-motion: reduce) {
             .sponsor-slot img, .sponsor-slot:hover img { transform: none; transition: filter 0.3s ease, opacity 0.3s ease; }
         }
+
     </style>
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col">
@@ -456,10 +457,10 @@
                         </div>
                         <h2 class="font-manrope text-3xl md:text-[40px] md:leading-[48px] font-bold text-brand-blue mb-3">AI & Tech Manila Flagship Event: Tech Spotlight!</h2>
                         <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
-                        <p class="font-inter text-base md:text-lg text-on-surface-variant mb-2 max-w-lg">
+                        <p class="font-inter text-lg md:text-xl text-on-surface mb-2 max-w-lg">
                             AI deployment is already reshaping how companies operate, how decisions get made, and what skills actually matter. Join 120+ founders, engineers, and executives for keynotes, Q&amp;A, group discussions, and networking.
                         </p>
-                        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-on-surface-variant text-sm font-inter mt-4 mb-8">
+                        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-on-surface-variant text-base md:text-lg font-inter mt-4 mb-8">
                             <span class="inline-flex items-center gap-1.5">
                                 <span class="material-symbols-outlined text-base">calendar_month</span>
                                 June 20, 2026 &middot; 12:30 PM &ndash; 6:00 PM
@@ -497,19 +498,19 @@
                     </div>
                     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border-t border-outline-variant/20 pt-8 mt-auto">
                         <ul class="space-y-3">
-                            <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
+                            <li class="flex items-center gap-3 text-on-surface font-inter text-base md:text-lg">
                                 <div class="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0">
                                     <span class="material-symbols-outlined text-sm">check</span>
                                 </div>
                                 Keynotes by Dominic &ldquo;Doc&rdquo; Ligot (PAIBA) &amp; Christina Bj&ouml;rnstr&ouml;m (100XVC.IO)
                             </li>
-                            <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
+                            <li class="flex items-center gap-3 text-on-surface font-inter text-base md:text-lg">
                                 <div class="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0">
                                     <span class="material-symbols-outlined text-sm">check</span>
                                 </div>
                                 Talks on AI governance, venture capital &amp; global AI trends
                             </li>
-                            <li class="flex items-center gap-3 text-on-surface-variant font-inter text-sm md:text-base">
+                            <li class="flex items-center gap-3 text-on-surface font-inter text-base md:text-lg">
                                 <div class="w-6 h-6 rounded-full bg-brand-blue/10 flex items-center justify-center text-brand-blue shrink-0">
                                     <span class="material-symbols-outlined text-sm">check</span>
                                 </div>
@@ -540,7 +541,7 @@
                                 <span class="font-jetbrains text-xs bg-white/7 px-3 py-1.5 rounded-full border border-white/15 text-white/85">#Manila</span>
                             </div>
                         </div>
-                        <div class="lg:col-span-8 space-y-5 font-inter text-base md:text-lg text-white/70 leading-relaxed">
+                        <div class="lg:col-span-8 space-y-5 font-inter text-base md:text-xl text-white/70 leading-relaxed">
                             <p>AI &amp; Tech Manila (AITM) is a community for people who want to understand AI trends, discuss new breakthroughs, study use cases, and meet other technology enthusiasts. We are software engineers, entrepreneurs, organizational leaders, AI enthusiasts, and students.</p>
                             <p>We recognize the monumental impact that AI will have on our society, and we bring together tech enthusiasts, futurists, and curious newcomers alike for thoughtful conversations on emerging AI capabilities and their impact on nearly every major aspect of our lives: from business, medicine, law, and engineering to how we interface with the internet, the cloud, and each other.</p>
                             <p>At the same time, we acknowledge the sobering consequences of AI misuse and rogue AI agents, as well as arguably some of the most challenging problems of our times: AI values alignment, causal reasoning, monitoring and regulation, and achieving AGI emergence.</p>
@@ -552,127 +553,149 @@
 
             <!-- Team Section -->
             <section id="team">
-                <div class="mb-10 md:mb-12 bg-surface-container-lowest border border-outline-variant/10 rounded-bento p-6 md:p-10 shadow-sm">
-                    <div class="flex flex-col lg:flex-row justify-between items-start gap-8">
-                        <div class="max-w-3xl">
-                            <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Volunteer-led</span>
-                            <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Our Team</h2>
-                            <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
-                            <div class="font-inter text-base md:text-lg text-on-surface-variant space-y-4 leading-relaxed">
-                                <p>We are a volunteer organization. AITM is built and run by people who care enough to give their time, energy, and ideas to grow a thriving tech community.</p>
-                                <p>We hail from all over the globe: from New York to San Francisco, from Sydney to Manila. Our members come from engineering, startups, business, law, and finance, united by a shared belief that AI and technology will transform our careers, the broader economy, and humanity's future.</p>
-                            </div>
+                <div class="mb-10 md:mb-12 bg-surface-container-lowest border border-outline-variant/10 rounded-bento p-6 md:p-10 shadow-sm lg:grid lg:grid-cols-[1fr_auto] lg:gap-x-8">
+                    <div class="max-w-3xl lg:col-start-1 lg:row-start-1">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Volunteer-led</span>
+                        <h2 class="font-manrope font-extrabold text-4xl md:text-[48px] text-brand-blue mt-3 mb-3 tracking-tight">Our Team</h2>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                        <div class="font-inter text-lg md:text-xl text-on-surface space-y-4 leading-relaxed">
+                            <p>We are a volunteer organization. AITM is built and run by people who care enough to give their time, energy, and ideas to grow a thriving tech community.</p>
+                            <p>We hail from all over the globe: from New York to San Francisco, from Sydney to Manila. Our members come from engineering, startups, business, law, and finance, united by a shared belief that AI and technology will transform our careers, the broader economy, and humanity's future.</p>
+                            <p>As a community, we pursue four goals together:</p>
                         </div>
-                        <a href="/join-team" class="bg-brand-blue text-white font-manrope font-semibold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg shadow-brand-blue/15 inline-flex items-center gap-2 shrink-0">
-                            Join Our Team <span class="material-symbols-outlined text-base">arrow_forward</span>
-                        </a>
                     </div>
 
-                    <div class="mt-8 pt-8 border-t border-outline-variant/10 flex flex-col divide-y divide-outline-variant/15 md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4">
-                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
-                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">newspaper</span>
-                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Instill a better understanding of AI news and trends.</p>
+                    <div class="mt-4 lg:mt-8 lg:col-span-2 lg:row-start-2 flex flex-col divide-y divide-outline-variant/15 md:divide-y-0 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-4">
+                        <div class="flex items-center gap-4 py-3 md:py-0 md:block md:relative md:bg-surface-container-low md:rounded-xl md:px-6 md:pt-8 md:pb-6 md:min-h-40 md:overflow-hidden">
+                            <span class="md:hidden font-manrope font-extrabold text-brand-blue text-3xl shrink-0 tabular-nums">1</span>
+                            <span aria-hidden="true" class="hidden md:block absolute top-2 right-5 font-manrope font-extrabold text-[56px] md:text-[64px] leading-none text-on-surface/[0.06] pointer-events-none select-none tabular-nums">01</span>
+                            <p class="font-inter text-lg md:text-xl leading-relaxed text-on-surface-variant md:relative md:z-10">Instill a better understanding of AI news and trends.</p>
                         </div>
-                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
-                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">school</span>
-                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Build skills to help our community thrive in the marketplace.</p>
+                        <div class="flex items-center gap-4 py-3 md:py-0 md:block md:relative md:bg-surface-container-low md:rounded-xl md:px-6 md:pt-8 md:pb-6 md:min-h-40 md:overflow-hidden">
+                            <span class="md:hidden font-manrope font-extrabold text-brand-blue text-3xl shrink-0 tabular-nums">2</span>
+                            <span aria-hidden="true" class="hidden md:block absolute top-2 right-5 font-manrope font-extrabold text-[56px] md:text-[64px] leading-none text-on-surface/[0.06] pointer-events-none select-none tabular-nums">02</span>
+                            <p class="font-inter text-lg md:text-xl leading-relaxed text-on-surface-variant md:relative md:z-10">Build skills to help our community thrive in the marketplace.</p>
                         </div>
-                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
-                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">explore</span>
-                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Learn to navigate technological trends and help shape positive change in an AI-dominant society.</p>
+                        <div class="flex items-center gap-4 py-3 md:py-0 md:block md:relative md:bg-surface-container-low md:rounded-xl md:px-6 md:pt-8 md:pb-6 md:min-h-40 md:overflow-hidden">
+                            <span class="md:hidden font-manrope font-extrabold text-brand-blue text-3xl shrink-0 tabular-nums">3</span>
+                            <span aria-hidden="true" class="hidden md:block absolute top-2 right-5 font-manrope font-extrabold text-[56px] md:text-[64px] leading-none text-on-surface/[0.06] pointer-events-none select-none tabular-nums">03</span>
+                            <p class="font-inter text-lg md:text-xl leading-relaxed text-on-surface-variant md:relative md:z-10">Learn to navigate technological trends and help shape positive change in an AI-dominant society.</p>
                         </div>
-                        <div class="flex items-center gap-3 py-3 md:block md:bg-surface-container-low md:rounded-xl md:p-5 md:min-h-36 md:relative md:overflow-hidden">
-                            <span class="material-symbols-outlined text-brand-blue/70 text-2xl shrink-0 md:absolute md:-right-3 md:-bottom-3 md:text-[92px] md:text-brand-blue/[0.035] md:pointer-events-none">volunteer_activism</span>
-                            <p class="font-inter text-sm leading-relaxed text-on-surface-variant md:relative md:z-10">Share and provide technology for the common good, in service of humanity.</p>
+                        <div class="flex items-center gap-4 py-3 md:py-0 md:block md:relative md:bg-surface-container-low md:rounded-xl md:px-6 md:pt-8 md:pb-6 md:min-h-40 md:overflow-hidden">
+                            <span class="md:hidden font-manrope font-extrabold text-brand-blue text-3xl shrink-0 tabular-nums">4</span>
+                            <span aria-hidden="true" class="hidden md:block absolute top-2 right-5 font-manrope font-extrabold text-[56px] md:text-[64px] leading-none text-on-surface/[0.06] pointer-events-none select-none tabular-nums">04</span>
+                            <p class="font-inter text-lg md:text-xl leading-relaxed text-on-surface-variant md:relative md:z-10">Share and provide technology for the common good, in service of humanity.</p>
                         </div>
                     </div>
+
+                    <a href="/join-team" class="mt-8 lg:mt-0 lg:col-start-2 lg:row-start-1 lg:justify-self-end lg:self-start bg-brand-blue text-white font-manrope font-semibold px-6 py-3 rounded-full hover:scale-105 transition-all shadow-lg shadow-brand-blue/15 inline-flex items-center justify-center gap-2 shrink-0 self-start">
+                        Join Our Team <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
                 </div>
 
                 <!-- Founders -->
-                <div class="mb-16">
-                    <h3 class="font-jetbrains text-sm text-brand-red mb-8 uppercase tracking-widest font-medium">Founders</h3>
+                <div class="mb-12">
+                    <h3 class="font-jetbrains text-sm md:text-base text-brand-red mb-6 uppercase tracking-widest font-semibold">Founders</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
-                        <a href="https://www.linkedin.com/in/jackdiao/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-8 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                            <div class="w-32 h-32 rounded-full bg-surface-container mb-6 overflow-hidden relative">
-                                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="/assets/img/team/jack.jpeg" alt="Jack Diao">
+                        <a href="https://www.linkedin.com/in/jackdiao/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-6 md:p-10 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="relative w-48 h-48 md:w-60 md:h-60 mb-6 md:mb-8">
+                                <span aria-hidden="true" class="absolute inset-0 translate-x-2 translate-y-2 md:translate-x-3 md:translate-y-3 rounded-[2rem] bg-brand-red/25 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3 md:group-hover:translate-x-5 md:group-hover:translate-y-5"></span>
+                                <div class="relative w-full h-full rounded-[2rem] bg-surface-container overflow-hidden ring-1 ring-outline-variant/30 shadow-md saturate-[0.9] group-hover:saturate-100 transition-all duration-500">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/img/team/jack.jpeg" alt="Jack Diao">
+                                </div>
                             </div>
-                            <h4 class="font-manrope font-bold text-2xl text-brand-blue mb-1">Jack Diao</h4>
-                            <p class="font-inter text-base text-primary/60">Economic Consultant / Founder</p>
-                            <p class="font-inter text-sm text-on-surface-variant mt-3">Driving community growth and operational excellence at AI &amp; Tech Manila.</p>
+                            <h4 class="font-manrope font-bold text-3xl md:text-4xl text-brand-blue mb-2">Jack Diao</h4>
+                            <p class="font-inter text-lg md:text-xl text-primary/70 font-medium">Economic Consultant / Founder</p>
+                            <p class="font-inter text-base md:text-xl text-on-surface-variant mt-3 md:mt-4 leading-relaxed">Driving community growth and operational excellence at AI &amp; Tech Manila.</p>
                         </a>
-                        <a href="https://www.linkedin.com/in/rosselle-mabunga/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-8 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                            <div class="w-32 h-32 rounded-full bg-surface-container mb-6 overflow-hidden relative">
-                                <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
+                        <a href="https://www.linkedin.com/in/rosselle-mabunga/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-6 md:p-10 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                            <div class="relative w-48 h-48 md:w-60 md:h-60 mb-6 md:mb-8">
+                                <span aria-hidden="true" class="absolute inset-0 translate-x-2 translate-y-2 md:translate-x-3 md:translate-y-3 rounded-[2rem] bg-brand-red/25 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3 md:group-hover:translate-x-5 md:group-hover:translate-y-5"></span>
+                                <div class="relative w-full h-full rounded-[2rem] bg-surface-container overflow-hidden ring-1 ring-outline-variant/30 shadow-md saturate-[0.9] group-hover:saturate-100 transition-all duration-500">
+                                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
+                                </div>
                             </div>
-                            <h4 class="font-manrope font-bold text-2xl text-brand-blue mb-1">Rosselle Mabunga</h4>
-                            <p class="font-inter text-base text-primary/60">Founder Emeritus</p>
-                            <p class="font-inter text-sm text-on-surface-variant mt-3">Leading technical innovation and building solutions that shape the future of AI &amp; Tech Manila.</p>
+                            <h4 class="font-manrope font-bold text-3xl md:text-4xl text-brand-blue mb-2">Rosselle Mabunga</h4>
+                            <p class="font-inter text-lg md:text-xl text-primary/70 font-medium">Founder Emeritus</p>
+                            <p class="font-inter text-base md:text-xl text-on-surface-variant mt-3 md:mt-4 leading-relaxed">Leading technical innovation and building solutions that shape the future of AI &amp; Tech Manila.</p>
                         </a>
                     </div>
                 </div>
 
                 <!-- Marketing -->
-                <div class="mb-16">
-                    <h3 class="font-jetbrains text-sm text-brand-red mb-8 uppercase tracking-widest font-medium">Marketing</h3>
+                <div class="mb-12">
+                    <h3 class="font-jetbrains text-sm md:text-base text-brand-red mb-6 uppercase tracking-widest font-semibold">Marketing</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado-Nelson">
-                            </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Ingrid Honrado-Nelson</h4>
-                                <p class="font-inter text-sm text-primary/60">Tech Community Journalist &amp; Storyteller</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Documenting our journey and sharing the stories that matter in tech.</p>
-                            </div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/annalee-olermo-b94985246" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/annalee.png" alt="Annalee Olermo">
-                            </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Annalee Olermo</h4>
-                                <p class="font-inter text-sm text-primary/60">Community Weaver</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Building bridges and fostering meaningful connections within our tech ecosystem.</p>
+                        <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Ingrid Honrado-Nelson</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado-Nelson">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Tech Community Journalist &amp; Storyteller</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Documenting our journey and sharing the stories that matter in tech.</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="https://www.linkedin.com/in/sarah-jane-lee-940918361/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/sarah.jpeg" alt="Sarah Jane Lee">
-                            </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Sarah Jane Lee</h4>
-                                <p class="font-inter text-sm text-primary/60">Marketing Team</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Driving brand awareness and community engagement initiatives.</p>
-                            </div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/andykulkarni/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/andy.png" alt="Andy Kulkarni">
-                            </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Andy Kulkarni</h4>
-                                <p class="font-inter text-sm text-primary/60">Web2/Web3 Digital Marketing</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">4x Top Voice helping brands acquire more customers through innovative digital marketing strategies.</p>
+                        <a href="https://www.linkedin.com/in/annalee-olermo-b94985246" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Annalee Olermo</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/annalee.png" alt="Annalee Olermo">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Community Weaver</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Building bridges and fostering meaningful connections within our tech ecosystem.</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="https://www.linkedin.com/in/keithidalgo/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/keith.jpeg" alt="Keith Hidalgo">
-                            </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Keith Hidalgo</h4>
-                                <p class="font-inter text-sm text-primary/60">Marketing Team</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Building digital presence and engaging with our growing tech community.</p>
+                        <a href="https://www.linkedin.com/in/sarah-jane-lee-940918361/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Sarah Jane Lee</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/sarah.jpeg" alt="Sarah Jane Lee">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Marketing Team</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Driving brand awareness and community engagement initiatives.</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="https://www.linkedin.com/in/margarette-dyanna-garcia-51594310b/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/margarette.png" alt="Margarette Garcia">
+                        <a href="https://www.linkedin.com/in/andykulkarni/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Andy Kulkarni</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/andy.png" alt="Andy Kulkarni">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Web2/Web3 Digital Marketing</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">4x Top Voice helping brands acquire more customers through innovative digital marketing strategies.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Margarette Garcia</h4>
-                                <p class="font-inter text-sm text-primary/60">Marketing Team</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Crafting stories that resonate with our audience and showcase our values.</p>
+                        </a>
+                        <a href="https://www.linkedin.com/in/keithidalgo/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Keith Hidalgo</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/keith.jpeg" alt="Keith Hidalgo">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Marketing Team</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Building digital presence and engaging with our growing tech community.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/margarette-dyanna-garcia-51594310b/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Margarette Garcia</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/margarette.png" alt="Margarette Garcia">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Marketing Team</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Crafting stories that resonate with our audience and showcase our values.</p>
+                                </div>
                             </div>
                         </a>
                     </div>
@@ -680,36 +703,42 @@
 
                 <!-- Audio, Visual, and Tech -->
                 <div>
-                    <h3 class="font-jetbrains text-sm text-brand-red mb-8 uppercase tracking-widest font-medium">Audio, Visual, and Tech</h3>
+                    <h3 class="font-jetbrains text-sm md:text-base text-brand-red mb-6 uppercase tracking-widest font-semibold">Audio, Visual, and Tech</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="https://www.linkedin.com/in/heyitsistvan/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/istvan.jpeg" alt="Istvan Szabo">
-                            </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Istvan Szabo</h4>
-                                <p class="font-inter text-sm text-primary/60">Software Engineer</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Building innovative solutions and contributing technical expertise to our projects.</p>
-                            </div>
-                        </a>
-                        <a href="https://www.linkedin.com/in/adrianarvizo" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/adrian.jpeg" alt="Adrian Arvizo">
-                            </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Adrian Arvizo</h4>
-                                <p class="font-inter text-sm text-primary/60">Audio, Visual, and Tech</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Overseeing strategic initiatives and driving organizational excellence.</p>
+                        <a href="https://www.linkedin.com/in/heyitsistvan/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Istvan Szabo</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/istvan.jpeg" alt="Istvan Szabo">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Software Engineer</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Building innovative solutions and contributing technical expertise to our projects.</p>
+                                </div>
                             </div>
                         </a>
-                        <a href="https://www.linkedin.com/in/jmuscarella/" target="_blank" rel="noopener" class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-outline-variant/10 flex items-start gap-5 hover:border-primary/30 hover:shadow-md transition-all">
-                            <div class="w-16 h-16 rounded-full bg-surface-container overflow-hidden shrink-0">
-                                <img class="w-full h-full object-cover" src="/assets/img/team/jerry.jpeg" alt="Jerry Muscarella">
+                        <a href="https://www.linkedin.com/in/adrianarvizo" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Adrian Arvizo</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/adrian.jpeg" alt="Adrian Arvizo">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Audio, Visual, and Tech</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Overseeing strategic initiatives and driving organizational excellence.</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-manrope font-semibold text-lg text-brand-blue mb-1">Jerry Muscarella</h4>
-                                <p class="font-inter text-sm text-primary/60">Photographer</p>
-                                <p class="font-inter text-sm text-on-surface-variant mt-2 leading-relaxed">Capturing the moments and stories that define our community.</p>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jmuscarella/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Jerry Muscarella</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover" src="/assets/img/team/jerry.jpeg" alt="Jerry Muscarella">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Photographer</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Capturing the moments and stories that define our community.</p>
+                                </div>
                             </div>
                         </a>
                     </div>
