@@ -243,7 +243,7 @@
                         </div>
                         <div class="hidden sm:inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-md rounded-full px-3 py-1.5">
                             <span class="material-symbols-outlined text-white text-base">groups</span>
-                            <span class="font-jetbrains text-[11px] uppercase tracking-widest text-white">30 seats &middot; 4 tables</span>
+                            <span class="font-jetbrains text-[11px] uppercase tracking-widest text-white">~60 seats &middot; 4 tables</span>
                         </div>
                     </div>
 
@@ -394,7 +394,7 @@
                             <span class="material-symbols-outlined">groups</span>
                         </div>
                         <div class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red mb-1">Setup</div>
-                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">~30 attendees</h3>
+                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">~60 attendees</h3>
                         <p class="font-inter text-sm text-on-surface-variant">divided into four tables.</p>
                     </div>
                     <div class="bg-surface-container-lowest rounded-card p-6 md:p-7 shadow-sm border border-outline-variant/10">
@@ -402,7 +402,7 @@
                             <span class="material-symbols-outlined">autorenew</span>
                         </div>
                         <div class="font-jetbrains text-[10px] uppercase tracking-widest text-brand-red mb-1">Rotation</div>
-                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Every 20 min</h3>
+                        <h3 class="font-manrope font-bold text-xl text-brand-blue mb-2">Every 30 min</h3>
                         <p class="font-inter text-sm text-on-surface-variant">groups switch to a new topic.</p>
                     </div>
                     <div class="bg-surface-container-lowest rounded-card p-6 md:p-7 shadow-sm border border-outline-variant/10">
@@ -420,13 +420,13 @@
                         <div class="w-9 h-9 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0">
                             <span class="material-symbols-outlined text-lg">looks_one</span>
                         </div>
-                        <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">Pick a starting category.</span> Each table begins with one of the four topics.</p>
+                        <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">Pick a starting category.</span> Each table begins with one of the four topics and 2&ndash;5 in-depth discussion questions.</p>
                     </div>
                     <div class="flex items-start gap-3 flex-1">
                         <div class="w-9 h-9 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0">
                             <span class="material-symbols-outlined text-lg">looks_two</span>
                         </div>
-                        <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">Rotate after 20 min.</span> Groups move on so every table covers every topic.</p>
+                        <p class="font-inter text-sm text-on-surface-variant"><span class="font-semibold text-brand-blue">Rotate after 30 min.</span> Groups move on so every table covers every topic.</p>
                     </div>
                     <div class="flex items-start gap-3 flex-1">
                         <div class="w-9 h-9 rounded-full bg-brand-red/10 text-brand-red flex items-center justify-center shrink-0">
@@ -648,7 +648,7 @@
             <section class="bg-surface-container-lowest rounded-bento p-8 md:p-12 shadow-sm border border-outline-variant/15 flex flex-col md:flex-row items-center justify-between gap-8">
                 <div class="max-w-xl">
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Join the next one</span>
-                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">~30 seats. First-come, first-served.</h2>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">~60 seats. First-come, first-served.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mb-4"></div>
                     <p class="font-inter text-base text-on-surface-variant">Free to attend, capacity is limited. We announce dates and open RSVPs in the WhatsApp community — that's where seats go first.</p>
                 </div>
@@ -719,7 +719,7 @@
             const label = document.getElementById('countdown-status-label');
             if (label) label.textContent = 'Event Recap';
             const heading = document.getElementById('countdown-heading');
-            if (heading) heading.textContent = 'Thanks for joining us — see you at the next one.';
+            if (heading) heading.textContent = 'Thanks for joining us — see you at the next one!';
             if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
         }
 
