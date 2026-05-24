@@ -138,28 +138,153 @@
             -webkit-text-stroke: 0.35px rgba(0, 0, 0, 0.25);
         }
 
-        /* Timeline connector */
-        .step-rail::before {
+        /* Session flow timeline */
+        .session-flow__list {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 0 64px;
+        }
+
+        .session-flow__list::before {
             content: '';
             position: absolute;
             left: 23px;
-            top: 48px;
-            bottom: -32px;
+            top: 24px;
+            bottom: 24px;
             width: 2px;
             background: linear-gradient(to bottom, rgba(191, 10, 48, 0.4), rgba(0, 40, 104, 0.15));
         }
-        .step-rail:last-child::before { display: none; }
-        @media (min-width: 768px) {
-            .step-rail-h::before {
-                content: '';
-                position: absolute;
-                top: 23px;
-                left: 48px;
-                right: -32px;
+
+        .session-flow__item {
+            position: relative;
+        }
+
+        .session-flow__marker {
+            position: absolute;
+            left: -64px;
+            top: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 9999px;
+            background: #BF0A30;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            box-shadow: 0 10px 15px -3px rgba(191, 10, 48, 0.25), 0 4px 6px -4px rgba(191, 10, 48, 0.25);
+        }
+
+        @media (min-width: 1024px) {
+            .session-flow {
+                --flow-edge-space: clamp(150px, 10vw, 190px);
+                overflow: visible;
+                padding: 6px 2px 10px;
+            }
+
+            .session-flow__list {
+                display: block;
+                box-sizing: border-box;
+                width: calc(100% - (var(--flow-edge-space) * 2));
+                min-width: 0;
+                min-height: 420px;
+                margin: 0 auto;
+                padding: 0;
+            }
+
+            .session-flow__list::before {
+                left: calc(var(--flow-edge-space) * -1);
+                right: calc(var(--flow-edge-space) * -1);
+                top: 50%;
+                bottom: auto;
+                width: auto;
                 height: 2px;
                 background: linear-gradient(to right, rgba(191, 10, 48, 0.4), rgba(0, 40, 104, 0.15));
+                transform: translateY(-50%);
             }
-            .step-rail-h:last-child::before { display: none; }
+
+            .session-flow__item {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                width: min(330px, calc(40% - 24px));
+                min-width: 0;
+                padding: 0;
+                transform: translateX(-50%);
+            }
+
+            .session-flow__item:nth-child(1) { left: 0; }
+            .session-flow__item:nth-child(2) { left: 20%; }
+            .session-flow__item:nth-child(3) { left: 40%; }
+            .session-flow__item:nth-child(4) { left: 60%; }
+            .session-flow__item:nth-child(5) { left: 80%; }
+            .session-flow__item:nth-child(6) { left: 100%; }
+
+            .session-flow__item:nth-child(1),
+            .session-flow__item:nth-child(3),
+            .session-flow__item:nth-child(5) {
+                bottom: auto;
+                height: 50%;
+            }
+
+            .session-flow__item:nth-child(2),
+            .session-flow__item:nth-child(4),
+            .session-flow__item:nth-child(6) {
+                top: 50%;
+                height: 50%;
+            }
+
+            .session-flow__item::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                width: 2px;
+                height: 34px;
+                background: linear-gradient(to bottom, rgba(191, 10, 48, 0.34), rgba(0, 40, 104, 0.16));
+                transform: translateX(-50%);
+            }
+
+            .session-flow__item:nth-child(odd)::before {
+                bottom: 24px;
+            }
+
+            .session-flow__item:nth-child(even)::before {
+                top: 24px;
+            }
+
+            .session-flow__marker {
+                z-index: 2;
+                left: 50%;
+                top: 100%;
+                transform: translate(-50%, -50%);
+            }
+
+            .session-flow__item:nth-child(even) .session-flow__marker {
+                top: 0;
+            }
+
+            .session-flow__content {
+                position: absolute;
+                left: 0;
+                right: 0;
+                width: auto;
+                padding: 0;
+                transform: none;
+            }
+
+            .session-flow__item:nth-child(odd) .session-flow__content {
+                bottom: 64px;
+            }
+
+            .session-flow__item:nth-child(even) .session-flow__content {
+                top: 64px;
+            }
         }
 
         /* Masonry-ish photo wall */
@@ -363,45 +488,59 @@
 
             <!-- Inside a session (timeline) -->
             <section class="bg-surface-container-lowest border border-outline-variant/10 rounded-bento p-6 md:p-12 shadow-sm">
-                <div class="max-w-3xl mb-10 md:mb-12">
+                <div class="max-w-3xl mb-8">
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Inside a Session</span>
                     <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] leading-tight text-brand-blue mt-3 mb-3 tracking-tight">How a session flows</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                     <p class="font-inter text-base md:text-xl text-on-surface-variant">Every event has a different agenda, but the rhythm is familiar — designed so newcomers feel at home and regulars find something fresh.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-5 md:gap-8">
-                    <div class="relative step-rail-h">
-                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">1</div>
-                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Arrive &amp; settle</h4>
-                        <p class="font-inter text-sm text-on-surface-variant">Sign in, find a comfortable seat near the people you came with — or didn't.</p>
-                    </div>
-                    <div class="relative step-rail-h">
-                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">2</div>
-                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Intro and Key Briefings</h4>
-                        <p class="font-inter text-sm text-on-surface-variant">Highlights and recaps of key AI advancements or breakthroughs leading up to the event & discussion topics</p>
-                    </div>
-                    <div class="relative step-rail-h">
-                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">3</div>
-                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Main Program</h4>
-                        <p class="font-inter text-sm text-on-surface-variant">Talks, demos, or rotating roundtable discussions — depending on the format.</p>
-                    </div>
-                    <div class="relative step-rail-h">
-                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">4</div>
-                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Group Discussion / Activity</h4>
-                        <p class="font-inter text-sm text-on-surface-variant">Get to know those around you, and work together to answer questions or challenges from the speaker or the host! Engage your
+                <div class="session-flow">
+                    <ol class="session-flow__list" aria-label="Typical session flow">
+                        <li class="session-flow__item">
+                            <div class="session-flow__marker">1</div>
+                            <div class="session-flow__content">
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue">1. Arrive &amp; settle</h4>
+                                <p class="font-inter text-base text-on-surface-variant">Sign in, find a comfortable seat near the people you came with — or didn't.</p>
+                            </div>
+                        </li>
+                        <li class="session-flow__item">
+                            <div class="session-flow__marker">2</div>
+                            <div class="session-flow__content">
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue">2. Intro and Key Briefings</h4>
+                                <p class="font-inter text-base text-on-surface-variant">Highlights and recaps of key AI advancements or breakthroughs leading up to the event & discussion topics</p>
+                            </div>
+                        </li>
+                        <li class="session-flow__item">
+                            <div class="session-flow__marker">3</div>
+                            <div class="session-flow__content">
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue">3. Main Program</h4>
+                                <p class="font-inter text-base text-on-surface-variant">Talks, demos, or rotating roundtable discussions — depending on the format.</p>
+                            </div>
+                        </li>
+                        <li class="session-flow__item">
+                            <div class="session-flow__marker">4</div>
+                            <div class="session-flow__content">
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue">4. Group Discussion / Activity</h4>
+                                <p class="font-inter text-base text-on-surface-variant">Get to know those around you, and work together to answer questions or challenges from the speaker or the host! Engage your
 critical thinking and be creative with your answers!</p>
-                    </div>
-                    <div class="relative step-rail-h">
-                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">4</div>
-                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Open networking</h4>
-                        <p class="font-inter text-sm text-on-surface-variant">Continue the threads that interested you, meet new people, swap contacts and ideas.</p>
-                    </div>
-                    <div class="relative step-rail-h">
-                        <div class="w-12 h-12 rounded-full bg-brand-red text-white flex items-center justify-center font-manrope font-bold text-lg mb-4 shadow-md shadow-brand-red/25 relative z-10">5</div>
-                        <h4 class="font-manrope font-bold text-base text-brand-blue mb-1">Carry it forward</h4>
-                        <p class="font-inter text-sm text-on-surface-variant">The conversation continues all month in our WhatsApp community — the events are just the spark.</p>
-                    </div>
+                            </div>
+                        </li>
+                        <li class="session-flow__item">
+                            <div class="session-flow__marker">5</div>
+                            <div class="session-flow__content">
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue">5. Open networking</h4>
+                                <p class="font-inter text-base text-on-surface-variant">Continue the threads that interested you, meet new people, swap contacts and ideas.</p>
+                            </div>
+                        </li>
+                        <li class="session-flow__item">
+                            <div class="session-flow__marker">6</div>
+                            <div class="session-flow__content">
+                                <h4 class="font-manrope font-bold text-lg text-brand-blue">6. Carry it forward</h4>
+                                <p class="font-inter text-base text-on-surface-variant">The conversation continues all month in our WhatsApp community — the events are just the spark.</p>
+                            </div>
+                        </li>
+                    </ol>
                 </div>
             </section>
 
