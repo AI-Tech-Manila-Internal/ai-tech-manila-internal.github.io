@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+/* Global typography bump: text-base → 1.1rem everywhere */
+.text-base {
+    font-size: 1.1rem;
+    line-height: 1.7rem;
+}
+
 /* Global typography bump: md:text-base → 20px on tablet/desktop across all pages */
 @media (min-width: 768px) {
     .md\:text-base {
