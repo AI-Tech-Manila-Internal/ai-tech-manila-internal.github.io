@@ -160,11 +160,16 @@
             pointer-events: none;
         }
         .teammate .label {
-            position: absolute; bottom: 12px; left: 14px; right: 14px;
+            position: absolute; bottom: 14px; left: 16px; right: 16px;
             z-index: 2; color: white;
         }
-        .teammate .label .name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; line-height: 1.15; }
-        .teammate .label .role { font-family: 'JetBrains Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-top: 3px; }
+        .teammate .label .name { font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 17px; line-height: 1.15; }
+        .teammate .label .role { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; margin-top: 4px; }
+        @media (min-width: 768px) {
+            .teammate .label { bottom: 18px; left: 20px; right: 20px; }
+            .teammate .label .name { font-size: 20px; }
+            .teammate .label .role { font-size: 12px; margin-top: 5px; }
+        }
 
         /* Numbered checklist for what we ask */
         .ask-row { display: flex; gap: 16px; padding: 18px 20px; background: rgba(0,40,104,0.04); border: 1px solid rgba(0,40,104,0.08); border-radius: 20px; transition: background 0.2s ease; }
@@ -301,7 +306,7 @@
             <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                 <div class="lg:col-span-7">
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Why join our team</span>
-                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">A small team. A growing community. A real chance to shape it.</h2>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] leading-tight text-brand-blue mt-3 mb-3 tracking-tight">A small team. A growing community. A real chance to shape it.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                     <p class="font-inter text-base md:text-xl text-on-surface-variant mb-4">
                         AI &amp; Tech Manila started as a few friends and a WhatsApp group. Today, it's hundreds of people gathering every month — founders, engineers, students, and curious minds.
@@ -323,9 +328,9 @@
             <!-- Meet your future teammates -->
             <section>
                 <div class="flex flex-col md:flex-row justify-between items-start gap-6 mb-10 md:mb-12">
-                    <div class="max-w-2xl">
+                    <div class="max-w-3xl">
                         <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">The Team</span>
-                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">Meet your future teammates.</h2>
+                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] leading-tight text-brand-blue mt-3 mb-3 tracking-tight">Meet your future teammates.</h2>
                         <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                         <p class="font-inter text-base md:text-xl text-on-surface-variant">A look at some of the volunteers already running events, building partnerships, and shaping the community alongside us.</p>
                     </div>
@@ -334,51 +339,51 @@
                 <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 md:gap-4">
                     <div class="teammate">
                         <img src="/assets/img/team/jack.jpeg" alt="Jack Diao" loading="lazy">
-                        <div class="label"><div class="name">Jack</div><div class="role">Founder</div></div>
+                        <div class="label"><div class="name" title="Jack Diao">Jack</div><div class="role">Founder</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga" loading="lazy">
-                        <div class="label"><div class="name">Rosselle</div><div class="role">Founder Emeritus</div></div>
+                        <div class="label"><div class="name" title="Rosselle Mabunga">Rosselle</div><div class="role">Founder Emeritus</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado-Nelson" loading="lazy">
-                        <div class="label"><div class="name">Ingrid Honrado-Nelson</div><div class="role">Journalist &amp; Storyteller</div></div>
+                        <div class="label"><div class="name" title="Ingrid Honrado-Nelson">Ingrid</div><div class="role">Journalist &amp; Storyteller</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/annalee.png" alt="Annalee Olermo" loading="lazy">
-                        <div class="label"><div class="name">Annalee</div><div class="role">Community Weaver</div></div>
+                        <div class="label"><div class="name" title="Annalee Olermo">Annalee</div><div class="role">Community Weaver</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/sarah.jpeg" alt="Sarah Jane Lee" loading="lazy">
-                        <div class="label"><div class="name">Sarah</div><div class="role">Marketing</div></div>
+                        <div class="label"><div class="name" title="Sarah Jane Lee">Sarah</div><div class="role">Marketing</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/andy.png" alt="Andy Kulkarni" loading="lazy">
-                        <div class="label"><div class="name">Andy</div><div class="role">Digital Marketing</div></div>
+                        <div class="label"><div class="name" title="Andy Kulkarni">Andy</div><div class="role">Digital Marketing</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/keith.jpeg" alt="Keith Hidalgo" loading="lazy">
-                        <div class="label"><div class="name">Keith</div><div class="role">Marketing</div></div>
+                        <div class="label"><div class="name" title="Keith Hidalgo">Keith</div><div class="role">Marketing</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/margarette.png" alt="Margarette Garcia" loading="lazy">
-                        <div class="label"><div class="name">Margarette</div><div class="role">Marketing</div></div>
+                        <div class="label"><div class="name" title="Margarette Garcia">Margarette</div><div class="role">Marketing</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/istvan.jpeg" alt="Istvan Szabo" loading="lazy">
-                        <div class="label"><div class="name">Istvan</div><div class="role">Software Engineer</div></div>
+                        <div class="label"><div class="name" title="Istvan Szabo">Istvan</div><div class="role">Software Engineer</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/adrian.jpeg" alt="Adrian Arvizo" loading="lazy">
-                        <div class="label"><div class="name">Adrian</div><div class="role">Audio, Visual &amp; Tech</div></div>
+                        <div class="label"><div class="name" title="Adrian Arvizo">Adrian</div><div class="role">Audio, Visual &amp; Tech</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/jerry.jpeg" alt="Jerry Muscarella" loading="lazy">
-                        <div class="label"><div class="name">Jerry</div><div class="role">Photographer</div></div>
+                        <div class="label"><div class="name" title="Jerry Muscarella">Jerry</div><div class="role">Photographer</div></div>
                     </div>
                     <div class="teammate">
                         <img src="/assets/img/team/nicah.jpeg" alt="Nicah Tuazon" loading="lazy">
-                        <div class="label"><div class="name">Nicah</div><div class="role">Marketing</div></div>
+                        <div class="label"><div class="name" title="Nicah Tuazon">Nicah</div><div class="role">Marketing</div></div>
                     </div>
                 </div>
             </section>
@@ -468,7 +473,7 @@
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
                     <div class="lg:col-span-5">
                         <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">The Commitment</span>
-                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">What we ask in return.</h2>
+                        <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] leading-tight text-brand-blue mt-3 mb-3 tracking-tight">What we ask in return.</h2>
                         <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                         <p class="font-inter text-base md:text-xl text-on-surface-variant mb-6">It's a volunteer role — so the bar is real ownership of a slice, not full-time hours.</p>
                         <div class="bg-brand-blue/5 border border-brand-blue/10 rounded-card p-5">
@@ -557,7 +562,7 @@
             <section id="volunteer-form" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
                 <div class="lg:col-span-5">
                     <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">Apply</span>
-                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] text-brand-blue mt-3 mb-3 tracking-tight">Tell us who you are.</h2>
+                    <h2 class="font-manrope font-extrabold text-3xl md:text-[40px] leading-tight text-brand-blue mt-3 mb-3 tracking-tight">Tell us who you are.</h2>
                     <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
                     <p class="font-inter text-base md:text-xl text-on-surface-variant mb-8">A quick form — five minutes, tops. We read every submission and reply within a week.</p>
 
