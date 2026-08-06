@@ -111,7 +111,7 @@
 
     <link href="/assets/css/base.css" rel="stylesheet">
     <style>
-        /* Home-page overrides — nav here is sticky, not fixed */
+        /* Home-page overrides â€” nav here is sticky, not fixed */
         body { padding-top: 0 !important; font-family: 'Inter', sans-serif; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; }
 
@@ -136,10 +136,10 @@
         ::-webkit-scrollbar-thumb { background: #c6c6cd; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #76777d; }
 
-        /* Hero slider — first slide visible while JS boots */
+        /* Hero slider â€” first slide visible while JS boots */
         #hero-slider .hero-slide:first-child { opacity: 1; }
 
-        /* Hero stage shape — mobile uses a clip without the bottom-left tag notch */
+        /* Hero stage shape â€” mobile uses a clip without the bottom-left tag notch */
         .hero-stage-shape { -webkit-clip-path: url(#hero-stage-clip-mobile); clip-path: url(#hero-stage-clip-mobile); }
         @media (min-width: 768px) {
             .hero-stage-shape { -webkit-clip-path: url(#hero-stage-clip); clip-path: url(#hero-stage-clip); }
@@ -166,6 +166,9 @@
         .sponsor-marquee.is-dragging { cursor: grabbing; }
         .sponsor-marquee-track { display: flex; width: max-content; will-change: transform; user-select: none; align-items: center; }
         .sponsor-slot { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 140px; height: 64px; }
+        a.sponsor-slot { text-decoration: none; border-radius: 8px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+        .sponsor-marquee.is-dragging a.sponsor-slot { cursor: grabbing; }
+        a.sponsor-slot:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
         @media (min-width: 768px) { .sponsor-slot { width: 180px; height: 80px; } }
         .sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(100%) opacity(0.7); mix-blend-mode: multiply; transform: scale(1); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.8, 0.5, 1); -webkit-user-drag: none; user-select: none; transform-origin: center; }
         .sponsor-slot.is-dark-bg img { mix-blend-mode: lighten; filter: grayscale(100%) invert(1) opacity(0.75); }
@@ -420,23 +423,23 @@
             <p class="text-center font-inter text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-2">Our Sponsors</p>
             <div class="sponsor-marquee">
                 <div class="sponsor-marquee-track gap-8 md:gap-12">
-                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" title="Alveo Land" draggable="false"></div>
-                    <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" title="De Guzman Mayuga" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" title="LEAP Studios" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" title="Globe Telecom" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" title="NuKind Digital Marketing" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" title="Thermomix" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" title="PDAX" draggable="false"></div>
-                    <div class="sponsor-slot"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" title="AI Labs CX" draggable="false"></div>
+                    <a class="sponsor-slot is-dark-bg" href="https://www.alveoland.com.ph/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" title="Alveo Land" draggable="false"></a>
+                    <a class="sponsor-slot is-dark-bg" href="https://deguzmanmayuga.com/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" title="De Guzman Mayuga" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://leapstudios.spacebring.com/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" title="LEAP Studios" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://www.globe.com.ph/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" title="Globe Telecom" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://nukind.digital/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" title="NuKind Digital Marketing" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://www.facebook.com/ThermomixPhilippines/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" title="Thermomix" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://pdax.ph/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" title="PDAX" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://ailabs.cx/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" title="AI Labs CX" draggable="false"></a>
                     <!-- Duplicate set for seamless loop -->
-                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/alveo.png" alt="" title="Alveo Land" draggable="false"></div>
-                    <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" title="De Guzman Mayuga" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/leap-studios.png" alt="" title="LEAP Studios" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/globe.png" alt="" title="Globe Telecom" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/nukind.png" alt="" title="NuKind Digital Marketing" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/thermomix.png" alt="" title="Thermomix" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/pdax.png" alt="" title="PDAX" draggable="false"></div>
-                    <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></div>
+                    <a class="sponsor-slot is-dark-bg" href="https://www.alveoland.com.ph/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/alveo.png" alt="" title="Alveo Land" draggable="false"></a>
+                    <a class="sponsor-slot is-dark-bg" href="https://deguzmanmayuga.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" title="De Guzman Mayuga" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://leapstudios.spacebring.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/leap-studios.png" alt="" title="LEAP Studios" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://www.globe.com.ph/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/globe.png" alt="" title="Globe Telecom" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://nukind.digital/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/nukind.png" alt="" title="NuKind Digital Marketing" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://www.facebook.com/ThermomixPhilippines/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/thermomix.png" alt="" title="Thermomix" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://pdax.ph/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/pdax.png" alt="" title="PDAX" draggable="false"></a>
+                    <a class="sponsor-slot" href="https://ailabs.cx/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></a>
                 </div>
             </div>
 
@@ -592,9 +595,9 @@
                     </a>
                 </div>
 
-                <!-- Founders -->
+                <!-- Founder -->
                 <div class="mb-12">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-6 md:gap-8">
+                    <div class="max-w-xl mx-auto">
                         <a href="https://www.linkedin.com/in/jackdiao/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-6 md:p-10 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                             <div class="relative w-48 h-48 md:w-60 md:h-60 mb-6 md:mb-8">
                                 <span aria-hidden="true" class="absolute inset-0 translate-x-2 translate-y-2 md:translate-x-3 md:translate-y-3 rounded-[2rem] bg-brand-red/25 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3 md:group-hover:translate-x-5 md:group-hover:translate-y-5"></span>
@@ -606,35 +609,12 @@
                             <p class="font-inter text-lg md:text-xl text-primary/70 font-medium">Economic Consultant / Founder</p>
                             <p class="font-inter text-base md:text-xl text-on-surface-variant mt-3 md:mt-4 leading-relaxed">Driving community growth and operational excellence at AI &amp; Tech Manila.</p>
                         </a>
-                        <a href="https://www.linkedin.com/in/rosselle-mabunga/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-3xl p-6 md:p-10 shadow-sm border border-outline-variant/10 flex flex-col items-center text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                            <div class="relative w-48 h-48 md:w-60 md:h-60 mb-6 md:mb-8">
-                                <span aria-hidden="true" class="absolute inset-0 translate-x-2 translate-y-2 md:translate-x-3 md:translate-y-3 rounded-[2rem] bg-brand-red/25 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3 md:group-hover:translate-x-5 md:group-hover:translate-y-5"></span>
-                                <div class="relative w-full h-full rounded-[2rem] bg-surface-container overflow-hidden ring-1 ring-outline-variant/30 shadow-md saturate-[0.9] group-hover:saturate-100 transition-all duration-500">
-                                    <img class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
-                                </div>
-                            </div>
-                            <h4 class="font-manrope font-bold text-3xl md:text-4xl text-brand-blue mb-2">Rosselle Mabunga</h4>
-                            <p class="font-inter text-lg md:text-xl text-primary/70 font-medium">Founder Emeritus</p>
-                            <p class="font-inter text-base md:text-xl text-on-surface-variant mt-3 md:mt-4 leading-relaxed">Leading technical innovation and building solutions that shape the future of AI &amp; Tech Manila.</p>
-                        </a>
                     </div>
                 </div>
 
                 <!-- Members -->
                 <div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Ingrid Honrado-Nelson</h4>
-                            <div class="flex items-start gap-5 md:gap-6">
-                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
-                                    <img class="w-full h-full object-cover object-top" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado-Nelson">
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Tech Community Journalist &amp; Storyteller</p>
-                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Documenting our journey and sharing the stories that matter in tech.</p>
-                                </div>
-                            </div>
-                        </a>
                         <a href="https://www.linkedin.com/in/heyitsistvan/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
                             <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Istvan Szabo</h4>
                             <div class="flex items-start gap-5 md:gap-6">
@@ -704,6 +684,78 @@
                                 <div class="flex-1 min-w-0">
                                     <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Photographer &amp; Information Security Officer</p>
                                     <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Capturing our community and bringing a security mindset to the team.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dorothy-anne-rodelas-safred-27232093/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Dorothy Anne Rodelas Safred</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover object-top" src="/assets/img/team/dorothy.jpeg" alt="Dorothy Anne Rodelas Safred">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Business Process Analyst</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Passionate about connecting people, ideas, and innovation. Bridging tech, government and business &mdash; with a focus in collaboration, sustainable development, and building where everyone can learn and thrive.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jasoncureg/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Jason C.</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover object-top" src="/assets/img/team/jason.jpeg" alt="Jason C.">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Data Analyst</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Making numbers talk so businesses can make smarter choices.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/jennalyngamboacareer/" target="_blank" rel="noopener" class="group bg-surface-container-lowest rounded-2xl p-5 md:p-6 shadow-sm border border-outline-variant/10 flex flex-col gap-4 md:gap-5 hover:border-brand-red/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Jennalyn Gamboa</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.9] group-hover:saturate-100 group-hover:ring-brand-red/40 transition-all duration-500">
+                                    <img class="w-full h-full object-cover object-top" src="/assets/img/team/jennalyn.jpeg" alt="Jennalyn Gamboa">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Social Media Lead</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Growing our AI &amp; Tech community through creative content, smart use of AI, and engaging digital experiences.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Emeritus -->
+                <div class="mt-12 md:mt-16 pt-10 md:pt-12 border-t border-outline-variant/25">
+                    <div class="mb-8">
+                        <span class="font-jetbrains text-xs uppercase tracking-widest text-brand-red">With gratitude</span>
+                        <h3 class="font-manrope font-extrabold text-2xl md:text-3xl text-brand-blue mt-3 mb-3 tracking-tight">Emeritus</h3>
+                        <div class="w-16 h-1 rounded-full bg-brand-red mb-5"></div>
+                        <p class="font-inter text-base md:text-lg text-on-surface-variant max-w-3xl">Those who built the foundations we stand on today. Their work shaped what AI &amp; Tech Manila has become.</p>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <a href="https://www.linkedin.com/in/rosselle-mabunga/" target="_blank" rel="noopener" class="group bg-surface-container-low rounded-2xl p-5 md:p-6 border border-outline-variant/15 flex flex-col gap-4 md:gap-5 hover:border-brand-blue/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Rosselle Mabunga</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.75] group-hover:saturate-100 transition-all duration-500">
+                                    <img class="w-full h-full object-cover object-top" src="/assets/img/team/rosselle.jpeg" alt="Rosselle Mabunga">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">Founder Emeritus</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Led technical innovation and built the solutions that shaped the early years of AI &amp; Tech Manila.</p>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ingridhatecometalsresourcegroup/" target="_blank" rel="noopener" class="group bg-surface-container-low rounded-2xl p-5 md:p-6 border border-outline-variant/15 flex flex-col gap-4 md:gap-5 hover:border-brand-blue/30 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                            <h4 class="font-manrope font-bold text-xl md:text-2xl text-brand-blue">Ingrid Honrado-Nelson</h4>
+                            <div class="flex items-start gap-5 md:gap-6">
+                                <div class="w-24 h-24 md:w-32 md:h-32 rounded-2xl bg-surface-container overflow-hidden shrink-0 ring-1 ring-outline-variant/30 shadow-sm saturate-[0.75] group-hover:saturate-100 transition-all duration-500">
+                                    <img class="w-full h-full object-cover object-top" src="/assets/img/team/ingrid.jpeg" alt="Ingrid Honrado-Nelson">
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-inter text-sm md:text-base text-primary/70 font-medium">COO Emeritus</p>
+                                    <p class="font-inter text-sm md:text-base text-on-surface-variant mt-1.5 leading-relaxed">Kept the community running day to day, and documented the journey and stories that mattered in tech.</p>
                                 </div>
                             </div>
                         </a>
@@ -809,7 +861,7 @@
     <script>
         dayjs.extend(dayjs_plugin_relativeTime);
 
-        // Countdown timer — switches to a post-event recap state once the date passes
+        // Countdown timer â€” switches to a post-event recap state once the date passes
         let countdownTimer = null;
 
         function updateCountdown() {
@@ -844,7 +896,7 @@
                 return;
             }
 
-            // Event is over — swap the countdown for the recap / thank-you state.
+            // Event is over â€” swap the countdown for the recap / thank-you state.
             const dateStr = target.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
             showEventEnded(dateStr);
             if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }

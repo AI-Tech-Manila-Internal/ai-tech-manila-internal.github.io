@@ -197,6 +197,9 @@
         .sponsor-marquee.is-dragging { cursor: grabbing; }
         .sponsor-marquee-track { display: flex; width: max-content; will-change: transform; user-select: none; align-items: center; }
         .sponsor-slot { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 140px; height: 64px; }
+        a.sponsor-slot { text-decoration: none; border-radius: 8px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+        .sponsor-marquee.is-dragging a.sponsor-slot { cursor: grabbing; }
+        a.sponsor-slot:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; }
         @media (min-width: 768px) { .sponsor-slot { width: 180px; height: 80px; } }
         .sponsor-slot img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; filter: grayscale(100%) opacity(0.7); mix-blend-mode: multiply; transform: scale(1); transition: filter 0.3s ease, opacity 0.3s ease, transform 0.6s cubic-bezier(0.34, 1.8, 0.5, 1); -webkit-user-drag: none; user-select: none; transform-origin: center; }
         .sponsor-slot.is-dark-bg img { mix-blend-mode: lighten; filter: grayscale(100%) invert(1) opacity(0.75); }
@@ -324,23 +327,23 @@
                 <p class="text-center font-inter text-sm uppercase tracking-[0.2em] text-on-surface-variant mb-2">Brands Already On Board</p>
                 <div class="sponsor-marquee">
                     <div class="sponsor-marquee-track gap-8 md:gap-12">
-                        <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" title="Alveo Land" draggable="false"></div>
-                        <div class="sponsor-slot is-dark-bg"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" title="De Guzman Mayuga" draggable="false"></div>
-                        <div class="sponsor-slot"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" title="LEAP Studios" draggable="false"></div>
-                        <div class="sponsor-slot"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" title="Globe Telecom" draggable="false"></div>
-                        <div class="sponsor-slot"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" title="NuKind Digital Marketing" draggable="false"></div>
-                        <div class="sponsor-slot"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" title="Thermomix" draggable="false"></div>
-                        <div class="sponsor-slot"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" title="PDAX" draggable="false"></div>
-                        <div class="sponsor-slot"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" title="AI Labs CX" draggable="false"></div>
+                        <a class="sponsor-slot is-dark-bg" href="https://www.alveoland.com.ph/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/alveo.png" alt="Alveo Land" title="Alveo Land" draggable="false"></a>
+                        <a class="sponsor-slot is-dark-bg" href="https://deguzmanmayuga.com/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="De Guzman Mayuga" title="De Guzman Mayuga" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://leapstudios.spacebring.com/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/leap-studios.png" alt="LEAP Studios" title="LEAP Studios" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://www.globe.com.ph/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/globe.png" alt="Globe Telecom" title="Globe Telecom" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://nukind.digital/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/nukind.png" alt="NuKind Digital Marketing" title="NuKind Digital Marketing" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://www.facebook.com/ThermomixPhilippines/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/thermomix.png" alt="Thermomix" title="Thermomix" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://pdax.ph/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/pdax.png" alt="PDAX" title="PDAX" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://ailabs.cx/" target="_blank" rel="noopener noreferrer"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="AI Labs CX" title="AI Labs CX" draggable="false"></a>
                         <!-- Duplicate set for seamless loop -->
-                        <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/alveo.png" alt="" title="Alveo Land" draggable="false"></div>
-                        <div class="sponsor-slot is-dark-bg" aria-hidden="true"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" title="De Guzman Mayuga" draggable="false"></div>
-                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/leap-studios.png" alt="" title="LEAP Studios" draggable="false"></div>
-                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/globe.png" alt="" title="Globe Telecom" draggable="false"></div>
-                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/nukind.png" alt="" title="NuKind Digital Marketing" draggable="false"></div>
-                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/thermomix.png" alt="" title="Thermomix" draggable="false"></div>
-                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/pdax.png" alt="" title="PDAX" draggable="false"></div>
-                        <div class="sponsor-slot" aria-hidden="true"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></div>
+                        <a class="sponsor-slot is-dark-bg" href="https://www.alveoland.com.ph/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/alveo.png" alt="" title="Alveo Land" draggable="false"></a>
+                        <a class="sponsor-slot is-dark-bg" href="https://deguzmanmayuga.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/de-guzman-mayuga.png" alt="" title="De Guzman Mayuga" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://leapstudios.spacebring.com/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/leap-studios.png" alt="" title="LEAP Studios" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://www.globe.com.ph/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/globe.png" alt="" title="Globe Telecom" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://nukind.digital/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/nukind.png" alt="" title="NuKind Digital Marketing" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://www.facebook.com/ThermomixPhilippines/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/thermomix.png" alt="" title="Thermomix" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://pdax.ph/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/pdax.png" alt="" title="PDAX" draggable="false"></a>
+                        <a class="sponsor-slot" href="https://ailabs.cx/" target="_blank" rel="noopener noreferrer" aria-hidden="true" tabindex="-1"><img src="/assets/img/sponsors/ai-labs-cx.png" alt="" title="AI Labs CX" draggable="false"></a>
                     </div>
                 </div>
             </section>

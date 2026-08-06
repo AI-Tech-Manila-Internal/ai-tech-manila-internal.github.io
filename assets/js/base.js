@@ -203,10 +203,13 @@ document.addEventListener('DOMContentLoaded', function() {
         let position = direction === 1 ? -1 : 0; // start reverse track slightly offset so it scrolls into view
         let lastTime = 0;
         let isHovered = false;
+        let isPressed = false;
         let isDragging = false;
         let dragStartX = 0;
         let dragStartPos = 0;
         let activePointerId = null;
+        let dragDistance = 0;
+        const dragThreshold = 5; // px before a press counts as a drag, not a click
 
         function measure() { halfWidth = track.scrollWidth / 2; if (direction === 1 && position === 0) position = -halfWidth; }
         function wrap() {
@@ -218,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!lastTime) lastTime = time;
             const dt = (time - lastTime) / 1000;
             lastTime = time;
-            if (!isDragging && !isHovered && !reduceMotion) {
+            if (!isPressed && !isHovered && !reduceMotion) {
                 position += direction * speed * dt;
             }
             wrap();
@@ -229,27 +232,44 @@ document.addEventListener('DOMContentLoaded', function() {
         marquee.addEventListener('pointerleave', () => { isHovered = false; });
         marquee.addEventListener('pointerdown', (e) => {
             if (e.button !== undefined && e.button !== 0) return;
-            isDragging = true;
+            isPressed = true;
+            isDragging = false;
             dragStartX = e.clientX;
             dragStartPos = position;
+            dragDistance = 0;
             activePointerId = e.pointerId;
-            try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
-            marquee.classList.add('is-dragging');
         });
         marquee.addEventListener('pointermove', (e) => {
-            if (!isDragging || e.pointerId !== activePointerId) return;
-            position = dragStartPos + (e.clientX - dragStartX);
+            if (!isPressed || e.pointerId !== activePointerId) return;
+            const delta = e.clientX - dragStartX;
+            dragDistance = Math.max(dragDistance, Math.abs(delta));
+            if (!isDragging) {
+                if (dragDistance <= dragThreshold) return;
+                // Capture only once this is a real drag: capturing on pointerdown would
+                // retarget the following click away from the sponsor link.
+                isDragging = true;
+                try { marquee.setPointerCapture(e.pointerId); } catch (_) {}
+                marquee.classList.add('is-dragging');
+            }
+            position = dragStartPos + delta;
             wrap();
         });
         function endDrag(e) {
-            if (!isDragging || (e && e.pointerId !== activePointerId)) return;
+            if (!isPressed || (e && e.pointerId !== activePointerId)) return;
+            isPressed = false;
             isDragging = false;
             activePointerId = null;
             marquee.classList.remove('is-dragging');
+            // Cleared after the click that follows pointerup has been handled.
+            setTimeout(() => { dragDistance = 0; }, 0);
         }
         marquee.addEventListener('pointerup', endDrag);
         marquee.addEventListener('pointercancel', endDrag);
         marquee.addEventListener('dragstart', (e) => e.preventDefault());
+        // Don't follow a sponsor link when the press was actually a drag.
+        marquee.addEventListener('click', (e) => {
+            if (dragDistance > dragThreshold) { e.preventDefault(); e.stopPropagation(); }
+        }, true);
 
         return { measure, start: () => requestAnimationFrame(tick) };
     }
